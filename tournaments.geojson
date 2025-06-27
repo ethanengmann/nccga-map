@@ -1,0 +1,18 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Turtle Creek",
+        "date": "2025-11-08",
+        "region": "Philadelphia Region",
+        "signup_url": ""
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [28.7315,-80.6743] 
+      }
+    }
+  ]
+}
