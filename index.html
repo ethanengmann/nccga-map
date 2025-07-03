@@ -14,140 +14,122 @@
   <div id="map"></div>
 
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-<script>
-  const map = L.map('map').setView([39.5, -98.35], 4);
+  <script>
+    const map = L.map('map').setView([39.5, -98.35], 4);
 
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 18,
-    attribution: '&copy; OpenStreetMap contributors'
-  }).addTo(map);
-
-  const regionColors = {};
-  const getColor = region => {
-    if (!regionColors[region]) {
-      regionColors[region] = `hsl(${Math.random() * 360}, 70%, 70%)`;
-    }
-    return regionColors[region];
-  };
-
-fetch('schools.geojson')
-  .then(response => {
-    if (!response.ok) throw new Error("Couldn't load schools.geojson");
-    return response.json();
-  })
-  .then(data => {
-    L.geoJSON(data, {
-      pointToLayer: (feature, latlng) => {
-        const schoolName = feature.properties.school;
-        const region = feature.properties.region;
-        const color = getColor(region);
-        const schoolUrl = `https://nccga.org/app/teams/${schoolName.toLowerCase().replace(/\s+/g, '-')}`;
-
-        // ✅ Special case: Rutgers icon for Philly region
-        if (region === "Philly Region" && schoolName === "Rutgers University") {
-          const rutgersIcon = L.icon({
-            iconUrl: 'rutgers.png',   // make sure this file exists in your repo
-            iconSize: [40, 40],       // adjust icon size as needed
-            iconAnchor: [20, 20],     // center the icon
-            popupAnchor: [0, -20]
-          });
-          return L.marker(latlng, { icon: rutgersIcon }).on('click', e => {
-            e.originalEvent._clickedSchool = true;
-            const popupContent = `<strong><a href="${schoolUrl}" target="_blank">${schoolName}</a></strong><br>${region}`;
-            e.target.bindPopup(popupContent).openPopup();
-          });
-        }
-
-        // Default: regular dots for other schools
-        return L.circleMarker(latlng, {
-          radius: 6,
-          fillColor: color,
-          color: "#333",
-          weight: 1,
-          opacity: 1,
-          fillOpacity: 0.9
-        }).on('click', e => {
-          e.originalEvent._clickedSchool = true;
-          const popupContent = `<strong><a href="${schoolUrl}" target="_blank">${schoolName}</a></strong><br>${region}`;
-          e.target.bindPopup(popupContent).openPopup();
-        });
-      }
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 18,
+      attribution: '&copy; OpenStreetMap contributors'
     }).addTo(map);
-  })
-  .catch(error => console.error(error));
 
-    // Load tournaments.geojson
-fetch('tournaments.geojson')
-  .then(response => {
-    if (!response.ok) throw new Error("Couldn't load tournaments.geojson");
-    return response.json();
-  })
-  .then(data => {
-    L.geoJSON(data, {
-      pointToLayer: (feature, latlng) => {
-        return L.marker(latlng, { icon: L.icon({
-          iconUrl: 'https://cdn-icons-png.flaticon.com/512/684/684908.png',  // Example golf flag icon
-          iconSize: [24, 24],
-          iconAnchor: [12, 24]
-        }) }).bindPopup(`
-          <strong>${feature.properties.name}</strong><br>
-          Region: ${feature.properties.region}<br>
-          Date: ${feature.properties.date}<br>
-          <a href="${feature.properties.signup_url}" target="_blank">Sign Up</a>
-        `);
+    const regionColors = {};
+    const getColor = region => {
+      if (!regionColors[region]) {
+        regionColors[region] = `hsl(${Math.random() * 360}, 70%, 70%)`;
       }
-    }).addTo(map);
-  })
-  .catch(error => console.error(error));
+      return regionColors[region];
+    };
 
-</script>
-<script>
-  fetch('regions.geojson')
-    .then(res => res.json())
-    .then(data => {
-      const regionLayer = L.geoJSON(data, {
-        style: feature => {
-          const color = getColor(feature.properties.region);
-          return {
-            color: color,
-            weight: 2,
-            fillOpacity: 0.2,
-            interactive: false // <-- critical: disable pointer events
-          };
-        }
-      }).addTo(map);
+    // ➔ Manual lookup table for correct team URLs (fill these in!)
+    const teamLinks = {
+      "Rutgers University": "https://nccga.org/app/teams/rutgers-university-club-golf",
+      "Pennsylvania State University": "https://nccga.org/app/teams/penn-state-club-golf",
+      "West Virginia University": "https://nccga.org/app/teams/wvu-club-golf",
+      // Add more schools here...
+    };
 
-      // Separate layer for interaction (so regions don't block dots)
-      data.features.forEach(feature => {
-        const regionName = feature.properties.region;
-        const schools = feature.properties.schools;
-        let popupContent = `<strong>${regionName}</strong>`;
-        if (schools && schools.length > 0) {
-          popupContent += '<br><ul>';
-          schools.forEach(school => popupContent += `<li>${school}</li>`);
-          popupContent += '</ul>';
-        } else {
-          popupContent += '<br>No schools listed.';
-        }
-        // Create an invisible polygon just for clicks
-        const interactiveLayer = L.geoJSON(feature, {
-          style: { opacity: 0, fillOpacity: 0, weight: 0 },
-          onEachFeature: (_, layer) => {
-            layer.on('click', e => {
-              if (!e.originalEvent._clickedSchool) {
-                layer.bindPopup(popupContent).openPopup(e.latlng);
-              }
+    fetch('schools.geojson')
+      .then(response => {
+        if (!response.ok) throw new Error("Couldn't load schools.geojson");
+        return response.json();
+      })
+      .then(data => {
+        L.geoJSON(data, {
+          pointToLayer: (feature, latlng) => {
+            const schoolName = feature.properties.school;
+            const region = feature.properties.region;
+            const color = getColor(region);
+            const schoolUrl = teamLinks[schoolName] || '#';
+
+            return L.circleMarker(latlng, {
+              radius: 6,
+              fillColor: color,
+              color: "#333",
+              weight: 1,
+              opacity: 1,
+              fillOpacity: 0.9
+            }).on('click', e => {
+              e.originalEvent._clickedSchool = true;
+              const popupContent = `<strong><a href="${schoolUrl}" target="_blank">${schoolName}</a></strong><br>${region}`;
+              e.target.bindPopup(popupContent).openPopup();
             });
           }
         }).addTo(map);
-      });
-    })
-    .catch(console.error);
-</script>
+      })
+      .catch(console.error);
 
+    fetch('tournaments.geojson')
+      .then(response => {
+        if (!response.ok) throw new Error("Couldn't load tournaments.geojson");
+        return response.json();
+      })
+      .then(data => {
+        L.geoJSON(data, {
+          pointToLayer: (feature, latlng) => {
+            return L.marker(latlng, { icon: L.icon({
+              iconUrl: 'https://cdn-icons-png.flaticon.com/512/684/684908.png',
+              iconSize: [24, 24],
+              iconAnchor: [12, 24]
+            }) }).bindPopup(`
+              <strong>${feature.properties.name}</strong><br>
+              Region: ${feature.properties.region}<br>
+              Date: ${feature.properties.date}<br>
+              <a href="${feature.properties.signup_url}" target="_blank">Sign Up</a>
+            `);
+          }
+        }).addTo(map);
+      })
+      .catch(console.error);
 
+    fetch('regions.geojson')
+      .then(res => res.json())
+      .then(data => {
+        const regionLayer = L.geoJSON(data, {
+          style: feature => {
+            const color = getColor(feature.properties.region);
+            return {
+              color: color,
+              weight: 2,
+              fillOpacity: 0.2,
+              interactive: false
+            };
+          }
+        }).addTo(map);
 
-
+        data.features.forEach(feature => {
+          const regionName = feature.properties.region;
+          const schools = feature.properties.schools;
+          let popupContent = `<strong>${regionName}</strong>`;
+          if (schools && schools.length > 0) {
+            popupContent += '<br><ul>';
+            schools.forEach(school => popupContent += `<li>${school}</li>`);
+            popupContent += '</ul>';
+          } else {
+            popupContent += '<br>No schools listed.';
+          }
+          L.geoJSON(feature, {
+            style: { opacity: 0, fillOpacity: 0, weight: 0 },
+            onEachFeature: (_, layer) => {
+              layer.on('click', e => {
+                if (!e.originalEvent._clickedSchool) {
+                  layer.bindPopup(popupContent).openPopup(e.latlng);
+                }
+              });
+            }
+          }).addTo(map);
+        });
+      })
+      .catch(console.error);
+  </script>
 </body>
 </html>
-
