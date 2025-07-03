@@ -30,82 +30,21 @@
       return regionColors[region];
     };
 
-    // ➔ Manual lookup table for correct team URLs (fill these in!)
-    const teamLinks = {
-      "Rutgers University": "https://nccga.org/app/teams/rutgers-university-club-golf",
-      "Pennsylvania State University": "https://nccga.org/app/teams/penn-state-club-golf",
-      "West Virginia University": "https://nccga.org/app/teams/wvu-club-golf",
-      // Add more schools here...
-    };
-
-    fetch('schools.geojson')
-      .then(response => {
-        if (!response.ok) throw new Error("Couldn't load schools.geojson");
-        return response.json();
-      })
-      .then(data => {
-        L.geoJSON(data, {
-          pointToLayer: (feature, latlng) => {
-            const schoolName = feature.properties.school;
-            const region = feature.properties.region;
-            const color = getColor(region);
-            const schoolUrl = teamLinks[schoolName] || '#';
-
-            return L.circleMarker(latlng, {
-              radius: 6,
-              fillColor: color,
-              color: "#333",
-              weight: 1,
-              opacity: 1,
-              fillOpacity: 0.9
-            }).on('click', e => {
-              e.originalEvent._clickedSchool = true;
-              const popupContent = `<strong><a href="${schoolUrl}" target="_blank">${schoolName}</a></strong><br>${region}`;
-              e.target.bindPopup(popupContent).openPopup();
-            });
-          }
-        }).addTo(map);
-      })
-      .catch(console.error);
-
-    fetch('tournaments.geojson')
-      .then(response => {
-        if (!response.ok) throw new Error("Couldn't load tournaments.geojson");
-        return response.json();
-      })
-      .then(data => {
-        L.geoJSON(data, {
-          pointToLayer: (feature, latlng) => {
-            return L.marker(latlng, { icon: L.icon({
-              iconUrl: 'https://cdn-icons-png.flaticon.com/512/684/684908.png',
-              iconSize: [24, 24],
-              iconAnchor: [12, 24]
-            }) }).bindPopup(`
-              <strong>${feature.properties.name}</strong><br>
-              Region: ${feature.properties.region}<br>
-              Date: ${feature.properties.date}<br>
-              <a href="${feature.properties.signup_url}" target="_blank">Sign Up</a>
-            `);
-          }
-        }).addTo(map);
-      })
-      .catch(console.error);
-
+    // Load regions.geojson first
     fetch('regions.geojson')
       .then(res => res.json())
       .then(data => {
-        const regionLayer = L.geoJSON(data, {
-          style: feature => {
-            const color = getColor(feature.properties.region);
-            return {
-              color: color,
-              weight: 2,
-              fillOpacity: 0.2,
-              interactive: false
-            };
-          }
+        // Draw non-interactive region outlines
+        L.geoJSON(data, {
+          style: feature => ({
+            color: getColor(feature.properties.region),
+            weight: 2,
+            fillOpacity: 0.2,
+            interactive: false // disables pointer events on outlines
+          })
         }).addTo(map);
 
+        // Add invisible but clickable polygons for region popups (below dots)
         data.features.forEach(feature => {
           const regionName = feature.properties.region;
           const schools = feature.properties.schools;
@@ -128,6 +67,55 @@
             }
           }).addTo(map);
         });
+      })
+      .catch(console.error);
+
+    // Load schools.geojson (after regions so dots stay on top)
+    fetch('schools.geojson')
+      .then(res => res.json())
+      .then(data => {
+        L.geoJSON(data, {
+          pointToLayer: (feature, latlng) => {
+            const schoolName = feature.properties.school;
+            const region = feature.properties.region;
+            const color = getColor(region);
+            const schoolUrl = `https://nccga.org/app/teams/${schoolName.toLowerCase().replace(/\s+/g, '-')}`;
+
+            return L.circleMarker(latlng, {
+              radius: 8,           // visual size
+              fillColor: color,
+              color: "#333",
+              weight: 1,
+              opacity: 1,
+              fillOpacity: 0.9
+            }).on('click', e => {
+              e.originalEvent._clickedSchool = true; // flag so region doesn't grab
+              const popupContent = `<strong><a href="${schoolUrl}" target="_blank">${schoolName}</a></strong><br>${region}`;
+              e.target.bindPopup(popupContent).openPopup();
+            });
+          }
+        }).addTo(map);
+      })
+      .catch(console.error);
+
+    // Load tournaments.geojson
+    fetch('tournaments.geojson')
+      .then(res => res.json())
+      .then(data => {
+        L.geoJSON(data, {
+          pointToLayer: (feature, latlng) => {
+            return L.marker(latlng, { icon: L.icon({
+              iconUrl: 'https://cdn-icons-png.flaticon.com/512/684/684908.png',
+              iconSize: [24, 24],
+              iconAnchor: [12, 24]
+            }) }).bindPopup(`
+              <strong>${feature.properties.name}</strong><br>
+              Region: ${feature.properties.region}<br>
+              Date: ${feature.properties.date}<br>
+              <a href="${feature.properties.signup_url}" target="_blank">Sign Up</a>
+            `);
+          }
+        }).addTo(map);
       })
       .catch(console.error);
   </script>
