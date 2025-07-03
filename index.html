@@ -30,34 +30,52 @@
     return regionColors[region];
   };
 
-  fetch('schools.geojson')
-    .then(res => res.json())
-    .then(data => {
-      L.geoJSON(data, {
-        pointToLayer: (feature, latlng) => {
-          const color = getColor(feature.properties.region);
-          const marker = L.circleMarker(latlng, {
-            radius: 6,
-            fillColor: color,
-            color: "#333",
-            weight: 1,
-            opacity: 1,
-            fillOpacity: 0.9
-          });
+fetch('schools.geojson')
+  .then(response => {
+    if (!response.ok) throw new Error("Couldn't load schools.geojson");
+    return response.json();
+  })
+  .then(data => {
+    L.geoJSON(data, {
+      pointToLayer: (feature, latlng) => {
+        const schoolName = feature.properties.school;
+        const region = feature.properties.region;
+        const color = getColor(region);
+        const schoolUrl = `https://nccga.org/app/teams/${schoolName.toLowerCase().replace(/\s+/g, '-')}`;
 
-          marker.on('click', () => {
-            const school = feature.properties.school;
-            const region = feature.properties.region;
-            const url = `https://nccga.org/app/teams/${school.toLowerCase().replace(/\s+/g, "-")}-club-golf`;
-            const popupContent = `<strong>${school}</strong><br>${region}<br><a href="${url}" target="_blank">Team Page</a>`;
-            marker.bindPopup(popupContent).openPopup();
+        // ✅ Special case: Rutgers icon for Philly region
+        if (region === "Philly Region" && schoolName === "Rutgers University") {
+          const rutgersIcon = L.icon({
+            iconUrl: 'rutgers.png',   // make sure this file exists in your repo
+            iconSize: [40, 40],       // adjust icon size as needed
+            iconAnchor: [20, 20],     // center the icon
+            popupAnchor: [0, -20]
           });
-
-          return marker;
+          return L.marker(latlng, { icon: rutgersIcon }).on('click', e => {
+            e.originalEvent._clickedSchool = true;
+            const popupContent = `<strong><a href="${schoolUrl}" target="_blank">${schoolName}</a></strong><br>${region}`;
+            e.target.bindPopup(popupContent).openPopup();
+          });
         }
-      }).addTo(map);
-    })
-    .catch(console.error);
+
+        // Default: regular dots for other schools
+        return L.circleMarker(latlng, {
+          radius: 6,
+          fillColor: color,
+          color: "#333",
+          weight: 1,
+          opacity: 1,
+          fillOpacity: 0.9
+        }).on('click', e => {
+          e.originalEvent._clickedSchool = true;
+          const popupContent = `<strong><a href="${schoolUrl}" target="_blank">${schoolName}</a></strong><br>${region}`;
+          e.target.bindPopup(popupContent).openPopup();
+        });
+      }
+    }).addTo(map);
+  })
+  .catch(error => console.error(error));
+
     // Load tournaments.geojson
 fetch('tournaments.geojson')
   .then(response => {
