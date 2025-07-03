@@ -30,11 +30,9 @@
       return regionColors[region];
     };
 
+    // Load school dots
     fetch('schools.geojson')
-      .then(response => {
-        if (!response.ok) throw new Error("Couldn't load schools.geojson");
-        return response.json();
-      })
+      .then(response => response.json())
       .then(data => {
         L.geoJSON(data, {
           pointToLayer: (feature, latlng) => {
@@ -42,45 +40,48 @@
             const region = feature.properties.region;
             const color = getColor(region);
 
-            // Build slug for team URL
             const slug = schoolName
               .toLowerCase()
-              .replace(/[.,']/g, '')         // Remove periods, commas, apostrophes
-              .replace(/\s+/g, '-')          // Replace spaces with hyphens
-              .replace(/-+/g, '-');          // Collapse multiple hyphens
+              .replace(/[.,']/g, '')  // remove punctuation
+              .replace(/\s+/g, '-')   // spaces to hyphens
+              .replace(/-+/g, '-');   // collapse multiple hyphens
 
             const schoolUrl = `https://nccga.org/app/teams/${slug}`;
 
-            return L.circleMarker(latlng, {
+            const marker = L.circleMarker(latlng, {
               radius: 6,
               fillColor: color,
               color: "#333",
               weight: 1,
               opacity: 1,
               fillOpacity: 0.9
-            }).on('click', e => {
-              e.originalEvent._clickedSchool = true;
-              const popupContent = `<strong><a href="${schoolUrl}" target="_blank">${schoolName}</a></strong><br>${region}`;
-              e.target.bindPopup(popupContent).openPopup();
             });
+
+            marker.on('click', e => {
+              e.originalEvent._clickedSchool = true;  // signal click priority
+              const popup = `<strong><a href="${schoolUrl}" target="_blank">${schoolName}</a></strong><br>${region}`;
+              marker.bindPopup(popup).openPopup();
+            });
+
+            return marker;
           }
         }).addTo(map);
       })
-      .catch(error => console.error(error));
+      .catch(console.error);
 
+    // Load tournaments
     fetch('tournaments.geojson')
-      .then(response => {
-        if (!response.ok) throw new Error("Couldn't load tournaments.geojson");
-        return response.json();
-      })
+      .then(response => response.json())
       .then(data => {
         L.geoJSON(data, {
           pointToLayer: (feature, latlng) => {
-            return L.marker(latlng, { icon: L.icon({
-              iconUrl: 'https://cdn-icons-png.flaticon.com/512/684/684908.png',
-              iconSize: [24, 24],
-              iconAnchor: [12, 24]
-            }) }).bindPopup(`
+            return L.marker(latlng, {
+              icon: L.icon({
+                iconUrl: 'https://cdn-icons-png.flaticon.com/512/684/684908.png',
+                iconSize: [24, 24],
+                iconAnchor: [12, 24]
+              })
+            }).bindPopup(`
               <strong>${feature.properties.name}</strong><br>
               Region: ${feature.properties.region}<br>
               Date: ${feature.properties.date}<br>
@@ -89,23 +90,26 @@
           }
         }).addTo(map);
       })
-      .catch(error => console.error(error));
+      .catch(console.error);
 
+    // Load regions
     fetch('regions.geojson')
-      .then(res => res.json())
+      .then(response => response.json())
       .then(data => {
-        const regionLayer = L.geoJSON(data, {
+        // Draw visible regions
+        L.geoJSON(data, {
           style: feature => {
             const color = getColor(feature.properties.region);
             return {
               color: color,
               weight: 2,
               fillOpacity: 0.2,
-              interactive: false
+              interactive: false  // disable region from blocking dot clicks
             };
           }
         }).addTo(map);
 
+        // Add transparent layer for clickable region popups
         data.features.forEach(feature => {
           const regionName = feature.properties.region;
           const schools = feature.properties.schools;
