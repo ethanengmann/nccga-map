@@ -4,14 +4,729 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Turtle Creek",
-        "date": "2025-11-08",
-        "region": "Philadelphia Region",
-        "signup_url": ""
+        "course_name": "RIver Forest Country Club",
+        "region": "Atlantic"
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [28.7315,-80.6743] 
+        "coordinates": [
+          -79.687583,
+          40.6576836
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Langston GC",
+        "region": "Capital"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.9637697,
+          38.8978224
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Augustine GC",
+        "region": "Capital"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.4777212,
+          38.4435556
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Eagle Knoll GC",
+        "region": "Central"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -92.2642813,
+          38.6963171
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Excelsior Springs GC",
+        "region": "Central"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -94.1996532,
+          39.3331159
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Gateway National",
+        "region": "Central"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.1423543,
+          38.6632969
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Kiskiack GC",
+        "region": "Colonial"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.7533052,
+          37.3003479
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Kingsmill",
+        "region": "Colonial"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.669976,
+          37.2296371
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "GCU Golf Course",
+        "region": "Desert"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -112.1908044,
+          33.4975907
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Fred Enke GC",
+        "region": "Desert"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.8119298,
+          32.1686901
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Fairwinds",
+        "region": "Florida"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.3617877,
+          27.5022933
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Mission Inn",
+        "region": "Florida"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.7883173,
+          28.7224971
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Hawks Landing GC",
+        "region": "Florida"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.5093152,
+          28.3611447
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Eagle Harbor",
+        "region": "Florida"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.7185715,
+          30.1090581
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Atkins GC",
+        "region": "Great Lakes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -88.1700679,
+          40.0883389
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "The Refuge GC",
+        "region": "Gulf"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.1016021,
+          32.3161405
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Harrison Hills GC",
+        "region": "Indiana"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.2474868,
+          40.2871618
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Sultans Run",
+        "region": "Indiana"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.8979504,
+          38.4014945
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Stanley GC",
+        "region": "Metro"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.7668564,
+          41.7055237
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Tunxis",
+        "region": "Metro"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.8297782,
+          41.7381741
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Dyker Beach",
+        "region": "Metro"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.0203555,
+          40.6169228
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Pelham/Split Rock",
+        "region": "Metro"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.8092596,
+          40.8727331
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Leslie Park",
+        "region": "Midwest"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.7251705,
+          42.3074527
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Links of Novi ",
+        "region": "Midwest"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.5430069,
+          42.461926
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Broadlands GC",
+        "region": "Mountain"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.038175,
+          39.9548113
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "The Ranch Golf Club",
+        "region": "Southern New England"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.7783446,
+          42.0852967
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Hazelton Golf Club",
+        "region": "Southern New England"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.2936397,
+          41.8213277
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Whaling City GC",
+        "region": "Southern New England"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -70.9617713,
+          41.6580617
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "The Woods of Westminster",
+        "region": "Northern New England"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.8798546,
+          42.5862032
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Shining Rock GC",
+        "region": "Northern New England"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.6389814,
+          42.1578896
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Muskego Lakes GC",
+        "region": "North"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -88.0906173,
+          42.8674493
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Grandover Resort",
+        "region": "North Carolina"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.882725,
+          35.992013
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Far View CC",
+        "region": "Northeast"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.7634144,
+          42.8840579
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Senaca Falls CC",
+        "region": "Northeast"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.752833,
+          42.8912715
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Towanda GC",
+        "region": "Northeast"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.4236806,
+          41.7714446
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Ravenwood GC",
+        "region": "Northeast"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.392545,
+          42.991338
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Emerald Valley",
+        "region": "Northwest"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.9941712,
+          43.9231362
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Beckett Ridge",
+        "region": "Ohio Valley"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.4396615,
+          39.3470653
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Blacklick Woods",
+        "region": "Ohio Valley"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.802648,
+          39.9409361
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Lone Tree GC",
+        "region": "Pacific"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.805574,
+          37.964478
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Lake Chabot",
+        "region": "Pacific"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1219593,
+          37.7419017
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Turtle Creek GC",
+        "region": "Philadelphia"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.5183728,
+          40.2269026
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Frog Hollow",
+        "region": "Philadelphia"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.7126476,
+          39.4662642
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Wyncote Golf Club",
+        "region": "Philadelphia"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.9705358,
+          39.8131357
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Hickory Knob GC",
+        "region": "Southeast"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.4139118,
+          33.8858501
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Country Club of South Carolina ",
+        "region": "Southeast"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.6752432,
+          34.2504169
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Native Oaks",
+        "region": "Southwest"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -117.0253328,
+          33.2098333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Cottonwood ",
+        "region": "Texas"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.1671558,
+          31.505822
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Delaware Springs GC",
+        "region": "Texas"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -98.2429492,
+          30.7282646
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "The Ridge GC",
+        "region": "Twin Cities"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -96.1618842,
+          43.0519652
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Leo Bolstadt - UNM GC",
+        "region": "Twin Cities"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.1961146,
+          44.9921679
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Ridgecrest GC",
+        "region": "West"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -116.522799,
+          43.6044314
+        ]
       }
     }
   ]
