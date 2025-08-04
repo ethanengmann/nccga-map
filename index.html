@@ -103,25 +103,27 @@
       .catch(console.error);
 
     // === TOURNAMENTS (FLAG ICON) ===
-    const flagIcon = L.icon({
-      iconUrl: 'img/Golf_flag_icon.png',
-      iconSize: [15, 15],
-      iconAnchor: [15, 30],
-      popupAnchor: [0, -30]
-    });
+   // === TOURNAMENTS (FLAG ICON) ===
+const flagIcon = L.icon({
+  iconUrl: 'img/Golf_flag_icon.png',
+  iconSize: [15, 15],
+  iconAnchor: [15, 30],
+  popupAnchor: [0, -30]
+});
 
-    fetch('tournaments.geojson')
-      .then(response => response.json())
-      .then(data => {
-        L.geoJSON(data, {
-          pointToLayer: (feature, latlng) => L.marker(latlng, { icon: flagIcon }),
-          onEachFeature: (feature, layer) => {
-            const { course_name, region } = feature.properties;
-            layer.bindPopup(`<strong>${course_name}</strong><br>${region}`);
-          }
-        }).addTo(map);
-      })
-      .catch(console.error);
-  </script>
-</body>
-</html>
+fetch('tournaments.geojson')
+  .then(response => response.json())
+  .then(data => {
+    L.geoJSON(data, {
+      pointToLayer: (feature, latlng) => L.marker(latlng, { icon: flagIcon }),
+      onEachFeature: (feature, layer) => {
+        const { course_name, region, website } = feature.properties;
+        let popupContent = `<strong>${course_name}</strong><br>${region}`;
+        if (website) {
+          popupContent += `<br><a href="${website}" target="_blank">Course Website</a>`;
+        }
+        layer.bindPopup(popupContent);
+      }
+    }).addTo(map);
+  })
+  .catch(console.error);
