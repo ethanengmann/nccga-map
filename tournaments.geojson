@@ -60,6 +60,20 @@
     {
       "type": "Feature",
       "properties": {
+        "course_name": "Maryland National",
+        "region": "Capital"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.522750,
+          39.477943
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "course_name": "Eagle Knoll GC",
         "region": "Central"
       },
