@@ -43,7 +43,7 @@
             const schoolName = feature.properties.school;
             const region = feature.properties.region;
             const color = getColor(region);
-            const schoolUrl = `https://nccga.org/app/teams/${schoolName.toLowerCase().replace(/\s+/g, '-')}`;
+            const schoolUrl = `https://nccga.org/app/teams/${feature.properties.slug}`;
             return L.circleMarker(latlng, {
               pane: 'schoolPane',
               radius: 6,

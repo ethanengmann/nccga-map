@@ -5,7 +5,8 @@
       "type": "Feature",
       "properties": {
         "school": "West Virginia University",
-        "region": "Atlantic Region"
+        "region": "Atlantic Region",
+        "slug": "west-virginia-university-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -19,7 +20,8 @@
       "type": "Feature",
       "properties": {
         "school": "Robert Morris University",
-        "region": "Atlantic Region"
+        "region": "Atlantic Region",
+        "slug": "robert-morris-university-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -33,7 +35,8 @@
       "type": "Feature",
       "properties": {
         "school": "Pennsylvania State University",
-        "region": "Atlantic Region"
+        "region": "Atlantic Region",
+        "slug": "pennsylvania-state-university-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -47,7 +50,8 @@
       "type": "Feature",
       "properties": {
         "school": "Slippery Rock University of Pennsylvania",
-        "region": "Atlantic Region"
+        "region": "Atlantic Region",
+        "slug": "slippery-rock-university-of-pennsylvania-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -61,7 +65,8 @@
       "type": "Feature",
       "properties": {
         "school": "Duquesne University",
-        "region": "Atlantic Region"
+        "region": "Atlantic Region",
+        "slug": "duquesne-university-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -75,7 +80,8 @@
       "type": "Feature",
       "properties": {
         "school": "West Virginia University",
-        "region": "Atlantic Region"
+        "region": "Atlantic Region",
+        "slug": "west-virginia-university-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -89,7 +95,8 @@
       "type": "Feature",
       "properties": {
         "school": "University of Pittsburgh ",
-        "region": "Atlantic Region"
+        "region": "Atlantic Region",
+        "slug": "university-of-pittsburgh--club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -103,7 +110,8 @@
       "type": "Feature",
       "properties": {
         "school": "United States Naval Academy",
-        "region": "Capitol Region"
+        "region": "Capitol Region",
+        "slug": "united-states-naval-academy-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -117,7 +125,8 @@
       "type": "Feature",
       "properties": {
         "school": "University of Maryland",
-        "region": "Capitol Region"
+        "region": "Capitol Region",
+        "slug": "university-of-maryland-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -131,7 +140,8 @@
       "type": "Feature",
       "properties": {
         "school": "Loyola University Maryland",
-        "region": "Capitol Region"
+        "region": "Capitol Region",
+        "slug": "loyola-university-maryland-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -145,7 +155,8 @@
       "type": "Feature",
       "properties": {
         "school": "George Washington",
-        "region": "Capitol Region"
+        "region": "Capitol Region",
+        "slug": "george-washington-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -159,7 +170,8 @@
       "type": "Feature",
       "properties": {
         "school": "American University",
-        "region": "Capitol Region"
+        "region": "Capitol Region",
+        "slug": "american-university-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -173,7 +185,8 @@
       "type": "Feature",
       "properties": {
         "school": "Georgetown",
-        "region": "Capitol Region"
+        "region": "Capitol Region",
+        "slug": "georgetown-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -187,7 +200,8 @@
       "type": "Feature",
       "properties": {
         "school": "Salisbury University",
-        "region": "Capitol Region"
+        "region": "Capitol Region",
+        "slug": "salisbury-university-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -201,7 +215,8 @@
       "type": "Feature",
       "properties": {
         "school": "University of Kansas",
-        "region": "Central Region"
+        "region": "Central Region",
+        "slug": "university-of-kansas-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -215,7 +230,8 @@
       "type": "Feature",
       "properties": {
         "school": "University of Missouri",
-        "region": "Central Region"
+        "region": "Central Region",
+        "slug": "university-of-missouri-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -229,7 +245,8 @@
       "type": "Feature",
       "properties": {
         "school": "Washington University in St Louis",
-        "region": "Central Region"
+        "region": "Central Region",
+        "slug": "washington-university-in-st-louis-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -243,7 +260,8 @@
       "type": "Feature",
       "properties": {
         "school": "Northwest Missouri State University",
-        "region": "Central Region"
+        "region": "Central Region",
+        "slug": "northwest-missouri-state-university-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -257,7 +275,8 @@
       "type": "Feature",
       "properties": {
         "school": "Saint Louis University-Main Campus",
-        "region": "Central Region"
+        "region": "Central Region",
+        "slug": "saint-louis-university-main-campus-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -271,7 +290,8 @@
       "type": "Feature",
       "properties": {
         "school": "Southern Illinois University Edwardsville",
-        "region": "Central Region"
+        "region": "Central Region",
+        "slug": "southern-illinois-university-edwardsville-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -285,7 +305,8 @@
       "type": "Feature",
       "properties": {
         "school": "Pittsburg State University",
-        "region": "Central Region"
+        "region": "Central Region",
+        "slug": "pittsburg-state-university-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -299,7 +320,8 @@
       "type": "Feature",
       "properties": {
         "school": "William & Mary",
-        "region": "Colonial Region"
+        "region": "Colonial Region",
+        "slug": "william-and-mary-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -313,7 +335,8 @@
       "type": "Feature",
       "properties": {
         "school": "University of Virginia",
-        "region": "Colonial Region"
+        "region": "Colonial Region",
+        "slug": "university-of-virginia-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -327,7 +350,8 @@
       "type": "Feature",
       "properties": {
         "school": "Liberty University",
-        "region": "Colonial Region"
+        "region": "Colonial Region",
+        "slug": "liberty-university-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -341,7 +365,8 @@
       "type": "Feature",
       "properties": {
         "school": "Christopher Newport University",
-        "region": "Colonial Region"
+        "region": "Colonial Region",
+        "slug": "christopher-newport-university-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -355,7 +380,8 @@
       "type": "Feature",
       "properties": {
         "school": "University of Richmond",
-        "region": "Colonial Region"
+        "region": "Colonial Region",
+        "slug": "university-of-richmond-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -369,7 +395,8 @@
       "type": "Feature",
       "properties": {
         "school": "James Madison University",
-        "region": "Colonial Region"
+        "region": "Colonial Region",
+        "slug": "james-madison-university-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -383,7 +410,8 @@
       "type": "Feature",
       "properties": {
         "school": "Virginia Tech",
-        "region": "Colonial Region"
+        "region": "Colonial Region",
+        "slug": "virginia-tech-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -397,7 +425,8 @@
       "type": "Feature",
       "properties": {
         "school": "University of Arizona",
-        "region": "Desert Region"
+        "region": "Desert Region",
+        "slug": "university-of-arizona-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -411,7 +440,8 @@
       "type": "Feature",
       "properties": {
         "school": "Grand Canyon University ",
-        "region": "Desert Region"
+        "region": "Desert Region",
+        "slug": "grand-canyon-university--club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -425,7 +455,8 @@
       "type": "Feature",
       "properties": {
         "school": "Arizona State University ",
-        "region": "Desert Region"
+        "region": "Desert Region",
+        "slug": "arizona-state-university--club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -439,7 +470,8 @@
       "type": "Feature",
       "properties": {
         "school": "University of Florida ",
-        "region": "Florida Region"
+        "region": "Florida Region",
+        "slug": "university-of-florida--club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -453,7 +485,8 @@
       "type": "Feature",
       "properties": {
         "school": "University of Miami",
-        "region": "Florida Region"
+        "region": "Florida Region",
+        "slug": "university-of-miami-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -467,7 +500,8 @@
       "type": "Feature",
       "properties": {
         "school": "Florida Atlantic University",
-        "region": "Florida Region"
+        "region": "Florida Region",
+        "slug": "florida-atlantic-university-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -481,7 +515,8 @@
       "type": "Feature",
       "properties": {
         "school": "Florida State University",
-        "region": "Florida Region"
+        "region": "Florida Region",
+        "slug": "florida-state-university-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -495,7 +530,8 @@
       "type": "Feature",
       "properties": {
         "school": "University of Central Florida",
-        "region": "Florida Region"
+        "region": "Florida Region",
+        "slug": "university-of-central-florida-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -509,7 +545,8 @@
       "type": "Feature",
       "properties": {
         "school": "Keiser University",
-        "region": "Florida Region"
+        "region": "Florida Region",
+        "slug": "keiser-university-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -523,7 +560,8 @@
       "type": "Feature",
       "properties": {
         "school": "The University of Tampa",
-        "region": "Florida Region"
+        "region": "Florida Region",
+        "slug": "the-university-of-tampa-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -537,7 +575,8 @@
       "type": "Feature",
       "properties": {
         "school": "University of South Florida",
-        "region": "Florida Region"
+        "region": "Florida Region",
+        "slug": "university-of-south-florida-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -551,7 +590,8 @@
       "type": "Feature",
       "properties": {
         "school": "Florida Atlantic University",
-        "region": "Florida Region"
+        "region": "Florida Region",
+        "slug": "florida-atlantic-university-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -565,7 +605,8 @@
       "type": "Feature",
       "properties": {
         "school": "Illinois State",
-        "region": "Great Lakes Region"
+        "region": "Great Lakes Region",
+        "slug": "illinois-state-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -579,7 +620,8 @@
       "type": "Feature",
       "properties": {
         "school": "Loyola University-Chicago ",
-        "region": "Great Lakes Region"
+        "region": "Great Lakes Region",
+        "slug": "loyola-university-chicago--club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -593,7 +635,8 @@
       "type": "Feature",
       "properties": {
         "school": "University of Chicago",
-        "region": "Great Lakes Region"
+        "region": "Great Lakes Region",
+        "slug": "university-of-chicago-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -607,7 +650,8 @@
       "type": "Feature",
       "properties": {
         "school": "Bradley University",
-        "region": "Great Lakes Region"
+        "region": "Great Lakes Region",
+        "slug": "bradley-university-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -621,7 +665,8 @@
       "type": "Feature",
       "properties": {
         "school": "University of Illinois",
-        "region": "Great Lakes Region"
+        "region": "Great Lakes Region",
+        "slug": "university-of-illinois-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -635,7 +680,8 @@
       "type": "Feature",
       "properties": {
         "school": "West Florida",
-        "region": "Gulf Region"
+        "region": "Gulf Region",
+        "slug": "west-florida-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -649,7 +695,8 @@
       "type": "Feature",
       "properties": {
         "school": "Tulane University of Louisiana",
-        "region": "Gulf Region"
+        "region": "Gulf Region",
+        "slug": "tulane-university-of-louisiana-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -663,7 +710,8 @@
       "type": "Feature",
       "properties": {
         "school": "Louisiana State University",
-        "region": "Gulf Region"
+        "region": "Gulf Region",
+        "slug": "louisiana-state-university-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -677,7 +725,8 @@
       "type": "Feature",
       "properties": {
         "school": "Indiana University",
-        "region": "Indiana Region"
+        "region": "Indiana Region",
+        "slug": "indiana-university-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -691,7 +740,8 @@
       "type": "Feature",
       "properties": {
         "school": "Notre Dame",
-        "region": "Indiana Region"
+        "region": "Indiana Region",
+        "slug": "notre-dame-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -705,7 +755,8 @@
       "type": "Feature",
       "properties": {
         "school": "Purdue",
-        "region": "Indiana Region"
+        "region": "Indiana Region",
+        "slug": "purdue-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -719,7 +770,8 @@
       "type": "Feature",
       "properties": {
         "school": "Butler University",
-        "region": "Indiana Region"
+        "region": "Indiana Region",
+        "slug": "butler-university-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -733,7 +785,8 @@
       "type": "Feature",
       "properties": {
         "school": "University of Connecticut",
-        "region": "Metro Region"
+        "region": "Metro Region",
+        "slug": "university-of-connecticut-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -747,7 +800,8 @@
       "type": "Feature",
       "properties": {
         "school": "Sacred Heart University",
-        "region": "Metro Region"
+        "region": "Metro Region",
+        "slug": "sacred-heart-university-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -761,7 +815,8 @@
       "type": "Feature",
       "properties": {
         "school": "Fordham University",
-        "region": "Metro Region"
+        "region": "Metro Region",
+        "slug": "fordham-university-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -775,7 +830,8 @@
       "type": "Feature",
       "properties": {
         "school": "Central Connecticut State University",
-        "region": "Metro Region"
+        "region": "Metro Region",
+        "slug": "central-connecticut-state-university-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -789,7 +845,8 @@
       "type": "Feature",
       "properties": {
         "school": "Fairfield University",
-        "region": "Metro Region"
+        "region": "Metro Region",
+        "slug": "fairfield-university-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -803,7 +860,8 @@
       "type": "Feature",
       "properties": {
         "school": "Southern Connecticut State University",
-        "region": "Metro Region"
+        "region": "Metro Region",
+        "slug": "southern-connecticut-state-university-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -817,7 +875,8 @@
       "type": "Feature",
       "properties": {
         "school": "Quinnipiac University",
-        "region": "Metro Region"
+        "region": "Metro Region",
+        "slug": "quinnipiac-university-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -831,7 +890,8 @@
       "type": "Feature",
       "properties": {
         "school": "Central Michigan University",
-        "region": "Midwest Region"
+        "region": "Midwest Region",
+        "slug": "central-michigan-university-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -845,7 +905,8 @@
       "type": "Feature",
       "properties": {
         "school": "University of Michigan-Flint",
-        "region": "Midwest Region"
+        "region": "Midwest Region",
+        "slug": "university-of-michigan-flint-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -859,7 +920,8 @@
       "type": "Feature",
       "properties": {
         "school": "Grand Valley State University",
-        "region": "Midwest Region"
+        "region": "Midwest Region",
+        "slug": "grand-valley-state-university-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -873,7 +935,8 @@
       "type": "Feature",
       "properties": {
         "school": "Michigan State University",
-        "region": "Midwest Region"
+        "region": "Midwest Region",
+        "slug": "michigan-state-university-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -887,7 +950,8 @@
       "type": "Feature",
       "properties": {
         "school": "Michigan",
-        "region": "Midwest Region"
+        "region": "Midwest Region",
+        "slug": "michigan-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -901,7 +965,8 @@
       "type": "Feature",
       "properties": {
         "school": "Oakland University Club Golf (A)",
-        "region": "Midwest Region"
+        "region": "Midwest Region",
+        "slug": "oakland-university-club-golf-a-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -915,7 +980,8 @@
       "type": "Feature",
       "properties": {
         "school": "United States Air Force Academy",
-        "region": "Mountain Region"
+        "region": "Mountain Region",
+        "slug": "united-states-air-force-academy-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -929,7 +995,8 @@
       "type": "Feature",
       "properties": {
         "school": "Colorado State University",
-        "region": "Mountain Region"
+        "region": "Mountain Region",
+        "slug": "colorado-state-university-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -943,7 +1010,8 @@
       "type": "Feature",
       "properties": {
         "school": "University of Colorado Boulder",
-        "region": "Mountain Region"
+        "region": "Mountain Region",
+        "slug": "university-of-colorado-boulder-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -957,7 +1025,8 @@
       "type": "Feature",
       "properties": {
         "school": "University of Denver",
-        "region": "Mountain Region"
+        "region": "Mountain Region",
+        "slug": "university-of-denver-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -971,7 +1040,8 @@
       "type": "Feature",
       "properties": {
         "school": "Metropolitan State University of Denver",
-        "region": "Mountain Region"
+        "region": "Mountain Region",
+        "slug": "metropolitan-state-university-of-denver-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -985,7 +1055,8 @@
       "type": "Feature",
       "properties": {
         "school": "Providence College",
-        "region": "New England Region"
+        "region": "New England Region",
+        "slug": "providence-college-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -999,7 +1070,8 @@
       "type": "Feature",
       "properties": {
         "school": "College of the Holy Cross",
-        "region": "New England Region"
+        "region": "New England Region",
+        "slug": "college-of-the-holy-cross-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -1013,7 +1085,8 @@
       "type": "Feature",
       "properties": {
         "school": "Nichols College",
-        "region": "New England Region"
+        "region": "New England Region",
+        "slug": "nichols-college-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -1027,7 +1100,8 @@
       "type": "Feature",
       "properties": {
         "school": "University of Massachusetts Amherst",
-        "region": "New England Region"
+        "region": "New England Region",
+        "slug": "university-of-massachusetts-amherst-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -1041,7 +1115,8 @@
       "type": "Feature",
       "properties": {
         "school": "Brown University",
-        "region": "New England Region"
+        "region": "New England Region",
+        "slug": "brown-university-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -1055,7 +1130,8 @@
       "type": "Feature",
       "properties": {
         "school": "Salve Regina",
-        "region": "New England Region"
+        "region": "New England Region",
+        "slug": "salve-regina-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -1069,7 +1145,8 @@
       "type": "Feature",
       "properties": {
         "school": "Plymouth State University",
-        "region": "Northern New England Region"
+        "region": "Northern New England Region",
+        "slug": "plymouth-state-university-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -1083,7 +1160,8 @@
       "type": "Feature",
       "properties": {
         "school": "Clark University",
-        "region": "New England Region"
+        "region": "New England Region",
+        "slug": "clark-university-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -1097,7 +1175,8 @@
       "type": "Feature",
       "properties": {
         "school": "WPI",
-        "region": "New England Region"
+        "region": "New England Region",
+        "slug": "wpi-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -1111,7 +1190,8 @@
       "type": "Feature",
       "properties": {
         "school": "University of Rhode Island",
-        "region": "New England Region"
+        "region": "New England Region",
+        "slug": "university-of-rhode-island-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -1125,7 +1205,8 @@
       "type": "Feature",
       "properties": {
         "school": "Stonehill College",
-        "region": "New England Region"
+        "region": "New England Region",
+        "slug": "stonehill-college-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -1139,7 +1220,8 @@
       "type": "Feature",
       "properties": {
         "school": "Bryant University",
-        "region": "New England Region"
+        "region": "New England Region",
+        "slug": "bryant-university-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -1153,7 +1235,8 @@
       "type": "Feature",
       "properties": {
         "school": "Duke University",
-        "region": "North Carolina Region"
+        "region": "North Carolina Region",
+        "slug": "duke-university-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -1167,7 +1250,8 @@
       "type": "Feature",
       "properties": {
         "school": "University of North Carolina at Wilmington",
-        "region": "North Carolina Region"
+        "region": "North Carolina Region",
+        "slug": "university-of-north-carolina-at-wilmington-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -1181,7 +1265,8 @@
       "type": "Feature",
       "properties": {
         "school": "University of North Carolina at Chapel Hill",
-        "region": "North Carolina Region"
+        "region": "North Carolina Region",
+        "slug": "university-of-north-carolina-at-chapel-hill-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -1195,7 +1280,8 @@
       "type": "Feature",
       "properties": {
         "school": "University of North Carolina at Charlotte",
-        "region": "North Carolina Region"
+        "region": "North Carolina Region",
+        "slug": "university-of-north-carolina-at-charlotte-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -1209,7 +1295,8 @@
       "type": "Feature",
       "properties": {
         "school": "High Point University",
-        "region": "North Carolina Region"
+        "region": "North Carolina Region",
+        "slug": "high-point-university-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -1223,7 +1310,8 @@
       "type": "Feature",
       "properties": {
         "school": "North Carolina State University ",
-        "region": "North Carolina Region"
+        "region": "North Carolina Region",
+        "slug": "north-carolina-state-university--club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -1237,7 +1325,8 @@
       "type": "Feature",
       "properties": {
         "school": "University of North Carolina at Chapel Hill",
-        "region": "North Carolina Region"
+        "region": "North Carolina Region",
+        "slug": "university-of-north-carolina-at-chapel-hill-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -1251,7 +1340,8 @@
       "type": "Feature",
       "properties": {
         "school": "Colgate University",
-        "region": "Northeast Region"
+        "region": "Northeast Region",
+        "slug": "colgate-university-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -1265,7 +1355,8 @@
       "type": "Feature",
       "properties": {
         "school": "SUNY Brockport",
-        "region": "Northeast Region"
+        "region": "Northeast Region",
+        "slug": "suny-brockport-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -1279,7 +1370,8 @@
       "type": "Feature",
       "properties": {
         "school": "University at Buffalo",
-        "region": "Northeast Region"
+        "region": "Northeast Region",
+        "slug": "university-at-buffalo-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -1293,7 +1385,8 @@
       "type": "Feature",
       "properties": {
         "school": "SUNY Cortland",
-        "region": "Northeast Region"
+        "region": "Northeast Region",
+        "slug": "suny-cortland-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -1307,7 +1400,8 @@
       "type": "Feature",
       "properties": {
         "school": "SUNY Geneseo",
-        "region": "Northeast Region"
+        "region": "Northeast Region",
+        "slug": "suny-geneseo-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -1321,7 +1415,8 @@
       "type": "Feature",
       "properties": {
         "school": "Rochester Institute of Technology",
-        "region": "Northeast Region"
+        "region": "Northeast Region",
+        "slug": "rochester-institute-of-technology-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -1335,7 +1430,8 @@
       "type": "Feature",
       "properties": {
         "school": "Syracuse University",
-        "region": "Northeast Region"
+        "region": "Northeast Region",
+        "slug": "syracuse-university-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -1349,7 +1445,8 @@
       "type": "Feature",
       "properties": {
         "school": "Ithaca College",
-        "region": "Northeast Region"
+        "region": "Northeast Region",
+        "slug": "ithaca-college-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -1363,7 +1460,8 @@
       "type": "Feature",
       "properties": {
         "school": "SUNY Albany",
-        "region": "Northeast Region"
+        "region": "Northeast Region",
+        "slug": "suny-albany-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -1377,7 +1475,8 @@
       "type": "Feature",
       "properties": {
         "school": "Saint Bonaventure University",
-        "region": "Northeast Region"
+        "region": "Northeast Region",
+        "slug": "saint-bonaventure-university-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -1391,7 +1490,8 @@
       "type": "Feature",
       "properties": {
         "school": "SUNY Binghamton",
-        "region": "Northeast Region"
+        "region": "Northeast Region",
+        "slug": "suny-binghamton-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -1405,7 +1505,8 @@
       "type": "Feature",
       "properties": {
         "school": "Marist College",
-        "region": "Metro Region"
+        "region": "Metro Region",
+        "slug": "marist-college-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -1419,7 +1520,8 @@
       "type": "Feature",
       "properties": {
         "school": "Merrimack College",
-        "region": "Northern New England Region"
+        "region": "Northern New England Region",
+        "slug": "merrimack-college-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -1433,7 +1535,8 @@
       "type": "Feature",
       "properties": {
         "school": "University of Maine Orono",
-        "region": "Northern New England Region"
+        "region": "Northern New England Region",
+        "slug": "university-of-maine-orono-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -1447,7 +1550,8 @@
       "type": "Feature",
       "properties": {
         "school": "Babson College",
-        "region": "Northern New England Region"
+        "region": "Northern New England Region",
+        "slug": "babson-college-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -1461,7 +1565,8 @@
       "type": "Feature",
       "properties": {
         "school": "MIT",
-        "region": "Northern New England Region"
+        "region": "Northern New England Region",
+        "slug": "mit-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -1475,7 +1580,8 @@
       "type": "Feature",
       "properties": {
         "school": "Harvard University",
-        "region": "Northern New England Region"
+        "region": "Northern New England Region",
+        "slug": "harvard-university-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -1489,7 +1595,8 @@
       "type": "Feature",
       "properties": {
         "school": "University of New Hampshire",
-        "region": "Northern New England Region"
+        "region": "Northern New England Region",
+        "slug": "university-of-new-hampshire-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -1503,7 +1610,8 @@
       "type": "Feature",
       "properties": {
         "school": "University of Massachusetts-Lowell",
-        "region": "Northern New England Region"
+        "region": "Northern New England Region",
+        "slug": "university-of-massachusetts-lowell-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -1517,7 +1625,8 @@
       "type": "Feature",
       "properties": {
         "school": "Northeastern University",
-        "region": "Northern New England Region"
+        "region": "Northern New England Region",
+        "slug": "northeastern-university-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -1531,7 +1640,8 @@
       "type": "Feature",
       "properties": {
         "school": "Boston College",
-        "region": "Northern New England Region"
+        "region": "Northern New England Region",
+        "slug": "boston-college-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -1545,7 +1655,8 @@
       "type": "Feature",
       "properties": {
         "school": "Boston University",
-        "region": "Northern New England Region"
+        "region": "Northern New England Region",
+        "slug": "boston-university-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -1559,7 +1670,8 @@
       "type": "Feature",
       "properties": {
         "school": "University of Wisconsin-Madison",
-        "region": "North Region"
+        "region": "North Region",
+        "slug": "university-of-wisconsin-madison-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -1573,7 +1685,8 @@
       "type": "Feature",
       "properties": {
         "school": "University of Wisconsin-Platteville",
-        "region": "North Region"
+        "region": "North Region",
+        "slug": "university-of-wisconsin-platteville-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -1587,7 +1700,8 @@
       "type": "Feature",
       "properties": {
         "school": "Marquette University",
-        "region": "North Region"
+        "region": "North Region",
+        "slug": "marquette-university-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -1601,7 +1715,8 @@
       "type": "Feature",
       "properties": {
         "school": "Michigan Technological University",
-        "region": "North Region"
+        "region": "North Region",
+        "slug": "michigan-technological-university-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -1615,7 +1730,8 @@
       "type": "Feature",
       "properties": {
         "school": "University of Wisconsin-Oshkosh",
-        "region": "North Region"
+        "region": "North Region",
+        "slug": "university-of-wisconsin-oshkosh-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -1629,7 +1745,8 @@
       "type": "Feature",
       "properties": {
         "school": "University of Wisconsin-La Crosse",
-        "region": "North Region"
+        "region": "North Region",
+        "slug": "university-of-wisconsin-la-crosse-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -1643,7 +1760,8 @@
       "type": "Feature",
       "properties": {
         "school": "Central Washington University ",
-        "region": "Northwest Region"
+        "region": "Northwest Region",
+        "slug": "central-washington-university--club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -1657,7 +1775,8 @@
       "type": "Feature",
       "properties": {
         "school": "University of Oregon",
-        "region": "Northwest Region"
+        "region": "Northwest Region",
+        "slug": "university-of-oregon-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -1671,7 +1790,8 @@
       "type": "Feature",
       "properties": {
         "school": "Eastern Washington University",
-        "region": "Northwest Region"
+        "region": "Northwest Region",
+        "slug": "eastern-washington-university-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -1685,7 +1805,8 @@
       "type": "Feature",
       "properties": {
         "school": "Miami University of Ohio",
-        "region": "Ohio Valley Region"
+        "region": "Ohio Valley Region",
+        "slug": "miami-university-of-ohio-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -1699,7 +1820,8 @@
       "type": "Feature",
       "properties": {
         "school": "University of Dayton",
-        "region": "Ohio Valley Region"
+        "region": "Ohio Valley Region",
+        "slug": "university-of-dayton-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -1713,7 +1835,8 @@
       "type": "Feature",
       "properties": {
         "school": "Xavier University",
-        "region": "Ohio Valley Region"
+        "region": "Ohio Valley Region",
+        "slug": "xavier-university-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -1727,7 +1850,8 @@
       "type": "Feature",
       "properties": {
         "school": "University of Kentucky",
-        "region": "Ohio Valley Region"
+        "region": "Ohio Valley Region",
+        "slug": "university-of-kentucky-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -1741,7 +1865,8 @@
       "type": "Feature",
       "properties": {
         "school": "Bowling Green State University",
-        "region": "Ohio Valley Region"
+        "region": "Ohio Valley Region",
+        "slug": "bowling-green-state-university-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -1755,7 +1880,8 @@
       "type": "Feature",
       "properties": {
         "school": "Ohio University",
-        "region": "Ohio Valley Region"
+        "region": "Ohio Valley Region",
+        "slug": "ohio-university-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -1769,7 +1895,8 @@
       "type": "Feature",
       "properties": {
         "school": "University of Cincinnati",
-        "region": "Ohio Valley Region"
+        "region": "Ohio Valley Region",
+        "slug": "university-of-cincinnati-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -1783,7 +1910,8 @@
       "type": "Feature",
       "properties": {
         "school": "Ohio State University",
-        "region": "Ohio Valley Region"
+        "region": "Ohio Valley Region",
+        "slug": "ohio-state-university-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -1797,7 +1925,8 @@
       "type": "Feature",
       "properties": {
         "school": "Stanford University",
-        "region": "Pacific Region"
+        "region": "Pacific Region",
+        "slug": "stanford-university-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -1811,7 +1940,8 @@
       "type": "Feature",
       "properties": {
         "school": "Santa Clara University",
-        "region": "Pacific Region"
+        "region": "Pacific Region",
+        "slug": "santa-clara-university-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -1825,7 +1955,8 @@
       "type": "Feature",
       "properties": {
         "school": "University of Montana (A)",
-        "region": "Northwest Region"
+        "region": "Northwest Region",
+        "slug": "university-of-montana-a-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -1839,7 +1970,8 @@
       "type": "Feature",
       "properties": {
         "school": "Saint Joseph's University",
-        "region": "Philadelphia Region"
+        "region": "Philadelphia Region",
+        "slug": "saint-josephs-university-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -1853,7 +1985,8 @@
       "type": "Feature",
       "properties": {
         "school": "West Chester",
-        "region": "Philadelphia Region"
+        "region": "Philadelphia Region",
+        "slug": "west-chester-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -1867,7 +2000,8 @@
       "type": "Feature",
       "properties": {
         "school": "Rutgers University",
-        "region": "Philadelphia Region"
+        "region": "Philadelphia Region",
+        "slug": "rutgers-university-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -1881,7 +2015,8 @@
       "type": "Feature",
       "properties": {
         "school": "University of Delaware",
-        "region": "Philadelphia Region"
+        "region": "Philadelphia Region",
+        "slug": "university-of-delaware-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -1895,7 +2030,8 @@
       "type": "Feature",
       "properties": {
         "school": "Messiah University",
-        "region": "Philadelphia Region"
+        "region": "Philadelphia Region",
+        "slug": "messiah-university-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -1909,7 +2045,8 @@
       "type": "Feature",
       "properties": {
         "school": "Drexel University",
-        "region": "Philadelphia Region"
+        "region": "Philadelphia Region",
+        "slug": "drexel-university-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -1923,7 +2060,8 @@
       "type": "Feature",
       "properties": {
         "school": "Villanova University",
-        "region": "Philadelphia Region"
+        "region": "Philadelphia Region",
+        "slug": "villanova-university-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -1937,7 +2075,8 @@
       "type": "Feature",
       "properties": {
         "school": "Clemson University",
-        "region": "Southeast Region"
+        "region": "Southeast Region",
+        "slug": "clemson-university-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -1951,7 +2090,8 @@
       "type": "Feature",
       "properties": {
         "school": "University of South Carolina",
-        "region": "Southeast Region"
+        "region": "Southeast Region",
+        "slug": "university-of-south-carolina-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -1965,7 +2105,8 @@
       "type": "Feature",
       "properties": {
         "school": "Georgia State University",
-        "region": "Southeast Region"
+        "region": "Southeast Region",
+        "slug": "georgia-state-university-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -1979,7 +2120,8 @@
       "type": "Feature",
       "properties": {
         "school": "University of South Carolina",
-        "region": "Southeast Region"
+        "region": "Southeast Region",
+        "slug": "university-of-south-carolina-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -1993,7 +2135,8 @@
       "type": "Feature",
       "properties": {
         "school": "Citadel Military College of South Carolina",
-        "region": "Southeast Region"
+        "region": "Southeast Region",
+        "slug": "citadel-military-college-of-south-carolina-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -2007,7 +2150,8 @@
       "type": "Feature",
       "properties": {
         "school": "Elon University",
-        "region": "North Carolina Region"
+        "region": "North Carolina Region",
+        "slug": "elon-university-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -2021,7 +2165,8 @@
       "type": "Feature",
       "properties": {
         "school": "Appalachian State University",
-        "region": "North Carolina Region"
+        "region": "North Carolina Region",
+        "slug": "appalachian-state-university-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -2035,7 +2180,8 @@
       "type": "Feature",
       "properties": {
         "school": "Wake Forest University",
-        "region": "North Carolina Region"
+        "region": "North Carolina Region",
+        "slug": "wake-forest-university-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -2049,7 +2195,8 @@
       "type": "Feature",
       "properties": {
         "school": "Furman University",
-        "region": "North Carolina Region"
+        "region": "North Carolina Region",
+        "slug": "furman-university-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -2063,7 +2210,8 @@
       "type": "Feature",
       "properties": {
         "school": "University of Mississippi",
-        "region": "South Region"
+        "region": "South Region",
+        "slug": "university-of-mississippi-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -2077,7 +2225,8 @@
       "type": "Feature",
       "properties": {
         "school": "Gordon State College",
-        "region": "South Region"
+        "region": "South Region",
+        "slug": "gordon-state-college-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -2091,7 +2240,8 @@
       "type": "Feature",
       "properties": {
         "school": "Samford",
-        "region": "South Region"
+        "region": "South Region",
+        "slug": "samford-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -2105,7 +2255,8 @@
       "type": "Feature",
       "properties": {
         "school": "Georgia Institute of Technology",
-        "region": "South Region"
+        "region": "South Region",
+        "slug": "georgia-institute-of-technology-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -2119,7 +2270,8 @@
       "type": "Feature",
       "properties": {
         "school": "Vanderbilt University",
-        "region": "South Region"
+        "region": "South Region",
+        "slug": "vanderbilt-university-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -2133,7 +2285,8 @@
       "type": "Feature",
       "properties": {
         "school": "University of Georgia",
-        "region": "South Region"
+        "region": "South Region",
+        "slug": "university-of-georgia-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -2147,7 +2300,8 @@
       "type": "Feature",
       "properties": {
         "school": "Texas Tech University",
-        "region": "Texas Region"
+        "region": "Texas Region",
+        "slug": "texas-tech-university-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -2161,7 +2315,8 @@
       "type": "Feature",
       "properties": {
         "school": "Auburn University",
-        "region": "South Region"
+        "region": "South Region",
+        "slug": "auburn-university-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -2175,7 +2330,8 @@
       "type": "Feature",
       "properties": {
         "school": "The University of Tennessee",
-        "region": "South Region"
+        "region": "South Region",
+        "slug": "the-university-of-tennessee-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -2189,7 +2345,8 @@
       "type": "Feature",
       "properties": {
         "school": "The University of Alabama",
-        "region": "South Region"
+        "region": "South Region",
+        "slug": "the-university-of-alabama-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -2203,7 +2360,8 @@
       "type": "Feature",
       "properties": {
         "school": "Southern Methodist University",
-        "region": "Texas Region"
+        "region": "Texas Region",
+        "slug": "southern-methodist-university-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -2217,7 +2375,8 @@
       "type": "Feature",
       "properties": {
         "school": "The University of Texas at Austin",
-        "region": "Texas Region"
+        "region": "Texas Region",
+        "slug": "the-university-of-texas-at-austin-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -2231,7 +2390,8 @@
       "type": "Feature",
       "properties": {
         "school": "Texas Christian University",
-        "region": "Texas Region"
+        "region": "Texas Region",
+        "slug": "texas-christian-university-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -2245,7 +2405,8 @@
       "type": "Feature",
       "properties": {
         "school": "University of Arkansas",
-        "region": "Texas Region"
+        "region": "Texas Region",
+        "slug": "university-of-arkansas-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -2259,7 +2420,8 @@
       "type": "Feature",
       "properties": {
         "school": "Baylor University",
-        "region": "Texas Region"
+        "region": "Texas Region",
+        "slug": "baylor-university-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -2273,7 +2435,8 @@
       "type": "Feature",
       "properties": {
         "school": "Rice University",
-        "region": "Texas Region"
+        "region": "Texas Region",
+        "slug": "rice-university-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -2287,7 +2450,8 @@
       "type": "Feature",
       "properties": {
         "school": "Texas A&M University",
-        "region": "Texas Region"
+        "region": "Texas Region",
+        "slug": "texas-aandm-university-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -2301,7 +2465,8 @@
       "type": "Feature",
       "properties": {
         "school": "Texas A&M Corps of Cadets",
-        "region": "Texas Region"
+        "region": "Texas Region",
+        "slug": "texas-aandm-corps-of-cadets-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -2315,7 +2480,8 @@
       "type": "Feature",
       "properties": {
         "school": "University of Central Oklahoma",
-        "region": "Texas Region"
+        "region": "Texas Region",
+        "slug": "university-of-central-oklahoma-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -2329,7 +2495,8 @@
       "type": "Feature",
       "properties": {
         "school": "Parker University",
-        "region": "Texas Region"
+        "region": "Texas Region",
+        "slug": "parker-university-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -2343,7 +2510,8 @@
       "type": "Feature",
       "properties": {
         "school": "University of St Thomas",
-        "region": "Twin Cities Region"
+        "region": "Twin Cities Region",
+        "slug": "university-of-st-thomas-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -2357,7 +2525,8 @@
       "type": "Feature",
       "properties": {
         "school": "University of Nebraska",
-        "region": "Twin Cities Region"
+        "region": "Twin Cities Region",
+        "slug": "university-of-nebraska-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -2371,7 +2540,8 @@
       "type": "Feature",
       "properties": {
         "school": "South Dakota State University",
-        "region": "Twin Cities Region"
+        "region": "Twin Cities Region",
+        "slug": "south-dakota-state-university-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -2385,7 +2555,8 @@
       "type": "Feature",
       "properties": {
         "school": "Iowa State University",
-        "region": "Twin Cities Region"
+        "region": "Twin Cities Region",
+        "slug": "iowa-state-university-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -2399,7 +2570,8 @@
       "type": "Feature",
       "properties": {
         "school": "University of Minnesota-Duluth",
-        "region": "Twin Cities Region"
+        "region": "Twin Cities Region",
+        "slug": "university-of-minnesota-duluth-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -2413,7 +2585,8 @@
       "type": "Feature",
       "properties": {
         "school": "University of Iowa",
-        "region": "Twin Cities Region"
+        "region": "Twin Cities Region",
+        "slug": "university-of-iowa-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -2427,7 +2600,8 @@
       "type": "Feature",
       "properties": {
         "school": "University of Northern Iowa",
-        "region": "Twin Cities Region"
+        "region": "Twin Cities Region",
+        "slug": "university-of-northern-iowa-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -2441,7 +2615,8 @@
       "type": "Feature",
       "properties": {
         "school": "University of Utah",
-        "region": "West Region"
+        "region": "West Region",
+        "slug": "university-of-utah-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -2455,7 +2630,8 @@
       "type": "Feature",
       "properties": {
         "school": "Boise State University",
-        "region": "West Region"
+        "region": "West Region",
+        "slug": "boise-state-university-club-golf"
       },
       "geometry": {
         "type": "Point",
