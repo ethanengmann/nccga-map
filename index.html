@@ -17,9 +17,9 @@
   <script>
     const map = L.map('map').setView([39.5, -98.35], 4);
 
-    // Create a custom pane for school dots, above overlayPane
+    // Custom school pane
     map.createPane('schoolPane');
-    map.getPane('schoolPane').style.zIndex = 650;  // Above overlays
+    map.getPane('schoolPane').style.zIndex = 650;
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 18,
@@ -34,7 +34,7 @@
       return regionColors[region];
     };
 
-    // Load school dots in custom pane so they are always on top
+    // === SCHOOL DOTS ===
     fetch('schools.geojson')
       .then(response => response.json())
       .then(data => {
@@ -45,7 +45,7 @@
             const color = getColor(region);
             const schoolUrl = `https://nccga.org/app/teams/${schoolName.toLowerCase().replace(/\s+/g, '-')}`;
             return L.circleMarker(latlng, {
-              pane: 'schoolPane',      // place dots in custom pane
+              pane: 'schoolPane',
               radius: 6,
               fillColor: color,
               color: "#333",
@@ -53,7 +53,7 @@
               opacity: 1,
               fillOpacity: 0.9
             }).on('click', e => {
-              e.originalEvent._clickedSchool = true; // custom flag
+              e.originalEvent._clickedSchool = true;
               const popupContent = `<strong><a href="${schoolUrl}" target="_blank">${schoolName}</a></strong><br>${region}`;
               e.target.bindPopup(popupContent).openPopup();
             });
@@ -62,31 +62,28 @@
       })
       .catch(console.error);
 
-    // Load regions.geojson
+    // === REGIONS ===
     fetch('regions.geojson')
       .then(response => response.json())
       .then(data => {
-        // Draw the visible region polygons (non-interactive)
+        // Visible region fill
         L.geoJSON(data, {
-          style: feature => {
-            const color = getColor(feature.properties.region);
-            return {
-              color: color,
-              weight: 2,
-              fillOpacity: 0.2,
-              interactive: false  // regions themselves don't capture clicks
-            };
-          }
+          style: feature => ({
+            color: getColor(feature.properties.region),
+            weight: 2,
+            fillOpacity: 0.2,
+            interactive: false
+          })
         }).addTo(map);
 
-        // Add an invisible interactive layer underneath dots
+        // Invisible interactive click layer
         data.features.forEach(feature => {
           const regionName = feature.properties.region;
           const schools = feature.properties.schools;
           let popupContent = `<strong>${regionName}</strong>`;
-          if (schools && schools.length > 0) {
+          if (schools?.length) {
             popupContent += '<br><ul>';
-            schools.forEach(school => popupContent += `<li>${school}</li>`);
+            schools.forEach(s => popupContent += `<li>${s}</li>`);
             popupContent += '</ul>';
           } else {
             popupContent += '<br>No schools listed.';
@@ -102,6 +99,27 @@
             }
           }).addTo(map);
         });
+      })
+      .catch(console.error);
+
+    // === TOURNAMENTS (FLAG ICON) ===
+    const flagIcon = L.icon({
+      iconUrl: 'https://cdn-icons-png.flaticon.com/512/684/684908.png',
+      iconSize: [25, 25],
+      iconAnchor: [12, 25],
+      popupAnchor: [0, -25]
+    });
+
+    fetch('tournaments.geojson')
+      .then(response => response.json())
+      .then(data => {
+        L.geoJSON(data, {
+          pointToLayer: (feature, latlng) => L.marker(latlng, { icon: flagIcon }),
+          onEachFeature: (feature, layer) => {
+            const { course_name, region } = feature.properties;
+            layer.bindPopup(`<strong>${course_name}</strong><br>${region}`);
+          }
+        }).addTo(map);
       })
       .catch(console.error);
   </script>
