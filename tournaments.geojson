@@ -607,7 +607,8 @@
       "type": "Feature",
       "properties": {
         "course_name": "Turtle Creek GC",
-        "region": "Philadelphia"
+        "region": "Philadelphia",
+        "website": "https://www.turtlecreekgolf.com"
       },
       "geometry": {
         "type": "Point",
