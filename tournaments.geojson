@@ -4,7 +4,7 @@
     {
       "type": "Feature",
       "properties": {
-        "course_name": "RIver Forest Country Club",
+        "course_name": "River Forest Country Club",
         "region": "Atlantic"
       },
       "geometry": {
@@ -12,6 +12,20 @@
         "coordinates": [
           -79.687583,
           40.6576836
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "3 Lakes Golf Club",
+        "region": "Atlantic"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.8044,
+          40.4778
         ]
       }
     },
