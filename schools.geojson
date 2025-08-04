@@ -2398,20 +2398,6 @@
     {
       "type": "Feature",
       "properties": {
-        "school": "University of Kansas",
-        "region": "Twin Cities Region"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -95.2359403,
-          38.9719137
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "school": "South Dakota State University",
         "region": "Twin Cities Region"
       },
