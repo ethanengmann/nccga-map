@@ -1950,20 +1950,6 @@
     {
       "type": "Feature",
       "properties": {
-        "school": "Georgia Tech",
-        "region": "Southeast Region"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -84.3898151,
-          33.7544657
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "school": "University of South Carolina",
         "region": "Southeast Region"
       },
