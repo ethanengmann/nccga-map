@@ -118,6 +118,9 @@ fetch('tournaments.geojson')
       onEachFeature: (feature, layer) => {
         const { course_name, region, website } = feature.properties;
         let popupContent = `<strong>${course_name}</strong><br>${region}`;
+        if (date) {
+            popupContent += '<br><em>${date}</em>';
+        }
         if (website) {
           popupContent += `<br><a href="${website}" target="_blank">Course Website</a>`;
         }
