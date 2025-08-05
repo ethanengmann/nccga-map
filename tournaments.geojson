@@ -5,7 +5,9 @@
       "type": "Feature",
       "properties": {
         "course_name": "River Forest Country Club",
-        "region": "Atlantic"
+        "region": "Atlantic",
+        "date": "October 11-12, 2025",
+        "website": "https://riverforestgolf.com"
       },
       "geometry": {
         "type": "Point",
@@ -19,7 +21,8 @@
       "type": "Feature",
       "properties": {
         "course_name": "3 Lakes Golf Club",
-        "region": "Atlantic"
+        "region": "Atlantic",
+        "date": "October 4-5, 2025"
       },
       "geometry": {
         "type": "Point",
