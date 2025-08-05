@@ -116,7 +116,7 @@ fetch('tournaments.geojson')
     L.geoJSON(data, {
       pointToLayer: (feature, latlng) => L.marker(latlng, { icon: flagIcon }),
       onEachFeature: (feature, layer) => {
-        const { course_name, region, website } = feature.properties;
+        const { course_name, region, website, date } = feature.properties;
         let popupContent = `<strong>${course_name}</strong><br>${region}`;
    if (date) {
     popupContent += `<br><em>${date}</em>`;
