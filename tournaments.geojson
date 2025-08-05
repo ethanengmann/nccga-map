@@ -20,9 +20,10 @@
     {
       "type": "Feature",
       "properties": {
-        "course_name": "3 Lakes Golf Club",
+        "course_name": "3 Lakes Golf Course",
         "region": "Atlantic",
-        "date": "October 4-5, 2025"
+        "date": "October 4-5, 2025",
+        "website": "https://3lakesgolf.com"
       },
       "geometry": {
         "type": "Point",
@@ -32,6 +33,23 @@
         ]
       }
     },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Lindenwood Golf Club",
+        "region": "Atlantic",
+        "date": "October 25-26, 2025",
+        "website": "https://www.lindenwoodgolf.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.1314446,
+          40.2475703
+        ]
+      }
+    },
+
     {
       "type": "Feature",
       "properties": {
