@@ -70,92 +70,89 @@
       popupAnchor: [0, -30]
     });
 
-    let tournamentsByRegion = {};
+ let tournamentsByRegion = {};
 
-    fetch('tournaments.geojson')
+fetch('tournaments.geojson')
+  .then(response => response.json())
+  .then(tourneyData => {
+    // Group tournaments by region
+    tourneyData.features.forEach(t => {
+      const r = t.properties.region;
+      if (!tournamentsByRegion[r]) tournamentsByRegion[r] = [];
+      tournamentsByRegion[r].push(t.properties);
+    });
+
+    // Add tournament markers
+    L.geoJSON(tourneyData, {
+      pointToLayer: (feature, latlng) => L.marker(latlng, { icon: flagIcon }),
+      onEachFeature: (feature, layer) => {
+        const { course_name, region, website, date } = feature.properties;
+        let popupContent = `<strong>${course_name}</strong><br>${region}`;
+        if (date) {
+          popupContent += `<br><em>${date}</em>`;
+        }
+        if (website) {
+          popupContent += `<br><a href="${website}" target="_blank">Course Website</a>`;
+        }
+        layer.bindPopup(popupContent);
+      }
+    }).addTo(map);
+
+    // === REGIONS === (this MUST be inside the .then of tournaments.geojson)
+    fetch('regions.geojson')
       .then(response => response.json())
-      .then(tourneyData => {
-        // Group tournaments by region
-        tourneyData.features.forEach(t => {
-          const r = t.properties.region;
-          if (!tournamentsByRegion[r]) tournamentsByRegion[r] = [];
-          tournamentsByRegion[r].push(t.properties);
-        });
-
-        // Add tournament markers
-        L.geoJSON(tourneyData, {
-          pointToLayer: (feature, latlng) => L.marker(latlng, { icon: flagIcon }),
-          onEachFeature: (feature, layer) => {
-            const { course_name, region, website, date } = feature.properties;
-            let popupContent = `<strong>${course_name}</strong><br>${region}`;
-            if (date) {
-              popupContent += `<br><em>${date}</em>`;
-            }
-            if (website) {
-              popupContent += `<br><a href="${website}" target="_blank">Course Website</a>`;
-            }
-            layer.bindPopup(popupContent);
-          }
+      .then(data => {
+        L.geoJSON(data, {
+          style: feature => ({
+            color: getColor(feature.properties.region),
+            weight: 2,
+            fillOpacity: 0.2,
+            interactive: false
+          })
         }).addTo(map);
 
-        // === REGIONS ===
-        fetch('regions.geojson')
-          .then(response => response.json())
-          .then(data => {
-            // Visible region fill
-            L.geoJSON(data, {
-              style: feature => ({
-                color: getColor(feature.properties.region),
-                weight: 2,
-                fillOpacity: 0.2,
-                interactive: false
-              })
-            }).addTo(map);
+        data.features.forEach(feature => {
+          const regionName = feature.properties.region;
+          const schools = feature.properties.schools;
+          const tournaments = tournamentsByRegion[regionName] || [];
 
-            // Invisible interactive click layer
-            data.features.forEach(feature => {
-              const regionName = feature.properties.region;
-              const schools = feature.properties.schools;
-              const tournaments = tournamentsByRegion[regionName] || [];
+          let popupContent = `<strong>${regionName} Region</strong>`;
 
-              let popupContent = `<strong>${regionName}</strong>`;
+          if (schools?.length) {
+            popupContent += '<br><strong>Schools:</strong><ul>';
+            schools.forEach(s => popupContent += `<li>${s}</li>`);
+            popupContent += '</ul>';
+          } else {
+            popupContent += '<br>No schools listed.';
+          }
 
-              // Schools list
-              if (schools?.length) {
-                popupContent += '<br><strong>Schools:</strong><ul>';
-                schools.forEach(s => popupContent += `<li>${s}</li>`);
-                popupContent += '</ul>';
-              } else {
-                popupContent += '<br>No schools listed.';
-              }
-
-              // Tournaments list
-              if (tournaments.length) {
-                popupContent += '<strong>Tournaments:</strong><ul>';
-                tournaments.forEach(t => {
-                  popupContent += `<li><strong>${t.course_name}</strong>`;
-                  if (t.date) popupContent += ` – <em>${t.date}</em>`;
-                  if (t.website) popupContent += `<br><a href="${t.website}" target="_blank">Course Website</a>`;
-                  popupContent += '</li>';
-                });
-                popupContent += '</ul>';
-              }
-
-              L.geoJSON(feature, {
-                style: { opacity: 0, fillOpacity: 0, weight: 0 },
-                onEachFeature: (_, layer) => {
-                  layer.on('click', e => {
-                    if (!e.originalEvent._clickedSchool) {
-                      layer.bindPopup(popupContent).openPopup(e.latlng);
-                    }
-                  });
-                }
-              }).addTo(map);
+          if (tournaments.length) {
+            popupContent += '<strong>Tournaments:</strong><ul>';
+            tournaments.forEach(t => {
+              popupContent += `<li><strong>${t.course_name}</strong>`;
+              if (t.date) popupContent += ` – <em>${t.date}</em>`;
+              if (t.website) popupContent += `<br><a href="${t.website}" target="_blank">Course Website</a>`;
+              popupContent += '</li>';
             });
-          })
-          .catch(console.error);
+            popupContent += '</ul>';
+          }
+
+          L.geoJSON(feature, {
+            style: { opacity: 0, fillOpacity: 0, weight: 0 },
+            onEachFeature: (_, layer) => {
+              layer.on('click', e => {
+                if (!e.originalEvent._clickedSchool) {
+                  layer.bindPopup(popupContent).openPopup(e.latlng);
+                }
+              });
+            }
+          }).addTo(map);
+        });
       })
       .catch(console.error);
+  })
+  .catch(console.error);
+  
   </script>
 </body>
 </html>
