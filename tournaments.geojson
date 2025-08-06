@@ -486,7 +486,9 @@
       "type": "Feature",
       "properties": {
         "course_name": "Leslie Park",
-        "region": "Midwest"
+        "region": "Midwest",
+        "date": "October 11-12, 2025",
+        "website": "https://leslieparkgolf.com"
       },
       "geometry": {
         "type": "Point",
@@ -499,14 +501,34 @@
     {
       "type": "Feature",
       "properties": {
-        "course_name": "Links of Novi ",
-        "region": "Midwest"
+        "course_name": "Links of Novi",
+        "region": "Midwest",
+        "date": "October 18-19, 2025",
+        "website": "https://www.linksofnovi.com"
+
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
           -83.5430069,
           42.461926
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Gull Lake View Golf Resort",
+        "region": "Midwest",
+        "date": "October 25-26, 2025",
+        "website": "https://gulllakeview.com/?nck=google"
+
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.38750,
+          42.36611
         ]
       }
     },
