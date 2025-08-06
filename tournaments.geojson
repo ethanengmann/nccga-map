@@ -421,8 +421,10 @@
     {
       "type": "Feature",
       "properties": {
-        "course_name": "Stanley GC",
-        "region": "Metro"
+        "course_name": "Stanley Golf Course",
+        "region": "Metro",
+        "date": "October 4-5, 2025",
+        "website": "https://www.stanleygolfcourse.com"
       },
       "geometry": {
         "type": "Point",
@@ -435,8 +437,10 @@
     {
       "type": "Feature",
       "properties": {
-        "course_name": "Tunxis",
-        "region": "Metro"
+        "course_name": "Tunxis Country Club",
+        "region": "Metro",
+        "date": "Nov 8-9, 2025",
+        "website": "https://www.tunxisgolf.com"
       },
       "geometry": {
         "type": "Point",
@@ -449,8 +453,10 @@
     {
       "type": "Feature",
       "properties": {
-        "course_name": "Dyker Beach",
-        "region": "Metro"
+        "course_name": "Dyker Beach Golf Course",
+        "region": "Metro",
+        "date": "September 28-29",
+        "website": "https://www.dykerbeachgc.com"
       },
       "geometry": {
         "type": "Point",
@@ -464,7 +470,9 @@
       "type": "Feature",
       "properties": {
         "course_name": "Pelham/Split Rock",
-        "region": "Metro"
+        "region": "Metro",
+        "date": "October 11-12, 2025",
+        "website": "https://www.pelhamsplitrock.com"
       },
       "geometry": {
         "type": "Point",
