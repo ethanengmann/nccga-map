@@ -325,14 +325,32 @@
     {
       "type": "Feature",
       "properties": {
-        "course_name": "Atkins GC",
-        "region": "Great Lakes"
+        "course_name": "Atkins Golf Club",
+        "region": "Great Lakes",
+        "date": "October 18-19, 2025",
+        "website": "https://www.atkinsgolfclub.com/?utm_source=extnet&utm_medium=yext"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
           -88.1700679,
           40.0883389
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Pine Meadow Golf Club",
+        "region": "Great Lakes",
+        "date": "Nov 8-9, 2025",
+        "website": "http://pinemeadowgc.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.9889653,
+          42.2905785
         ]
       }
     },
