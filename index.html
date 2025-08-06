@@ -151,8 +151,10 @@
                 onEachFeature: (_, layer) => {
                   layer.on('click', e => {
                     if (!e.originalEvent._clickedSchool) {
-                      map.fitBounds(layer.getBounds()); // 👈 Auto-zoom
-                      layer.bindPopup(popupContent).openPopup(e.latlng);
+                      map.fitBounds(layer.getBounds()); // Zoom to region
+const center = layer.getBounds().getCenter();
+layer.bindPopup(popupContent).openPopup(center); // Open popup at center
+
                     }
                   });
                 }
