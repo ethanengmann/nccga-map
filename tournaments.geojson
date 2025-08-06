@@ -601,7 +601,8 @@
       "properties": {
         "course_name": "Whaling City GC",
         "region": "Southern New England",
-        "date": "November 1-2, 2025"
+        "date": "November 1-2, 2025",
+        "website": "https://whalingcitygolfcourse.com"
       },
       "geometry": {
         "type": "Point",
