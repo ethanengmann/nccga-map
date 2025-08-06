@@ -62,73 +62,100 @@
       })
       .catch(console.error);
 
-    // === REGIONS ===
-    fetch('regions.geojson')
-      .then(response => response.json())
-      .then(data => {
-        // Visible region fill
-        L.geoJSON(data, {
-          style: feature => ({
-            color: getColor(feature.properties.region),
-            weight: 2,
-            fillOpacity: 0.2,
-            interactive: false
-          })
-        }).addTo(map);
-
-        // Invisible interactive click layer
-        data.features.forEach(feature => {
-          const regionName = feature.properties.region;
-          const schools = feature.properties.schools;
-          let popupContent = `<strong>${regionName}</strong>`;
-          if (schools?.length) {
-            popupContent += '<br><ul>';
-            schools.forEach(s => popupContent += `<li>${s}</li>`);
-            popupContent += '</ul>';
-          } else {
-            popupContent += '<br>No schools listed.';
-          }
-          L.geoJSON(feature, {
-            style: { opacity: 0, fillOpacity: 0, weight: 0 },
-            onEachFeature: (_, layer) => {
-              layer.on('click', e => {
-                if (!e.originalEvent._clickedSchool) {
-                  layer.bindPopup(popupContent).openPopup(e.latlng);
-                }
-              });
-            }
-          }).addTo(map);
-        });
-      })
-      .catch(console.error);
-
     // === TOURNAMENTS (FLAG ICON) ===
     const flagIcon = L.icon({
-  iconUrl: 'img/Golf_flag_icon.png',
-  iconSize: [15, 15],
-  iconAnchor: [15, 30],
-  popupAnchor: [0, -30]
-});
+      iconUrl: 'img/Golf_flag_icon.png',
+      iconSize: [15, 15],
+      iconAnchor: [15, 30],
+      popupAnchor: [0, -30]
+    });
 
-fetch('tournaments.geojson')
-  .then(response => response.json())
-  .then(data => {
-    L.geoJSON(data, {
-      pointToLayer: (feature, latlng) => L.marker(latlng, { icon: flagIcon }),
-      onEachFeature: (feature, layer) => {
-        const { course_name, region, website, date } = feature.properties;
-        let popupContent = `<strong>${course_name}</strong><br>${region}`;
-   if (date) {
-    popupContent += `<br><em>${date}</em>`;
-  }      
-        if (website) {
-          popupContent += `<br><a href="${website}" target="_blank">Course Website</a>`;
-        }
-        layer.bindPopup(popupContent);
-      }
-    }).addTo(map);
-  })
-  .catch(console.error);
+    let tournamentsByRegion = {};
+
+    fetch('tournaments.geojson')
+      .then(response => response.json())
+      .then(tourneyData => {
+        // Group tournaments by region
+        tourneyData.features.forEach(t => {
+          const r = t.properties.region;
+          if (!tournamentsByRegion[r]) tournamentsByRegion[r] = [];
+          tournamentsByRegion[r].push(t.properties);
+        });
+
+        // Add tournament markers
+        L.geoJSON(tourneyData, {
+          pointToLayer: (feature, latlng) => L.marker(latlng, { icon: flagIcon }),
+          onEachFeature: (feature, layer) => {
+            const { course_name, region, website, date } = feature.properties;
+            let popupContent = `<strong>${course_name}</strong><br>${region}`;
+            if (date) {
+              popupContent += `<br><em>${date}</em>`;
+            }
+            if (website) {
+              popupContent += `<br><a href="${website}" target="_blank">Course Website</a>`;
+            }
+            layer.bindPopup(popupContent);
+          }
+        }).addTo(map);
+
+        // === REGIONS ===
+        fetch('regions.geojson')
+          .then(response => response.json())
+          .then(data => {
+            // Visible region fill
+            L.geoJSON(data, {
+              style: feature => ({
+                color: getColor(feature.properties.region),
+                weight: 2,
+                fillOpacity: 0.2,
+                interactive: false
+              })
+            }).addTo(map);
+
+            // Invisible interactive click layer
+            data.features.forEach(feature => {
+              const regionName = feature.properties.region;
+              const schools = feature.properties.schools;
+              const tournaments = tournamentsByRegion[regionName] || [];
+
+              let popupContent = `<strong>${regionName}</strong>`;
+
+              // Schools list
+              if (schools?.length) {
+                popupContent += '<br><strong>Schools:</strong><ul>';
+                schools.forEach(s => popupContent += `<li>${s}</li>`);
+                popupContent += '</ul>';
+              } else {
+                popupContent += '<br>No schools listed.';
+              }
+
+              // Tournaments list
+              if (tournaments.length) {
+                popupContent += '<strong>Tournaments:</strong><ul>';
+                tournaments.forEach(t => {
+                  popupContent += `<li><strong>${t.course_name}</strong>`;
+                  if (t.date) popupContent += ` – <em>${t.date}</em>`;
+                  if (t.website) popupContent += `<br><a href="${t.website}" target="_blank">Course Website</a>`;
+                  popupContent += '</li>';
+                });
+                popupContent += '</ul>';
+              }
+
+              L.geoJSON(feature, {
+                style: { opacity: 0, fillOpacity: 0, weight: 0 },
+                onEachFeature: (_, layer) => {
+                  layer.on('click', e => {
+                    if (!e.originalEvent._clickedSchool) {
+                      layer.bindPopup(popupContent).openPopup(e.latlng);
+                    }
+                  });
+                }
+              }).addTo(map);
+            });
+          })
+          .catch(console.error);
+      })
+      .catch(console.error);
   </script>
 </body>
 </html>
