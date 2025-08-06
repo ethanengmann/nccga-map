@@ -1055,7 +1055,7 @@
       "type": "Feature",
       "properties": {
         "school": "Providence College",
-        "region": "New England Region",
+        "region": "Southern New England Region",
         "slug": "providence-college-club-golf"
       },
       "geometry": {
@@ -1070,7 +1070,7 @@
       "type": "Feature",
       "properties": {
         "school": "College of the Holy Cross",
-        "region": "New England Region",
+        "region": "Southern New England Region",
         "slug": "college-of-the-holy-cross-club-golf"
       },
       "geometry": {
@@ -1085,7 +1085,7 @@
       "type": "Feature",
       "properties": {
         "school": "Nichols College",
-        "region": "New England Region",
+        "region": "Southern New England Region",
         "slug": "nichols-college-club-golf"
       },
       "geometry": {
@@ -1100,7 +1100,7 @@
       "type": "Feature",
       "properties": {
         "school": "University of Massachusetts Amherst",
-        "region": "New England Region",
+        "region": "Southern New England Region",
         "slug": "university-of-massachusetts-amherst-club-golf"
       },
       "geometry": {
@@ -1115,7 +1115,7 @@
       "type": "Feature",
       "properties": {
         "school": "Brown University",
-        "region": "New England Region",
+        "region": "Southern New England Region",
         "slug": "brown-university-club-golf"
       },
       "geometry": {
@@ -1130,7 +1130,7 @@
       "type": "Feature",
       "properties": {
         "school": "Salve Regina",
-        "region": "New England Region",
+        "region": "Southern New England Region",
         "slug": "salve-regina-club-golf"
       },
       "geometry": {
@@ -1145,7 +1145,7 @@
       "type": "Feature",
       "properties": {
         "school": "Plymouth State University",
-        "region": "Northern New England Region",
+        "region": "Southern New England Region",
         "slug": "plymouth-state-university-club-golf"
       },
       "geometry": {
@@ -1160,7 +1160,7 @@
       "type": "Feature",
       "properties": {
         "school": "Clark University",
-        "region": "New England Region",
+        "region": "Southern New England Region",
         "slug": "clark-university-club-golf"
       },
       "geometry": {
@@ -1175,7 +1175,7 @@
       "type": "Feature",
       "properties": {
         "school": "WPI",
-        "region": "New England Region",
+        "region": "Southern New England Region",
         "slug": "wpi-club-golf"
       },
       "geometry": {
@@ -1190,7 +1190,7 @@
       "type": "Feature",
       "properties": {
         "school": "University of Rhode Island",
-        "region": "New England Region",
+        "region": "Southern New England Region",
         "slug": "university-of-rhode-island-club-golf"
       },
       "geometry": {
@@ -1205,7 +1205,7 @@
       "type": "Feature",
       "properties": {
         "school": "Stonehill College",
-        "region": "New England Region",
+        "region": "Southern New England Region",
         "slug": "stonehill-college-club-golf"
       },
       "geometry": {
@@ -1220,7 +1220,7 @@
       "type": "Feature",
       "properties": {
         "school": "Bryant University",
-        "region": "New England Region",
+        "region": "Southern New England Region",
         "slug": "bryant-university-club-golf"
       },
       "geometry": {
