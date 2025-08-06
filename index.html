@@ -34,7 +34,8 @@
       return regionColors[region];
     };
 
-    const clean = str => str?.toLowerCase().replace(/\s+/g, '').trim();
+    // === Clean string helper ===
+    const clean = str => str?.toLowerCase().replace(/region/g, '').replace(/\s+/g, '').trim();
 
     // === SCHOOL DOTS ===
     fetch('schools.geojson')
@@ -84,18 +85,14 @@
           tournamentsByRegion[regionKey].push(t.properties);
         });
 
-        // Add tournament markers
+        // Add flag markers
         L.geoJSON(tourneyData, {
           pointToLayer: (feature, latlng) => L.marker(latlng, { icon: flagIcon }),
           onEachFeature: (feature, layer) => {
             const { course_name, region, website, date } = feature.properties;
             let popupContent = `<strong>${course_name}</strong><br>${region}`;
-            if (date) {
-              popupContent += `<br><em>${date}</em>`;
-            }
-            if (website) {
-              popupContent += `<br><a href="${website}" target="_blank">Course Website</a>`;
-            }
+            if (date) popupContent += `<br><em>${date}</em>`;
+            if (website) popupContent += `<br><a href="${website}" target="_blank">Course Website</a>`;
             layer.bindPopup(popupContent);
           }
         }).addTo(map);
@@ -104,6 +101,7 @@
         fetch('regions.geojson')
           .then(response => response.json())
           .then(data => {
+            // Outline fill
             L.geoJSON(data, {
               style: feature => ({
                 color: getColor(feature.properties.region),
@@ -113,11 +111,19 @@
               })
             }).addTo(map);
 
+            // Transparent interactive layer
             data.features.forEach(feature => {
               const regionName = feature.properties.region;
               const schools = feature.properties.schools;
               const regionKey = clean(regionName);
               const tournaments = tournamentsByRegion[regionKey] || [];
+
+              // Debug output
+              console.log("----");
+              console.log("Popup for:", regionName);
+              console.log("Looking under key:", regionKey);
+              console.log("Found tournaments:", tournaments.length);
+              console.log("Available keys:", Object.keys(tournamentsByRegion));
 
               let popupContent = `
                 <div style="min-width:300px;">
