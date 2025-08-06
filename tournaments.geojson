@@ -615,6 +615,22 @@
     {
       "type": "Feature",
       "properties": {
+        "course_name": "Kingstown Golf Course",
+        "region": "Southern New England",
+        "date": "April 11-12, 2026",
+        "website": "https://www.northkingstownri.gov/893/North-Kingstown-Golf-Course"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.4662,
+          41.5501
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "course_name": "The Woods of Westminster",
         "region": "Northern New England"
       },
