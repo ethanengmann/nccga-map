@@ -48,7 +48,6 @@
             const color = getColor(region);
             const schoolUrl = `https://nccga.org/app/teams/${feature.properties.slug}`;
             return L.circleMarker(latlng, {
-              pane: 'schoolPane',
               radius: 6,
               fillColor: color,
               color: "#333",
@@ -117,6 +116,10 @@
               const schools = feature.properties.schools;
               const regionKey = clean(regionName);
               const tournaments = tournamentsByRegion[regionKey] || [];
+
+              console.log("Popup for:", regionName);
+              console.log("Looking under key:", regionKey);
+              console.log("Found tournaments:", tournaments.length);
 
               let popupContent = `
                 <div style="min-width:300px;">
