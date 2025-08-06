@@ -214,7 +214,9 @@
       "type": "Feature",
       "properties": {
         "course_name": "GCU Golf Course",
-        "region": "Desert"
+        "region": "Desert",
+        "date": "September 20-21",
+        "website": "https://www.gcugolf.com"
       },
       "geometry": {
         "type": "Point",
@@ -228,13 +230,30 @@
       "type": "Feature",
       "properties": {
         "course_name": "Fred Enke GC",
-        "region": "Desert"
+        "region": "Desert",
+        "date": "February 28-March 1, 2026"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
           -110.8119298,
           32.1686901
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Oakcreek Country Club",
+        "region": "Desert",
+        "date": "Nov 8-9, 2025",
+        "website": "https://oakcreekcc.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.8209916,
+          34.9169611
         ]
       }
     },
