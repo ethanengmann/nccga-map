@@ -116,7 +116,7 @@ fetch('tournaments.geojson')
           const schools = feature.properties.schools;
           const tournaments = tournamentsByRegion[regionName] || [];
 
-          let popupContent = `<strong>${regionName} Region</strong>`;
+          let popupContent = `<strong>${regionName}</strong>`;
 
           if (schools?.length) {
             popupContent += '<br><strong>Schools:</strong><ul>';
