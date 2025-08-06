@@ -358,7 +358,9 @@
       "type": "Feature",
       "properties": {
         "course_name": "The Refuge GC",
-        "region": "Gulf"
+        "region": "Gulf",
+        "date": "March 1-2",
+        "website": "https://www.refugegolfms.com"
       },
       "geometry": {
         "type": "Point",
