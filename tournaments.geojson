@@ -54,7 +54,7 @@
       "type": "Feature",
       "properties": {
         "course_name": "Langston Golf Course",
-        "region": "Capital",
+        "region": "Capitol",
         "date": "October 18-19, 2025",
         "website": "https://www.playdcgolf.com/langston-golf-course/?utm_source=extnet&utm_medium=yext"
       },
@@ -70,7 +70,7 @@
       "type": "Feature",
       "properties": {
         "course_name": "Augustine Golf Club",
-        "region": "Capital",
+        "region": "Capitol",
         "date": "October 11-12, 2025",
         "website": "https://www.golfaugustine.com"
       },
@@ -86,7 +86,7 @@
       "type": "Feature",
       "properties": {
         "course_name": "Maryland National Golf Club",
-        "region": "Capital",
+        "region": "Capitol",
         "date": "February 28-March 1, 2026",
         "website": "https://www.marylandnational.com" 
       },
