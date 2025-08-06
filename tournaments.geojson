@@ -373,8 +373,10 @@
     {
       "type": "Feature",
       "properties": {
-        "course_name": "Harrison Hills GC",
-        "region": "Indiana"
+        "course_name": "Harrison Hills Golf Club",
+        "region": "Indiana",
+        "date": "October 25-26, 2025",
+        "website": "https://harrisonhills.com"
       },
       "geometry": {
         "type": "Point",
@@ -388,13 +390,31 @@
       "type": "Feature",
       "properties": {
         "course_name": "Sultans Run",
-        "region": "Indiana"
+        "region": "Indiana",
+        "date": "October 18-19, 2025",
+        "website": "https://www.sultansrun.com"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
           -86.8979504,
           38.4014945
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Warren Golf Course",
+        "region": "Indiana",
+        "date": "November 1-2, 2025",
+        "website": "https://warrengolfcourse.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.2506523,
+          41.7030448
         ]
       }
     },
