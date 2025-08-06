@@ -1812,8 +1812,6 @@
         "schools": [
           "Clemson University",
           "University of South Carolina",
-          "Georgia State University",
-          "University of South Carolina",
           "Citadel Military College of South Carolina"
         ]
       },
@@ -1883,7 +1881,8 @@
           "University of Georgia",
           "Auburn University",
           "The University of Tennessee",
-          "The University of Alabama"
+          "The University of Alabama",
+          "Georgia State University"
         ]
       },
       "geometry": {
