@@ -229,9 +229,10 @@
     {
       "type": "Feature",
       "properties": {
-        "course_name": "Fred Enke GC",
+        "course_name": "Fred Enke Golf Course",
         "region": "Desert",
-        "date": "February 28-March 1, 2026"
+        "date": "February 28-March 1, 2026",
+        "website": "https://www.tucsoncitygolf.com/fred-enke/"
       },
       "geometry": {
         "type": "Point",
