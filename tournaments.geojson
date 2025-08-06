@@ -359,7 +359,7 @@
       "properties": {
         "course_name": "The Refuge GC",
         "region": "Gulf",
-        "date": "March 1-2",
+        "date": "March 1-2, 2026",
         "website": "https://www.refugegolfms.com"
       },
       "geometry": {
@@ -568,7 +568,9 @@
       "type": "Feature",
       "properties": {
         "course_name": "The Ranch Golf Club",
-        "region": "Southern New England"
+        "region": "Southern New England",
+        "date": "October 25-26, 2025",
+        "website": "https://www.theranchgolfclub.com"
       },
       "geometry": {
         "type": "Point",
@@ -582,7 +584,9 @@
       "type": "Feature",
       "properties": {
         "course_name": "Hazelton Golf Club",
-        "region": "Southern New England"
+        "region": "Southern New England",
+        "date": "October 18-19, 2025",
+        "website": "https://www.hazeltongolfclub.com"
       },
       "geometry": {
         "type": "Point",
@@ -596,7 +600,8 @@
       "type": "Feature",
       "properties": {
         "course_name": "Whaling City GC",
-        "region": "Southern New England"
+        "region": "Southern New England",
+        "date": "November 1-2, 2025"
       },
       "geometry": {
         "type": "Point",
