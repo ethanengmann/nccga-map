@@ -116,27 +116,35 @@ fetch('tournaments.geojson')
           const schools = feature.properties.schools;
           const tournaments = tournamentsByRegion[regionName] || [];
 
-          let popupContent = `<strong>${regionName}</strong>`;
-
-          if (schools?.length) {
-            popupContent += '<br><strong>Schools:</strong><ul>';
-            schools.forEach(s => popupContent += `<li>${s}</li>`);
-            popupContent += '</ul>';
-          } else {
-            popupContent += '<br>No schools listed.';
-          }
-
-          if (tournaments.length) {
-            popupContent += '<strong>Tournaments:</strong><ul>';
-            tournaments.forEach(t => {
-              popupContent += `<li><strong>${t.course_name}</strong>`;
-              if (t.date) popupContent += ` – <em>${t.date}</em>`;
-              if (t.website) popupContent += `<br><a href="${t.website}" target="_blank">Course Website</a>`;
-              popupContent += '</li>';
-            });
-            popupContent += '</ul>';
-          }
-
+         let popupContent = `
+  <div style="min-width:300px;">
+    <h4 style="margin:0 0 5px 0;">${regionName}</h4>
+    <div style="display: flex; justify-content: space-between; gap: 10px;">
+      <div style="width: 48%;">
+        <strong>Schools:</strong>
+        <ul style="padding-left: 18px; margin-top: 4px;">${
+          schools && schools.length
+            ? schools.map(s => `<li>${s}</li>`).join('')
+            : '<li>No schools listed.</li>'
+        }</ul>
+      </div>
+      <div style="width: 48%;">
+        <strong>Tournaments:</strong>
+        <ul style="padding-left: 18px; margin-top: 4px;">${
+          tournaments.length
+            ? tournaments.map(t => {
+                let html = `<li><strong>${t.course_name}</strong>`;
+                if (t.date) html += `<br><em>${t.date}</em>`;
+                if (t.website) html += `<br><a href="${t.website}" target="_blank">Course Website</a>`;
+                html += `</li>`;
+                return html;
+              }).join('')
+            : '<li>No tournaments scheduled.</li>'
+        }</ul>
+      </div>
+    </div>
+  </div>
+`;
           L.geoJSON(feature, {
             style: { opacity: 0, fillOpacity: 0, weight: 0 },
             onEachFeature: (_, layer) => {
