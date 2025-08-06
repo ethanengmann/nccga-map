@@ -2104,21 +2104,6 @@
     {
       "type": "Feature",
       "properties": {
-        "school": "Georgia State University",
-        "region": "Southeast Region",
-        "slug": "georgia-state-university-club-golf"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -84.3898151,
-          33.7544657
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "school": "University of South Carolina",
         "region": "Southeast Region",
         "slug": "university-of-south-carolina-club-golf"
@@ -2293,6 +2278,21 @@
         "coordinates": [
           -83.376398,
           33.9597677
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "school": "Georgia State University",
+        "region": "South Region",
+        "slug": "georgia-state-university-club-golf"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.3898151,
+          33.7544657
         ]
       }
     },
