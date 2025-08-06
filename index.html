@@ -17,6 +17,10 @@
   <script>
     const map = L.map('map').setView([39.5, -98.35], 4);
 
+    // === Pane to ensure school markers sit on top ===
+    map.createPane('schoolPane');
+    map.getPane('schoolPane').style.zIndex = 650;
+
     const regionColors = {};
     const getColor = region => {
       if (!regionColors[region]) {
@@ -27,11 +31,9 @@
 
     const clean = str => str?.toLowerCase().replace(/region/g, '').replace(/capitol/g, 'capital').replace(/\s+/g, '').trim();
 
-    // === Layer groups ===
     const schoolRegionLayer = L.layerGroup().addTo(map);
     const tournamentLayer = L.layerGroup().addTo(map);
 
-    // === Base map ===
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 18,
       attribution: '&copy; OpenStreetMap contributors'
@@ -48,6 +50,7 @@
             const color = getColor(region);
             const schoolUrl = `https://nccga.org/app/teams/${feature.properties.slug}`;
             return L.circleMarker(latlng, {
+              pane: 'schoolPane',
               radius: 6,
               fillColor: color,
               color: "#333",
@@ -77,14 +80,12 @@
     fetch('tournaments.geojson')
       .then(response => response.json())
       .then(tourneyData => {
-        // Group by region
         tourneyData.features.forEach(t => {
           const regionKey = clean(t.properties.region);
           if (!tournamentsByRegion[regionKey]) tournamentsByRegion[regionKey] = [];
           tournamentsByRegion[regionKey].push(t.properties);
         });
 
-        // Add tournament markers
         L.geoJSON(tourneyData, {
           pointToLayer: (feature, latlng) => L.marker(latlng, { icon: flagIcon }),
           onEachFeature: (feature, layer) => {
@@ -100,7 +101,6 @@
         fetch('regions.geojson')
           .then(response => response.json())
           .then(data => {
-            // Fill outlines
             L.geoJSON(data, {
               style: feature => ({
                 color: getColor(feature.properties.region),
@@ -110,16 +110,11 @@
               })
             }).addTo(schoolRegionLayer);
 
-            // Transparent clickable layer
             data.features.forEach(feature => {
               const regionName = feature.properties.region;
               const schools = feature.properties.schools;
               const regionKey = clean(regionName);
               const tournaments = tournamentsByRegion[regionKey] || [];
-
-              console.log("Popup for:", regionName);
-              console.log("Looking under key:", regionKey);
-              console.log("Found tournaments:", tournaments.length);
 
               let popupContent = `
                 <div style="min-width:300px;">
@@ -156,7 +151,7 @@
                 onEachFeature: (_, layer) => {
                   layer.on('click', e => {
                     if (!e.originalEvent._clickedSchool) {
-                        map.fitBounds(layer.getBounds()); 
+                      map.fitBounds(layer.getBounds()); // 👈 Auto-zoom
                       layer.bindPopup(popupContent).openPopup(e.latlng);
                     }
                   });
@@ -168,7 +163,7 @@
       })
       .catch(console.error);
 
-    // === Layer Control ===
+    // === Layer Toggle ===
     const overlayMaps = {
       "Regions & Schools": schoolRegionLayer,
       "Tournaments": tournamentLayer
