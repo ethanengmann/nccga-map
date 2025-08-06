@@ -77,11 +77,12 @@ fetch('tournaments.geojson')
   .then(tourneyData => {
     // Group tournaments by region
     tourneyData.features.forEach(t => {
-      const r = t.properties.region;
+      const clean = str => str.toLowerCase().replace(/\s+/g, '').trim();
+const r = clean(t.properties.region);
       if (!tournamentsByRegion[r]) tournamentsByRegion[r] = [];
       tournamentsByRegion[r].push(t.properties);
     });
-
+    
     // Add tournament markers
     L.geoJSON(tourneyData, {
       pointToLayer: (feature, latlng) => L.marker(latlng, { icon: flagIcon }),
@@ -114,7 +115,11 @@ fetch('tournaments.geojson')
         data.features.forEach(feature => {
           const regionName = feature.properties.region;
           const schools = feature.properties.schools;
-          const tournaments = tournamentsByRegion[regionName] || [];
+          const clean = str => str.toLowerCase().replace(/\s+/g, '').trim();
+const tournaments = tournamentsByRegion[regionName] 
+                 || tournamentsByRegion[clean(regionName)] 
+                 || [];
+
 
          let popupContent = `
   <div style="min-width:300px;">
