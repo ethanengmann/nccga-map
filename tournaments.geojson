@@ -102,7 +102,9 @@
       "type": "Feature",
       "properties": {
         "course_name": "Eagle Knoll GC",
-        "region": "Central"
+        "region": "Central",
+        "date": "March 28-29, 2026",
+        "website": "https://eagleknoll.com"
       },
       "geometry": {
         "type": "Point",
@@ -116,7 +118,9 @@
       "type": "Feature",
       "properties": {
         "course_name": "Excelsior Springs GC",
-        "region": "Central"
+        "region": "Central",
+        "date": "October 25-26, 2025",
+        "website": "https://www.excelsiorgolf.com"
       },
       "geometry": {
         "type": "Point",
@@ -130,13 +134,31 @@
       "type": "Feature",
       "properties": {
         "course_name": "Gateway National",
-        "region": "Central"
+        "region": "Central",
+        "date": "November 1-2, 2025",
+        "website": "https://gatewaynational.com"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -90.1423543,
-          38.6632969
+          -90.138316,
+          38.659987
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "The Rail GC",
+        "region": "Central",
+        "date": "October 4-5, 2025",
+        "website": "https://www.railgolf.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -89.6197309,
+          39.876753
         ]
       }
     },
@@ -144,7 +166,9 @@
       "type": "Feature",
       "properties": {
         "course_name": "Kiskiack GC",
-        "region": "Colonial"
+        "region": "Colonial",
+        "date": "February 28-March 1, 2026",
+        "website": "https://kiskiackgc.com"
       },
       "geometry": {
         "type": "Point",
@@ -157,14 +181,32 @@
     {
       "type": "Feature",
       "properties": {
-        "course_name": "Kingsmill",
-        "region": "Colonial"
+        "course_name": "Kingsmill-Plantation Course",
+        "region": "Colonial",
+        "date": "October 18-19, 2025",
+        "website": "https://kingsmill.com/golf/golf-courses/the-plantation-course/"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
           -76.669976,
           37.2296371
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "The Manor Golf Club",
+        "region": "Colonial",
+        "date": "Nov 8-9, 2025",
+        "website": "https://golfthemanor.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -78.407372,
+          37.247318
         ]
       }
     },
