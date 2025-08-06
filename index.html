@@ -156,6 +156,7 @@
                 onEachFeature: (_, layer) => {
                   layer.on('click', e => {
                     if (!e.originalEvent._clickedSchool) {
+                        map.fitBounds(layer.getBounds()); 
                       layer.bindPopup(popupContent).openPopup(e.latlng);
                     }
                   });
