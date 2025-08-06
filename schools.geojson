@@ -2104,21 +2104,6 @@
     {
       "type": "Feature",
       "properties": {
-        "school": "University of South Carolina",
-        "region": "Southeast Region",
-        "slug": "university-of-south-carolina-club-golf"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.7850296,
-          34.7308646
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "school": "Citadel Military College of South Carolina",
         "region": "Southeast Region",
         "slug": "citadel-military-college-of-south-carolina-club-golf"
@@ -2246,7 +2231,7 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -84.3898151,
+          -84.39000,
           33.7544657
         ]
       }
@@ -2288,7 +2273,7 @@
         "region": "South Region",
         "slug": "georgia-state-university-club-golf"
       },
-      "geometry": {
+      "geometry": { 
         "type": "Point",
         "coordinates": [
           -84.3898151,
