@@ -17,15 +17,6 @@
   <script>
     const map = L.map('map').setView([39.5, -98.35], 4);
 
-    // Custom school pane
-    map.createPane('schoolPane');
-    map.getPane('schoolPane').style.zIndex = 650;
-
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 18,
-      attribution: '&copy; OpenStreetMap contributors'
-    }).addTo(map);
-
     const regionColors = {};
     const getColor = region => {
       if (!regionColors[region]) {
@@ -34,10 +25,19 @@
       return regionColors[region];
     };
 
-    // === Clean string helper ===
-    const clean = str => str?.toLowerCase().replace(/region/g, '').replace(/\s+/g, '').trim();
+    const clean = str => str?.toLowerCase().replace(/region/g, '').replace(/capitol/g, 'capital').replace(/\s+/g, '').trim();
 
-    // === SCHOOL DOTS ===
+    // === Layer groups ===
+    const schoolRegionLayer = L.layerGroup().addTo(map);
+    const tournamentLayer = L.layerGroup().addTo(map);
+
+    // === Base map ===
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 18,
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    // === SCHOOLS ===
     fetch('schools.geojson')
       .then(response => response.json())
       .then(data => {
@@ -61,11 +61,11 @@
               e.target.bindPopup(popupContent).openPopup();
             });
           }
-        }).addTo(map);
+        }).addTo(schoolRegionLayer);
       })
       .catch(console.error);
 
-    // === TOURNAMENTS (FLAG ICON) ===
+    // === TOURNAMENTS ===
     const flagIcon = L.icon({
       iconUrl: 'img/Golf_flag_icon.png',
       iconSize: [15, 15],
@@ -78,14 +78,14 @@
     fetch('tournaments.geojson')
       .then(response => response.json())
       .then(tourneyData => {
-        // Group tournaments by cleaned region name
+        // Group by region
         tourneyData.features.forEach(t => {
           const regionKey = clean(t.properties.region);
           if (!tournamentsByRegion[regionKey]) tournamentsByRegion[regionKey] = [];
           tournamentsByRegion[regionKey].push(t.properties);
         });
 
-        // Add flag markers
+        // Add tournament markers
         L.geoJSON(tourneyData, {
           pointToLayer: (feature, latlng) => L.marker(latlng, { icon: flagIcon }),
           onEachFeature: (feature, layer) => {
@@ -95,13 +95,13 @@
             if (website) popupContent += `<br><a href="${website}" target="_blank">Course Website</a>`;
             layer.bindPopup(popupContent);
           }
-        }).addTo(map);
+        }).addTo(tournamentLayer);
 
         // === REGIONS ===
         fetch('regions.geojson')
           .then(response => response.json())
           .then(data => {
-            // Outline fill
+            // Fill outlines
             L.geoJSON(data, {
               style: feature => ({
                 color: getColor(feature.properties.region),
@@ -109,25 +109,18 @@
                 fillOpacity: 0.2,
                 interactive: false
               })
-            }).addTo(map);
+            }).addTo(schoolRegionLayer);
 
-            // Transparent interactive layer
+            // Transparent clickable layer
             data.features.forEach(feature => {
               const regionName = feature.properties.region;
               const schools = feature.properties.schools;
               const regionKey = clean(regionName);
               const tournaments = tournamentsByRegion[regionKey] || [];
 
-              // Debug output
-              console.log("----");
-              console.log("Popup for:", regionName);
-              console.log("Looking under key:", regionKey);
-              console.log("Found tournaments:", tournaments.length);
-              console.log("Available keys:", Object.keys(tournamentsByRegion));
-
               let popupContent = `
                 <div style="min-width:300px;">
-                  <h4 style="margin:0 0 10px 0; text-align: center; font-size: 1.2em;">${regionName}</h4>
+                  <h4 style="margin:0 0 10px 0; text-align: center;">${regionName}</h4>
                   <div style="display: flex; justify-content: space-between; gap: 10px;">
                     <div style="width: 48%;">
                       <strong>Schools:</strong>
@@ -164,12 +157,19 @@
                     }
                   });
                 }
-              }).addTo(map);
+              }).addTo(schoolRegionLayer);
             });
           })
           .catch(console.error);
       })
       .catch(console.error);
+
+    // === Layer Control ===
+    const overlayMaps = {
+      "Regions & Schools": schoolRegionLayer,
+      "Tournaments": tournamentLayer
+    };
+    L.control.layers(null, overlayMaps, { collapsed: false }).addTo(map);
   </script>
 </body>
 </html>
