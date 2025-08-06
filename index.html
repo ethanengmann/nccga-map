@@ -6,156 +6,169 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
   <style>
-    body { margin: 0; padding: 0; }
+    body { margin:0; padding:0; }
     #map { height: 100vh; }
-    .popup-columns {
-      display: flex;
-      justify-content: space-between;
-      gap: 30px;
-    }
-    .popup-columns ul {
-      padding-left: 1.2em;
-      margin: 0;
-    }
-    .popup-columns .column {
-      width: 48%;
-    }
-    .leaflet-control-layers-expanded {
-      background: white;
-      padding: 6px;
-      border-radius: 4px;
-    }
   </style>
 </head>
 <body>
-<div id="map"></div>
+  <div id="map"></div>
 
-<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-<script src="https://unpkg.com/leaflet-geometryutil"></script>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script>
+    const map = L.map('map').setView([39.5, -98.35], 4);
 
-<script>
-  const map = L.map('map').setView([39.5, -98.35], 4);
+    // === Pane to ensure school markers sit on top ===
+    map.createPane('schoolPane');
+    map.getPane('schoolPane').style.zIndex = 650;
 
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 18,
-    attribution: '&copy; OpenStreetMap contributors'
-  }).addTo(map);
-
-  // Layer groups
-  const regionLayer = L.layerGroup().addTo(map);
-  const schoolLayer = L.layerGroup().addTo(map);
-  const tournamentLayer = L.layerGroup().addTo(map);
-
-  // Load GeoJSON data
-  Promise.all([
-    fetch('regions.geojson').then(res => res.json()),
-    fetch('schools.geojson').then(res => res.json()),
-    fetch('tournaments.geojson').then(res => res.json())
-  ]).then(([regionsData, schoolsData, tournamentsData]) => {
-
-    const regionSchoolsMap = {};
-    schoolsData.features.forEach(f => {
-      const region = f.properties.region;
-      if (!regionSchoolsMap[region]) regionSchoolsMap[region] = [];
-      regionSchoolsMap[region].push(f);
-    });
-
-    const regionTournamentsMap = {};
-    tournamentsData.features.forEach(f => {
-      const region = f.properties.region;
-      if (!regionTournamentsMap[region]) regionTournamentsMap[region] = [];
-      regionTournamentsMap[region].push(f);
-    });
-
-    // Render Regions
-    L.geoJSON(regionsData, {
-      onEachFeature: (feature, layer) => {
-        layer.on('click', () => {
-          const region = feature.properties.region;
-          const schools = regionSchoolsMap[region] || [];
-          const tournaments = regionTournamentsMap[region] || [];
-
-          const schoolList = schools.map(s => `<li>${s.properties.school}</li>`).join('');
-          const tournamentList = tournaments.length ? tournaments.map(t => `
-            <li>
-              <strong>${t.properties.course}</strong><br/>
-              <em>${t.properties.date}</em><br/>
-              <a href="${t.properties.website}" target="_blank">Course Website</a>
-            </li>
-          `).join('') : `<li>No tournaments scheduled.</li>`;
-
-          const content = `
-            <div style="text-align:center"><strong>${region}</strong></div>
-            <div class="popup-columns">
-              <div class="column">
-                <strong>Schools:</strong>
-                <ul>${schoolList}</ul>
-              </div>
-              <div class="column">
-                <strong>Tournaments:</strong>
-                <ul>${tournamentList}</ul>
-              </div>
-            </div>
-          `;
-
-          layer.bindPopup(content).openPopup();
-
-          // Center and zoom
-          map.fitBounds(layer.getBounds(), {
-            padding: [50, 50]
-          });
-
-          // Center popup on screen
-          const center = layer.getBounds().getCenter();
-          setTimeout(() => map.panTo(center), 200); // slight delay after zoom
-        });
-
-        regionLayer.addLayer(layer);
-      },
-      style: {
-        color: '#000',
-        weight: 2,
-        fillOpacity: 0.1
+    const regionColors = {};
+    const getColor = region => {
+      if (!regionColors[region]) {
+        regionColors[region] = `hsl(${Math.random() * 360}, 70%, 70%)`;
       }
-    });
-
-    // Render Schools
-    schoolsData.features.forEach(f => {
-      const coords = f.geometry.coordinates.reverse();
-      const marker = L.circleMarker(coords, {
-        radius: 5,
-        color: 'blue',
-        fillColor: '#30f',
-        fillOpacity: 0.8
-      }).bindPopup(f.properties.school);
-      schoolLayer.addLayer(marker);
-    });
-
-    // Render Tournaments
-    const flagIcon = L.icon({
-      iconUrl: 'img/Golf_flag_icon.png',
-      iconSize: [20, 20],
-      iconAnchor: [10, 10]
-    });
-
-    tournamentsData.features.forEach(f => {
-      const coords = f.geometry.coordinates.reverse();
-      const marker = L.marker(coords, { icon: flagIcon }).bindPopup(`
-        <strong>${f.properties.course}</strong><br/>
-        <em>${f.properties.date}</em><br/>
-        <a href="${f.properties.website}" target="_blank">Course Website</a>
-      `);
-      tournamentLayer.addLayer(marker);
-    });
-
-    // Layer control
-    const overlayMaps = {
-      "Regions & Schools": L.layerGroup([regionLayer, schoolLayer]),
-      "Tournaments": tournamentLayer
+      return regionColors[region];
     };
 
+    const clean = str => str?.toLowerCase().replace(/region/g, '').replace(/capitol/g, 'capital').replace(/\s+/g, '').trim();
+
+    const schoolRegionLayer = L.layerGroup().addTo(map);
+    const tournamentLayer = L.layerGroup().addTo(map);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 18,
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    // === SCHOOLS ===
+    fetch('schools.geojson')
+      .then(response => response.json())
+      .then(data => {
+        L.geoJSON(data, {
+          pointToLayer: (feature, latlng) => {
+            const schoolName = feature.properties.school;
+            const region = feature.properties.region;
+            const color = getColor(region);
+            const schoolUrl = `https://nccga.org/app/teams/${feature.properties.slug}`;
+            return L.circleMarker(latlng, {
+              pane: 'schoolPane',
+              radius: 6,
+              fillColor: color,
+              color: "#333",
+              weight: 1,
+              opacity: 1,
+              fillOpacity: 0.9
+            }).on('click', e => {
+              e.originalEvent._clickedSchool = true;
+              const popupContent = `<strong><a href="${schoolUrl}" target="_blank">${schoolName}</a></strong><br>${region}`;
+              e.target.bindPopup(popupContent).openPopup();
+            });
+          }
+        }).addTo(schoolRegionLayer);
+      })
+      .catch(console.error);
+
+    // === TOURNAMENTS ===
+    const flagIcon = L.icon({
+      iconUrl: 'img/Golf_flag_icon.png',
+      iconSize: [15, 15],
+      iconAnchor: [15, 30],
+      popupAnchor: [0, -30]
+    });
+
+    let tournamentsByRegion = {};
+
+    fetch('tournaments.geojson')
+      .then(response => response.json())
+      .then(tourneyData => {
+        tourneyData.features.forEach(t => {
+          const regionKey = clean(t.properties.region);
+          if (!tournamentsByRegion[regionKey]) tournamentsByRegion[regionKey] = [];
+          tournamentsByRegion[regionKey].push(t.properties);
+        });
+
+        L.geoJSON(tourneyData, {
+          pointToLayer: (feature, latlng) => L.marker(latlng, { icon: flagIcon }),
+          onEachFeature: (feature, layer) => {
+            const { course_name, region, website, date } = feature.properties;
+            let popupContent = `<strong>${course_name}</strong><br>${region}`;
+            if (date) popupContent += `<br><em>${date}</em>`;
+            if (website) popupContent += `<br><a href="${website}" target="_blank">Course Website</a>`;
+            layer.bindPopup(popupContent);
+          }
+        }).addTo(tournamentLayer);
+
+        // === REGIONS ===
+        fetch('regions.geojson')
+          .then(response => response.json())
+          .then(data => {
+            L.geoJSON(data, {
+              style: feature => ({
+                color: getColor(feature.properties.region),
+                weight: 2,
+                fillOpacity: 0.2,
+                interactive: false
+              })
+            }).addTo(schoolRegionLayer);
+
+            data.features.forEach(feature => {
+              const regionName = feature.properties.region;
+              const schools = feature.properties.schools;
+              const regionKey = clean(regionName);
+              const tournaments = tournamentsByRegion[regionKey] || [];
+
+              let popupContent = `
+                <div style="min-width:300px;">
+                  <h4 style="margin:0 0 10px 0; text-align: center;">${regionName}</h4>
+                  <div style="display: flex; justify-content: space-between; gap: 10px;">
+                    <div style="width: 48%;">
+                      <strong>Schools:</strong>
+                      <ul style="padding-left: 18px; margin-top: 4px;">${
+                        schools && schools.length
+                          ? schools.map(s => `<li>${s}</li>`).join('')
+                          : '<li>No schools listed.</li>'
+                      }</ul>
+                    </div>
+                    <div style="width: 48%;">
+                      <strong>Tournaments:</strong>
+                      <ul style="padding-left: 18px; margin-top: 4px;">${
+                        tournaments.length
+                          ? tournaments.map(t => {
+                              let html = `<li><strong>${t.course_name}</strong>`;
+                              if (t.date) html += `<br><em>${t.date}</em>`;
+                              if (t.website) html += `<br><a href="${t.website}" target="_blank">Course Website</a>`;
+                              html += `</li>`;
+                              return html;
+                            }).join('')
+                          : '<li>No tournaments scheduled.</li>'
+                      }</ul>
+                    </div>
+                  </div>
+                </div>
+              `;
+
+              L.geoJSON(feature, {
+                style: { opacity: 0, fillOpacity: 0, weight: 0 },
+                onEachFeature: (_, layer) => {
+                  layer.on('click', e => {
+                    if (!e.originalEvent._clickedSchool) {
+                      map.fitBounds(layer.getBounds()); // 👈 Auto-zoom
+                      layer.bindPopup(popupContent).openPopup(e.latlng);
+                    }
+                  });
+                }
+              }).addTo(schoolRegionLayer);
+            });
+          })
+          .catch(console.error);
+      })
+      .catch(console.error);
+
+    // === Layer Toggle ===
+    const overlayMaps = {
+      "Regions & Schools": schoolRegionLayer,
+      "Tournaments": tournamentLayer
+    };
     L.control.layers(null, overlayMaps, { collapsed: false }).addTo(map);
-  });
-</script>
+  </script>
 </body>
 </html>
