@@ -181,22 +181,6 @@
     {
       "type": "Feature",
       "properties": {
-        "course_name": "Kingsmill-Plantation Course",
-        "region": "Colonial",
-        "date": "October 18-19, 2025",
-        "website": "https://kingsmill.com/golf/golf-courses/the-plantation-course/"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -76.669976,
-          37.2296371
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "course_name": "The Manor Golf Club",
         "region": "Colonial",
         "date": "Nov 8-9, 2025",

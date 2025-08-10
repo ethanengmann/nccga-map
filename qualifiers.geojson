@@ -26,6 +26,32 @@
         "type": "Point",
         "coordinates": [-80.2872, 40.3919]
       }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Acushnet River",
+        "regions": ["Northern New England Region", "Southern New England Region"],
+        "website": "https://www.golfacushnet.com",
+        "date": "November 8-9, 2025"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-70.9033, 41.66638]
+      }
+    },
+   {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Kingsmill - Plantation Course",
+        "regions": ["Capitol Region", "Colonial Region"],
+        "website": "https://kingsmill.com/golf/golf-courses/the-plantation-course/",
+        "date": "October 18-19, 2025"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-76.669976, 37.2296371]
+      }
     }
   ]
 }
