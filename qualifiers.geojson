@@ -13,6 +13,19 @@
         "type": "Point",
         "coordinates": [-74.276432, 40.684336]
       }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Quicksilver",
+        "regions": ["Atlantic Region", "Northeast Region"],
+        "website": "https://www.quicksilvergolf.com",
+        "date": "November 1-2, 2025"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-80.2872, 40.3919]
+      }
     }
   ]
 }
