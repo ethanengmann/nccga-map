@@ -9,9 +9,10 @@
     body { margin:0; padding:0; }
     #map { height: 100vh; }
 
-    /* Qualifier icon styling: white + black outline for visibility */
+    /* Make qualifier icon bolder & outlined for visibility */
     .qualifier-icon {
-      filter: drop-shadow(0 0 2px #fff) drop-shadow(0 0 2px #000);
+      /* white halo + subtle black outline */
+      filter: drop-shadow(0 0 2px #fff) drop-shadow(0 0 1.5px #000);
     }
   </style>
 </head>
@@ -22,7 +23,7 @@
   <script>
     const map = L.map('map').setView([39.5, -98.35], 4);
 
-    // Pane for school markers
+    // === Pane to ensure school markers sit on top ===
     map.createPane('schoolPane');
     map.getPane('schoolPane').style.zIndex = 650;
 
@@ -37,15 +38,15 @@
     const clean = str => str?.toLowerCase().replace(/region/g, '').replace(/capitol/g, 'capital').replace(/\s+/g, '').trim();
 
     const schoolRegionLayer = L.layerGroup().addTo(map);
-    const tournamentLayer = L.layerGroup().addTo(map);
-    const qualifierLayer = L.layerGroup().addTo(map);
+    const tournamentLayer   = L.layerGroup().addTo(map);
+    const qualifierLayer    = L.layerGroup().addTo(map); // NEW
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 18,
       attribution: '&copy; OpenStreetMap contributors'
     }).addTo(map);
 
-    // SCHOOLS
+    // === SCHOOLS ===
     fetch('schools.geojson')
       .then(response => response.json())
       .then(data => {
@@ -73,7 +74,7 @@
       })
       .catch(console.error);
 
-    // TOURNAMENTS
+    // === TOURNAMENTS ===
     const flagIcon = L.icon({
       iconUrl: 'img/Golf_flag_icon.png',
       iconSize: [15, 15],
@@ -81,28 +82,20 @@
       popupAnchor: [0, -30]
     });
 
-    // QUALIFIERS
-    const qualifierIcon = L.icon({
-      iconUrl: 'img/qualifier_flag_icon.png', // star + flag PNG
-      iconSize: [18, 18], // slightly bigger for visibility
-      iconAnchor: [9, 18],
-      popupAnchor: [0, -18],
-      className: 'qualifier-icon'
-    });
-
     let tournamentsByRegion = {};
-    let qualifiersByRegion = {};
+    let qualifiersByRegion  = {};
 
-    // Load tournaments
     fetch('tournaments.geojson')
       .then(response => response.json())
       .then(tourneyData => {
+        // group tournaments by region
         tourneyData.features.forEach(t => {
           const regionKey = clean(t.properties.region);
           if (!tournamentsByRegion[regionKey]) tournamentsByRegion[regionKey] = [];
           tournamentsByRegion[regionKey].push(t.properties);
         });
 
+        // tournament markers
         L.geoJSON(tourneyData, {
           pointToLayer: (feature, latlng) => L.marker(latlng, { icon: flagIcon }),
           onEachFeature: (feature, layer) => {
@@ -114,34 +107,53 @@
           }
         }).addTo(tournamentLayer);
 
-        // Load qualifiers
+        // === QUALIFIERS (NEW) ===
+        const qualifierIcon = L.icon({
+          iconUrl: 'img/Qualifier_flag_icon.png', // ⭐ your star-with-flag file
+          iconSize: [20, 20],
+          iconAnchor: [10, 20],
+          popupAnchor: [0, -20],
+          className: 'qualifier-icon'
+        });
+
         fetch('qualifiers.geojson')
-          .then(response => response.json())
+          .then(resp => resp.json())
           .then(qualData => {
-            qualData.features.forEach(q => {
-              const regions = q.properties.regions || [];
-              regions.forEach(r => {
-                const regionKey = clean(r);
-                if (!qualifiersByRegion[regionKey]) qualifiersByRegion[regionKey] = [];
-                qualifiersByRegion[regionKey].push(q.properties);
+            // Group qualifiers by every region they serve
+            qualData.features.forEach(f => {
+              const p = f.properties || {};
+              let regionList = Array.isArray(p.regions)
+                ? p.regions
+                : (typeof p.region === 'string'
+                    ? p.region.split(',').map(s => s.trim()).filter(Boolean)
+                    : []);
+              if (!regionList.length && p.region) regionList = [p.region];
+
+              regionList.forEach(rName => {
+                const key = clean(rName);
+                if (!qualifiersByRegion[key]) qualifiersByRegion[key] = [];
+                qualifiersByRegion[key].push(p);
               });
             });
 
+            // qualifier markers
             L.geoJSON(qualData, {
               pointToLayer: (feature, latlng) => L.marker(latlng, { icon: qualifierIcon }),
               onEachFeature: (feature, layer) => {
-                const { course_name, website, date } = feature.properties;
-                let popupContent = `<strong>${course_name}</strong><br><em>Qualifier</em>`;
-                if (date) popupContent += `<br><em>${date}</em>`;
-                if (website) popupContent += `<br><a href="${website}" target="_blank">Course Website</a>`;
-                layer.bindPopup(popupContent);
+                const { course_name, region, regions, website, date } = feature.properties || {};
+                const regionLabel = Array.isArray(regions) ? regions.join(', ') : (region || 'Qualifier');
+                let html = `<strong>${course_name || 'Qualifier'}</strong><br>${regionLabel}`;
+                if (date) html += `<br><em>${date}</em>`;
+                if (website) html += `<br><a href="${website}" target="_blank">Course Website</a>`;
+                layer.bindPopup(html);
               }
             }).addTo(qualifierLayer);
 
-            // REGIONS
+            // === REGIONS ===
             fetch('regions.geojson')
               .then(response => response.json())
               .then(data => {
+                // visible fill
                 L.geoJSON(data, {
                   style: feature => ({
                     color: getColor(feature.properties.region),
@@ -151,18 +163,19 @@
                   })
                 }).addTo(schoolRegionLayer);
 
+                // invisible interactive click layer + popup
                 data.features.forEach(feature => {
                   const regionName = feature.properties.region;
                   const schools = feature.properties.schools;
                   const regionKey = clean(regionName);
                   const tournaments = tournamentsByRegion[regionKey] || [];
-                  const qualifiers = qualifiersByRegion[regionKey] || [];
+                  const qualifiers  = qualifiersByRegion[regionKey]  || [];
 
                   let popupContent = `
                     <div style="min-width:300px;">
                       <h4 style="margin:0 0 10px 0; text-align: center;">${regionName}</h4>
-                      <div style="display: flex; justify-content: space-between; gap: 10px;">
-                        <div style="width: 48%;">
+                      <div style="display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap;">
+                        <div style="width: 32%; min-width: 220px;">
                           <strong>Schools:</strong>
                           <ul style="padding-left: 18px; margin-top: 4px;">${
                             schools && schools.length
@@ -170,7 +183,7 @@
                               : '<li>No schools listed.</li>'
                           }</ul>
                         </div>
-                        <div style="width: 48%;">
+                        <div style="width: 32%; min-width: 220px;">
                           <strong>Tournaments:</strong>
                           <ul style="padding-left: 18px; margin-top: 4px;">${
                             tournaments.length
@@ -183,11 +196,13 @@
                                 }).join('')
                               : '<li>No tournaments scheduled.</li>'
                           }</ul>
+                        </div>
+                        <div style="width: 32%; min-width: 220px;">
                           <strong>Qualifiers:</strong>
                           <ul style="padding-left: 18px; margin-top: 4px;">${
                             qualifiers.length
                               ? qualifiers.map(q => {
-                                  let html = `<li><strong>${q.course_name}</strong>`;
+                                  let html = `<li><strong>${q.course_name || q.course || 'Qualifier'}</strong>`;
                                   if (q.date) html += `<br><em>${q.date}</em>`;
                                   if (q.website) html += `<br><a href="${q.website}" target="_blank">Course Website</a>`;
                                   html += `</li>`;
@@ -205,9 +220,9 @@
                     onEachFeature: (_, layer) => {
                       layer.on('click', e => {
                         if (!e.originalEvent._clickedSchool) {
-                          map.fitBounds(layer.getBounds());
+                          map.fitBounds(layer.getBounds());       // zoom to region
                           const center = layer.getBounds().getCenter();
-                          layer.bindPopup(popupContent).openPopup(center);
+                          layer.bindPopup(popupContent).openPopup(center); // center popup
                         }
                       });
                     }
@@ -220,7 +235,7 @@
       })
       .catch(console.error);
 
-    // Layer Toggle
+    // === Layer Toggle (includes Qualifiers) ===
     const overlayMaps = {
       "Regions & Schools": schoolRegionLayer,
       "Tournaments": tournamentLayer,
