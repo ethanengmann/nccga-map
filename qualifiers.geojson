@@ -56,10 +56,10 @@
     {
       "type": "Feature",
       "properties": {
-        "course_name": "Veenker Memorial golf Course",
+        "course_name": "Veenker Memorial Golf Course",
         "regions": ["Great Lakes Region", "Central Region", "Twin Cities Region", "North Region"],
         "website": "https://veenkergolf.com",
-        "date": "October 18-19, 2025"
+        "date": "October 25-26, 2025"
       },
       "geometry": {
         "type": "Point",
