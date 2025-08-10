@@ -210,6 +210,22 @@
         ]
       }
     },
+     {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Fords Colony - Blue Heron",
+        "region": "Colonial",
+        "date": "September 27-28",
+        "website": "https://fordscolonycc.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.7846669,
+          37.304001
+        ]
+      }
+    },
     {
       "type": "Feature",
       "properties": {
@@ -455,7 +471,7 @@
       "properties": {
         "course_name": "Dyker Beach Golf Course",
         "region": "Metro",
-        "date": "September 28-29",
+        "date": "September 27-28",
         "website": "https://www.dykerbeachgc.com"
       },
       "geometry": {

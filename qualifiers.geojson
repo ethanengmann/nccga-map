@@ -1,0 +1,18 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Galloping Hill Golf Course",
+        "regions": ["Philadelphia Region", "Metro Region"],
+        "website": "https://www.gallopinghillgolfcourse.com",
+        "date": "November 8-9, 2025"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [74.276432, 40.684336]
+      }
+    }
+  ]
+}
