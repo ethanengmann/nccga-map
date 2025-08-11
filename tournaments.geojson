@@ -727,8 +727,10 @@
     {
       "type": "Feature",
       "properties": {
-        "course_name": "Muskego Lakes GC",
-        "region": "North"
+        "course_name": "Muskego Lakes Golf Club",
+        "region": "North",
+        "date": "October 11-12, 2025",
+        "website": "https://muskegolakes.com"
       },
       "geometry": {
         "type": "Point",
@@ -741,8 +743,26 @@
     {
       "type": "Feature",
       "properties": {
+        "course_name": "Lawsonia - Woods Course",
+        "region": "North",
+        "date": "October 18-19, 2025",
+        "website": "https://www.lawsonia.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -89.012215,
+          43.8296425
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "course_name": "Grandover Resort",
-        "region": "North Carolina"
+        "region": "North Carolina",
+        "date": "March 28-29, 2026",
+        "website": "https://grandoverresort.com/golf/"
       },
       "geometry": {
         "type": "Point",
@@ -752,11 +772,45 @@
         ]
       }
     },
+     {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Foxfire Golf Club",
+        "region": "North Carolina",
+        "date": "October 4-5, 2025",
+        "website": "https://foxfireresortandgolf.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.574852,
+          35.173241
+        ]
+      }
+    },
+     {
+      "type": "Feature",
+      "properties": {
+        "course_name": "The Woods Golf Club",
+        "region": "North Carolina",
+        "date": "October 11-12, 2025",
+        "website": "https://www.thewoodsgolfclub.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.373,
+          35.25
+        ]
+      }
+    },
     {
       "type": "Feature",
       "properties": {
         "course_name": "Far View CC",
-        "region": "Northeast"
+        "region": "Northeast",
+        "date": "September 27-28",
+        "website": "http://www.farviewgc.com"
       },
       "geometry": {
         "type": "Point",
@@ -770,7 +824,9 @@
       "type": "Feature",
       "properties": {
         "course_name": "Senaca Falls CC",
-        "region": "Northeast"
+        "region": "Northeast",
+        "date": "October 4-5, 2025",
+        "website": "https://senecafallscountryclub.com"
       },
       "geometry": {
         "type": "Point",
@@ -784,7 +840,9 @@
       "type": "Feature",
       "properties": {
         "course_name": "Towanda GC",
-        "region": "Northeast"
+        "region": "Northeast",
+        "date": "October 11-12, 2025",
+        "website": "https://www.towandagolfclub.com"
       },
       "geometry": {
         "type": "Point",
@@ -798,7 +856,9 @@
       "type": "Feature",
       "properties": {
         "course_name": "Ravenwood GC",
-        "region": "Northeast"
+        "region": "Northeast",
+        "date": "November 1-2, 2025",
+        "website": "https://www.ravenwoodgolf.com"
       },
       "geometry": {
         "type": "Point",
@@ -812,7 +872,9 @@
       "type": "Feature",
       "properties": {
         "course_name": "Emerald Valley",
-        "region": "Northwest"
+        "region": "Northwest",
+        "date": "TBD",
+        "website": "https://www.emeraldvalleygolf.com"
       },
       "geometry": {
         "type": "Point",
@@ -825,8 +887,42 @@
     {
       "type": "Feature",
       "properties": {
+        "course_name": "Apple Tree",
+        "region": "Northwest",
+        "date": "TBD",
+        "website": "http://www.appletreeresort.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -120.6244313,
+          46.5638736
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Tri-Mountain Golf Course",
+        "region": "Northwest",
+        "date": "TBD",
+        "website": "https://www.trimountaingolf.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.688332,
+          45.837273
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "course_name": "Beckett Ridge",
-        "region": "Ohio Valley"
+        "region": "Ohio Valley",
+        "date": "October 25-26, 2025",
+        "website": "https://www.beckettridgegolf.com"
       },
       "geometry": {
         "type": "Point",
@@ -840,7 +936,9 @@
       "type": "Feature",
       "properties": {
         "course_name": "Blacklick Woods",
-        "region": "Ohio Valley"
+        "region": "Ohio Valley",
+        "date":"Nov 8-9, 2025",
+        "website": "http://blacklickwoodsgc.com"
       },
       "geometry": {
         "type": "Point",
@@ -853,8 +951,58 @@
     {
       "type": "Feature",
       "properties": {
+        "course_name": "Neumann Golf Course",
+        "region": "Ohio Valley",
+        "date":"November 1-2, 2025",
+        "website": "https://www.cincygolf.org/neumann?utm_source=extnet&utm_medium=yext"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.68934,
+          39.258582
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Glenross",
+        "region": "Ohio Valley",
+        "date": "October 18-19, 2025",
+        "website": "https://www.glenrossgc.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.0300,
+          40.2383
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Glenview Golf Club",
+        "region": "Ohio Valley",
+        "date": "March 28-29, 2026",
+        "website": "https://www.cincygolf.org/glenview?utm_source=extnet&utm_medium=yext"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.484192,
+          39.269337
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "course_name": "Lone Tree GC",
-        "region": "Pacific"
+        "region": "Pacific",
+        "date": "TBD",
+        "website": "https://www.lonetreegolfcourse.com"
       },
       "geometry": {
         "type": "Point",
@@ -868,7 +1016,9 @@
       "type": "Feature",
       "properties": {
         "course_name": "Lake Chabot",
-        "region": "Pacific"
+        "region": "Pacific",
+        "date": "TBD",
+        "website": "http://www.lakechabotgolf.com"
       },
       "geometry": {
         "type": "Point",
@@ -897,7 +1047,9 @@
       "type": "Feature",
       "properties": {
         "course_name": "Frog Hollow",
-        "region": "Philadelphia"
+        "region": "Philadelphia",
+        "date":"October 11-12, 2025",
+        "website": "https://www.froghollowgolfclub.com"
       },
       "geometry": {
         "type": "Point",
@@ -911,7 +1063,9 @@
       "type": "Feature",
       "properties": {
         "course_name": "Wyncote Golf Club",
-        "region": "Philadelphia"
+        "region": "Philadelphia",
+        "date": "November 1-2, 2025",
+        "website": "https://wyncote.com"
       },
       "geometry": {
         "type": "Point",
@@ -924,8 +1078,58 @@
     {
       "type": "Feature",
       "properties": {
+        "course_name": "Bear's Best",
+        "region": "South",
+        "date": "November 22-23, 2025",
+        "website": "https://www.invitedclubs.com/clubs/bear-s-best-atlanta?utm_referrer=https%3A%2F%2Fwww.google.com%2F"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.097901,
+          34.0893959
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Egwani Farms",
+        "region": "South",
+        "date": "October 11-12, 2025",
+        "website": "https://www.egwanifarmsgolf.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.952284,
+          35.832358
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Point University Golf Club",
+        "region": "South",
+        "date": "October 25-26, 2025",
+        "website": "https://pointgolfclub.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -85.810684,
+          33.578991
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "course_name": "Hickory Knob GC",
-        "region": "Southeast"
+        "region": "Southeast",
+        "date": "September 27-28",
+        "website": "https://southcarolinaparks.com/hickory-knob"
       },
       "geometry": {
         "type": "Point",
@@ -939,7 +1143,9 @@
       "type": "Feature",
       "properties": {
         "course_name": "Country Club of South Carolina ",
-        "region": "Southeast"
+        "region": "Southeast",
+        "date": "TBD",
+        "website": "https://www.countryclubsc.com"
       },
       "geometry": {
         "type": "Point",
@@ -953,7 +1159,9 @@
       "type": "Feature",
       "properties": {
         "course_name": "Native Oaks",
-        "region": "Southwest"
+        "region": "Southwest",
+        "date":"Nov 8-9, 2025",
+        "website": "https://www.nativeoaksgolfclub.com/?utm_source=extnet&utm_medium=yext"
       },
       "geometry": {
         "type": "Point",
@@ -966,14 +1174,16 @@
     {
       "type": "Feature",
       "properties": {
-        "course_name": "Cottonwood ",
-        "region": "Texas"
+        "course_name": "Cottonwood Creek Golf Course",
+        "region": "Texas",
+        "date": "September 27-28",
+        "website": "https://www.waco-texas.com/Departments/Parks-Recreation/Cottonwood-Creek-Golf-Course"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -97.1671558,
-          31.505822
+          -97.161789,
+          31.506413
         ]
       }
     },
@@ -981,7 +1191,9 @@
       "type": "Feature",
       "properties": {
         "course_name": "Delaware Springs GC",
-        "region": "Texas"
+        "region": "Texas",
+        "date": "February 21-22, 2026",
+        "website": "https://www.google.com/url?sa=t&source=web&rct=j&url=http://www.delawaresprings.com/&ved=2ahUKEwjJ07HM7oGPAxW3EFkFHTHbBVUQ_Bd6BAgKEAM&opi=89978449&usg=AOvVaw0ynYywh2O2Mx55_pilpori"
       },
       "geometry": {
         "type": "Point",
@@ -994,8 +1206,10 @@
     {
       "type": "Feature",
       "properties": {
-        "course_name": "The Ridge GC",
-        "region": "Twin Cities"
+        "course_name": "The Ridge Golf Club",
+        "region": "Twin Cities",
+        "date": "October 18-19, 2025",
+        "website": "https://www.siouxcenterridge.com"
       },
       "geometry": {
         "type": "Point",
@@ -1009,7 +1223,9 @@
       "type": "Feature",
       "properties": {
         "course_name": "Leo Bolstadt - UNM GC",
-        "region": "Twin Cities"
+        "region": "Twin Cities",
+        "date": "October 4-5, 2025",
+        "website": "https://golf.umn.edu"
       },
       "geometry": {
         "type": "Point",
@@ -1022,8 +1238,26 @@
     {
       "type": "Feature",
       "properties": {
-        "course_name": "Ridgecrest GC",
-        "region": "West"
+        "course_name": "Praire Links",
+        "region": "Twin Cities",
+        "date": "November 1-2, 2025",
+        "website": "https://www.prairielinksgolf.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -92.469452,
+          42.727947
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Ridgecrest Golf Club",
+        "region": "West",
+        "date": "October 11-12, 2025",
+        "website": "http://ridgecrestgolf.com"
       },
       "geometry": {
         "type": "Point",
