@@ -213,6 +213,22 @@
     {
       "type": "Feature",
       "properties": {
+        "course_name": "Pete Dye River Course of Virginia Tech",
+        "region": "Colonial",
+        "date": "September 13-14",
+        "website": "https://petedyerivercourse.com/default.aspx?utm_source=GoogleMyBusiness&utm_medium=organic&utm_campaign=GMB&utm_term=pete"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.530118,
+          37.150656
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "course_name": "GCU Golf Course",
         "region": "Desert",
         "date": "September 20-21",
@@ -357,6 +373,22 @@
     {
       "type": "Feature",
       "properties": {
+        "course_name": "Oakwood Park",
+        "region": "Great Lakes",
+        "date": "October 4-5, 2025",
+        "website": "https://mke.golf/oakwood/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.97,
+          42.86
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "course_name": "The Refuge GC",
         "region": "Gulf",
         "date": "March 1-2, 2026",
@@ -415,6 +447,22 @@
         "coordinates": [
           -86.2506523,
           41.7030448
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Swan Lake Golf Course",
+        "region": "Indiana",
+        "date": "April 4-5, 2025",
+        "website": "https://www.swanlakeresort.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.4255359,
+          41.4014725
         ]
       }
     },
@@ -632,7 +680,9 @@
       "type": "Feature",
       "properties": {
         "course_name": "The Woods of Westminster",
-        "region": "Northern New England"
+        "region": "Northern New England",
+        "date": "November 1-2, 2025",
+        "website": "https://thewoodsofwestminster.com"
       },
       "geometry": {
         "type": "Point",
@@ -646,13 +696,31 @@
       "type": "Feature",
       "properties": {
         "course_name": "Shining Rock GC",
-        "region": "Northern New England"
+        "region": "Northern New England",
+        "date": "April 11-12, 2026",
+        "website": "https://www.shiningrock.com"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
           -71.6389814,
           42.1578896
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "The Links at Outlook",
+        "region": "Northern New England",
+        "date": "October 25-26, 2025",
+        "website": "https://www.outlookgolf.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -70.863548,
+          43.268318
         ]
       }
     },
