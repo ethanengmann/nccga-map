@@ -65,6 +65,33 @@
         "type": "Point",
         "coordinates": [-93.6524413, 42.0397077]
       }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Brick Boilermaker Golf Complex",
+        "regions": ["Ohio Valley Region", "Midwest Region", "Indiana Region"],
+        "website": "https://purduegolf.com",
+        "date": "November 1-2, 2025"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-86.9472, 40.4643]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Lone Tree GC",
+        "regions": ["Pacific Region", "Northwest Region"],
+        "website": "https://www.lonetreegolfcourse.com",
+        "date": "November 8-9, 2025"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-121.805574,
+          37.964478]
+      }
     }
   ]
 }
