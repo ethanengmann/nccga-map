@@ -22,9 +22,18 @@
   <script>
     const map = L.map('map').setView([39.5, -98.35], 4);
 
-    // Keep school markers above region polygons
-    map.createPane('schoolPane');
+    // ===== Panes & stacking order (popupPane is 700—keep below that) =====
+    map.createPane('regionPane');       // polygons etc.
+    map.getPane('regionPane').style.zIndex = 450;
+
+    map.createPane('schoolPane');       // school dots
     map.getPane('schoolPane').style.zIndex = 650;
+
+    map.createPane('tournamentPane');   // tournaments above schools
+    map.getPane('tournamentPane').style.zIndex = 660;
+
+    map.createPane('qualifierPane');    // qualifiers above everything
+    map.getPane('qualifierPane').style.zIndex = 670;
 
     const regionColors = {};
     const getColor = region => {
@@ -55,7 +64,7 @@
     // Helper: bottom-center icon anchor for perfect pinning
     const bottomCenterAnchor = size => [Math.round(size[0] / 2), size[1]];
 
-    // === SCHOOLS ===
+    // === SCHOOLS (in schoolPane) ===
     fetch('schools.geojson')
       .then(response => response.json())
       .then(data => {
@@ -83,7 +92,7 @@
       })
       .catch(console.error);
 
-    // === TOURNAMENTS ===
+    // === TOURNAMENTS (in tournamentPane) ===
     const TOURN_SIZE = [15, 15]; // set to your PNG’s pixel size
     const flagIcon = L.icon({
       iconUrl: 'img/Golf_flag_icon.png',
@@ -107,7 +116,7 @@
 
         // Tournament markers
         L.geoJSON(tourneyData, {
-          pointToLayer: (feature, latlng) => L.marker(latlng, { icon: flagIcon }),
+          pointToLayer: (feature, latlng) => L.marker(latlng, { icon: flagIcon, pane: 'tournamentPane' }),
           onEachFeature: (feature, layer) => {
             const { course_name, region, website, date } = feature.properties;
             let popupContent = `<strong>${course_name}</strong><br>${region}`;
@@ -117,7 +126,7 @@
           }
         }).addTo(tournamentLayer);
 
-        // === QUALIFIERS ===
+        // === QUALIFIERS (in qualifierPane) ===
         const QUAL_SIZE = [20, 20]; // visible but not huge
         const qualifierIcon = L.icon({
           iconUrl: 'img/Qualifier_flag_icon.png', // your star+flag
@@ -149,7 +158,7 @@
 
             // Qualifier markers
             L.geoJSON(qualData, {
-              pointToLayer: (feature, latlng) => L.marker(latlng, { icon: qualifierIcon }),
+              pointToLayer: (feature, latlng) => L.marker(latlng, { icon: qualifierIcon, pane: 'qualifierPane' }),
               onEachFeature: (feature, layer) => {
                 const { course_name, region, regions, website, date } = feature.properties || {};
                 const regionLabel = Array.isArray(regions) ? regions.join(', ') : (region || 'Qualifier');
@@ -160,12 +169,13 @@
               }
             }).addTo(qualifierLayer);
 
-            // === REGIONS (after tournaments & qualifiers are grouped) ===
+            // === REGIONS (drawn last but in regionPane so they stay under) ===
             fetch('regions.geojson')
               .then(response => response.json())
               .then(data => {
-                // Visible region fill
+                // Visible region fill (non-interactive)
                 L.geoJSON(data, {
+                  pane: 'regionPane',
                   style: feature => ({
                     color: getColor(feature.properties.region),
                     weight: 2,
@@ -227,6 +237,7 @@
                   `;
 
                   L.geoJSON(feature, {
+                    pane: 'regionPane',
                     style: { opacity: 0, fillOpacity: 0, weight: 0 },
                     onEachFeature: (_, layer) => {
                       layer.on('click', e => {
