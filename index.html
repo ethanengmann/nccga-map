@@ -35,8 +35,8 @@
     const clean = str => String(str || '')
       .toLowerCase()
       .replace(/region/g, '')
-      .replace(/capitol/g, 'capital')
-      .replace(/[\s\-_]/g, '')   // remove spaces/dashes/underscores
+      .replace(/capitol/g, 'capital')     // unify spelling
+      .replace(/[\s\-_().]/g, '')         // drop spaces/dashes/underscores/punct
       .trim();
 
     // ---------- Fixed palette (canonical names) ----------
@@ -67,12 +67,43 @@
       COLOR_BY_KEY[clean(name)] = color;
     });
 
+    // Common aliases seen in tournament data
+    const REGION_ALIASES = {
+      tx: 'texas', texas: 'texas',
+      norcal: 'northerncalifornia', nocal: 'northerncalifornia',
+      socal: 'southerncalifornia',  scal: 'southerncalifornia',
+      ne: 'northeast', nwe: 'northeast',
+      nw: 'northwest',
+      mw: 'midwest', 'midwest': 'midwest', 'mid-west': 'midwest',
+      ohio: 'ohiovalley', ov: 'ohiovalley',
+      nfl: 'northflorida', sfl: 'southflorida',
+      carolinas: 'carolina', carolina: 'carolina'
+    };
+
+    // Deterministic fallback if we truly can't match (should be rare)
     function hashColor(name = "default") {
       let h = 0; for (let i = 0; i < name.length; i++) h = (h * 31 + name.charCodeAt(i)) | 0;
       const hue = Math.abs(h) % 360; return `hsl(${hue},70%,45%)`;
     }
+
+    // Resolve any region label to our color-key
+    function resolveRegionKey(anyRegionName) {
+      const k = clean(anyRegionName);
+      if (COLOR_BY_KEY[k]) return k;
+      if (REGION_ALIASES[k] && COLOR_BY_KEY[REGION_ALIASES[k]]) return REGION_ALIASES[k];
+
+      // Substring heuristic (handles "Texas – Dallas", "Northern California (NorCal)", etc.)
+      let best = null;
+      for (const known of Object.keys(COLOR_BY_KEY)) {
+        if (k.includes(known) || known.includes(k)) {
+          if (!best || known.length > best.length) best = known;
+        }
+      }
+      return best || k; // may still be unknown
+    }
+
     function getRegionColor(anyRegionName) {
-      const key = clean(anyRegionName);
+      const key = resolveRegionKey(anyRegionName);
       return COLOR_BY_KEY[key] || hashColor(anyRegionName || "");
     }
 
@@ -109,12 +140,15 @@
               weight: 1,
               opacity: 1,
               fillOpacity: 0.9,
-              bubblingMouseEvents: false // prevent bubbling to regions/map
+              bubblingMouseEvents: false,   // prevent bubbling to regions/map
+              interactive: true
             });
 
             m.on('click', e => {
-              if (e.originalEvent) L.DomEvent.stop(e.originalEvent); // stop DOM event, too
-              e.originalEvent && (e.originalEvent._clickedSchool = true); // legacy guard
+              if (e.originalEvent) {
+                L.DomEvent.stop(e.originalEvent);     // stop DOM event, too
+                e.originalEvent._clickedSchool = true; // guard for region layer
+              }
               m.bindPopup(
                 `<strong><a href="${url}" target="_blank">${p.school}</a></strong><br>${p.region}`
               ).openPopup();
@@ -133,7 +167,7 @@
     // === Tournament SVG flag (exact alignment, cloth colorable) ===
     function makeSvgFlagIcon(color, size = [18, 24]) {
       const [w, h] = size;
-      // viewBox mimics a PNG-like flag: base + pole + triangle cloth
+      // base + pole + triangle cloth
       const html = `
         <svg width="${w}" height="${h}" viewBox="0 0 18 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <ellipse cx="9" cy="22" rx="6" ry="3" fill="#000"/>
@@ -151,19 +185,27 @@
 
     // === Tournaments ===
     const TOURN_SIZE = [18, 24];
+    const seenWarn = new Set(); // log unmatched labels once
 
     fetch('tournaments.geojson')
       .then(r => r.json())
       .then(tourneyData => {
-        // Group for region popup lists
+        // Group for region popup lists (use resolved key)
         tourneyData.features.forEach(t => {
-          (tournamentsByRegion[clean(t.properties.region)] ||= []).push(t.properties);
+          const key = resolveRegionKey(t.properties.region);
+          (tournamentsByRegion[key] ||= []).push(t.properties);
         });
 
         L.geoJSON(tourneyData, {
           pane: 'tournamentPane',
           pointToLayer: (feature, latlng) => {
-            const color = getRegionColor(feature?.properties?.region);
+            const raw = feature?.properties?.region || '';
+            const key = resolveRegionKey(raw);
+            if (!COLOR_BY_KEY[key] && raw && !seenWarn.has(raw)) {
+              console.warn('Unmatched tournament region label → using fallback color:', raw);
+              seenWarn.add(raw);
+            }
+            const color = getRegionColor(raw);
             return L.marker(latlng, { icon: makeSvgFlagIcon(color, TOURN_SIZE) });
           },
           onEachFeature: (feature, layer) => {
@@ -231,9 +273,9 @@
                 data.features.forEach(feature => {
                   const regionName = feature.properties.region;
                   const schools = feature.properties.schools;
-                  const key = clean(regionName);
+                  const key = resolveRegionKey(regionName); // use resolved key here too
                   const tournaments = tournamentsByRegion[key] || [];
-                  const qualifiers  = qualifiersByRegion[key]  || [];
+                  const qualifiers  = qualifiersByRegion[clean(regionName)]  || [];
 
                   let popupContent = `
                     <div style="min-width:300px;">
@@ -308,6 +350,7 @@
   </script>
 </body>
 </html>
+
 
 
 
