@@ -9,6 +9,32 @@
     body { margin:0; padding:0; }
     #map { height: 100vh; }
 
+    /* Search UI */
+    .search-wrap{
+      position:absolute; top:12px; left:12px; z-index:1000;
+      width:320px; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    }
+    .search-input{
+      width:100%; box-sizing:border-box;
+      padding:10px 12px; border:1px solid #bbb; border-radius:8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,.1); outline:none; background:#fff;
+    }
+    .search-input:focus{ border-color:#4e7cf1; box-shadow:0 0 0 3px rgba(78,124,241,.15); }
+    .results{
+      margin-top:6px; background:#fff; border:1px solid #ddd; border-radius:8px; overflow:hidden;
+      box-shadow:0 8px 18px rgba(0,0,0,.12); max-height:320px; overflow-y:auto; display:none;
+    }
+    .result-item{
+      padding:8px 10px; cursor:pointer; display:flex; align-items:center; justify-content:space-between;
+    }
+    .result-item:hover, .result-item.active{ background:#f2f6ff; }
+    .result-left{ display:flex; gap:8px; align-items:center; }
+    .result-type{
+      font-size:11px; text-transform:uppercase; letter-spacing:.04em; color:#666; background:#f3f3f3; padding:2px 6px; border-radius:6px;
+    }
+    .result-title{ font-size:14px; color:#222; }
+    .result-sub{ font-size:12px; color:#666; }
+
     .qualifier-icon {
       filter: drop-shadow(0 0 2px #fff) drop-shadow(0 0 1.5px #000);
     }
@@ -17,6 +43,12 @@
 </head>
 <body>
   <div id="map"></div>
+
+  <!-- Search UI -->
+  <div class="search-wrap">
+    <input id="searchInput" class="search-input" type="text" placeholder="Search schools, tournaments, qualifiers, regions…" autocomplete="off">
+    <div id="results" class="results"></div>
+  </div>
 
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   <!-- Turf for point-in-polygon + buffering line regions -->
@@ -132,6 +164,10 @@
       });
     }
 
+    // ===== Search Index =====
+    const searchIndex = [];  // {type, title, sub, select(), terms}
+    function addToIndex(entry){ searchIndex.push(entry); }
+
     // ===== Load data (regions first so we can color tournaments) =====
     Promise.all([
       loadJSON('regions.geojson'),
@@ -203,7 +239,7 @@
             const url = `https://nccga.org/app/teams/${p.slug}`;
 
             const m = L.circleMarker(latlng, {
-              pane: 'schoolPane',          // explicit
+              pane: 'schoolPane',
               radius: 6,
               fillColor: color,
               color: "#333",
@@ -225,6 +261,18 @@
               if (m.bringToFront) m.bringToFront();
             });
 
+            // Add to search
+            addToIndex({
+              type: 'School',
+              title: p.school,
+              sub: p.region,
+              terms: `${p.school} ${p.region}`.toLowerCase(),
+              select: () => {
+                map.setView(m.getLatLng(), Math.max(map.getZoom(), 9), { animate: true });
+                m.fire('click');
+              }
+            });
+
             return m;
           }
         }).addTo(schoolRegionLayer);
@@ -242,28 +290,40 @@
           pane: 'tournamentPane',
           pointToLayer: (feature, latlng) => {
             const p = feature.properties || {};
-            const { color, key, source } = colorAndKeyForPointOrLabel(latlng.lat, latlng.lng, p.region);
+            const { color, key } = colorAndKeyForPointOrLabel(latlng.lat, latlng.lng, p.region);
 
-            // keep for region popups (group by the same key we colored with)
+            // keep for region popups
             (tournamentsByRegionKey[key] ||= []).push({ ...p });
 
-            if (source === 'fallback' && p.region) {
-              console.warn('Tournament outside all regions and label unknown; using fallback color:', p.region, feature);
-            }
-
-            return L.marker(latlng, {
+            const marker = L.marker(latlng, {
               icon: makeSvgFlagIcon(color, TOURN_SIZE),
-              pane: 'tournamentPane',     // explicit pane for marker
+              pane: 'tournamentPane',
               zIndexOffset: 0
             });
-          },
-          onEachFeature: (feature, layer) => {
-            const { course_name, region, website, date } = feature.properties || {};
-            let html = `<strong>${course_name || 'Tournament'}</strong>`;
-            if (region) html += `<br>${region}`;
-            if (date)   html += `<br><em>${date}</em>`;
-            if (website) html += `<br><a href="${website}" target="_blank">Course Website</a>`;
-            layer.bindPopup(html);
+
+            // bind popup
+            const html = (() => {
+              let s = `<strong>${p.course_name || 'Tournament'}</strong>`;
+              if (p.region) s += `<br>${p.region}`;
+              if (p.date)   s += `<br><em>${p.date}</em>`;
+              if (p.website) s += `<br><a href="${p.website}" target="_blank">Course Website</a>`;
+              return s;
+            })();
+            marker.bindPopup(html);
+
+            // Add to search
+            addToIndex({
+              type: 'Tournament',
+              title: p.course_name || 'Tournament',
+              sub: p.region || '',
+              terms: `${p.course_name || ''} ${p.region || ''}`.toLowerCase(),
+              select: () => {
+                map.setView(marker.getLatLng(), Math.max(map.getZoom(), 9), { animate: true });
+                marker.openPopup();
+              }
+            });
+
+            return marker;
           }
         }).addTo(tournamentLayer);
       }
@@ -281,29 +341,46 @@
       if (qualifiers) {
         L.geoJSON(qualifiers, {
           pane: 'qualifierPane',
-          pointToLayer: (feature, latlng) => L.marker(latlng, {
-            icon: qualifierIcon,
-            pane: 'qualifierPane',       // explicit pane for marker
-            zIndexOffset: 100            // ensure topmost in its pane
-          }),
-          onEachFeature: (feature, layer) => {
-            const { course_name, region, regions, website, date } = feature.properties || {};
-            const labels = Array.isArray(regions)
-              ? regions
-              : (typeof region === 'string' ? region.split(',').map(s => s.trim()).filter(Boolean) : []);
-            const keys = labels.length ? labels.map(l => clean(l)) : [clean(region || '')];
-            keys.forEach(k => (qualifiersByRegionKey[k] ||= []).push(feature.properties || {}));
+          pointToLayer: (feature, latlng) => {
+            const p = feature.properties || {};
 
-            const label = Array.isArray(regions) ? regions.join(', ') : (region || 'Qualifier');
-            let html = `<strong>${course_name || 'Qualifier'}</strong><br>${label}`;
-            if (date) html += `<br><em>${date}</em>`;
-            if (website) html += `<br><a href="${website}" target="_blank">Course Website</a>`;
-            layer.bindPopup(html);
+            const marker = L.marker(latlng, {
+              icon: qualifierIcon,
+              pane: 'qualifierPane',
+              zIndexOffset: 100
+            });
+
+            const label = Array.isArray(p.regions) ? p.regions.join(', ') : (p.region || 'Qualifier');
+            let html = `<strong>${p.course_name || 'Qualifier'}</strong><br>${label}`;
+            if (p.date) html += `<br><em>${p.date}</em>`;
+            if (p.website) html += `<br><a href="${p.website}" target="_blank">Course Website</a>`;
+            marker.bindPopup(html);
+
+            // Index by given region labels (if any)
+            const keys = Array.isArray(p.regions)
+              ? p.regions
+              : (typeof p.region === 'string' ? p.region.split(',').map(s => s.trim()).filter(Boolean) : []);
+            const keyList = keys.length ? keys.map(l => clean(l)) : [clean(p.region || '')];
+            keyList.forEach(k => (qualifiersByRegionKey[k] ||= []).push(p));
+
+            // Add to search
+            addToIndex({
+              type: 'Qualifier',
+              title: p.course_name || 'Qualifier',
+              sub: label,
+              terms: `${p.course_name || ''} ${label}`.toLowerCase(),
+              select: () => {
+                map.setView(marker.getLatLng(), Math.max(map.getZoom(), 9), { animate: true });
+                marker.openPopup();
+              }
+            });
+
+            return marker;
           }
         }).addTo(qualifierLayer);
       }
 
-      // --- Invisible interactive region layer for popups/zoom ---
+      // --- Invisible interactive region layer for popups/zoom + add regions to search ---
       regions.features.forEach(regionFeature => {
         const regionName = regionFeature.properties?.region || 'Region';
         const key = clean(regionName);
@@ -325,7 +402,7 @@
             }).join('')
           : '<li>No tournaments scheduled.</li>');
 
-        const qualifiersHtml = (qList.length
+        const qListHtml = (qList.length
           ? qList.map(q => {
               let html = `<li><strong>${q.course_name || q.course || 'Qualifier'}</strong>`;
               if (q.date) html += `<br><em>${q.date}</em>`;
@@ -349,16 +426,18 @@
               </div>
               <div style="width:32%; min-width:220px;">
                 <strong>Qualifiers:</strong>
-                <ul style="padding-left:18px; margin-top:4px;">${qualifiersHtml}</ul>
+                <ul style="padding-left:18px; margin-top:4px;">${qListHtml}</ul>
               </div>
             </div>
           </div>
         `;
 
-        L.geoJSON(regionFeature, {
+        let interactiveLayerRef = null;
+        const interactiveLayer = L.geoJSON(regionFeature, {
           pane: 'regionPane',
           style: { opacity: 0, fillOpacity: 0, weight: 0 },
           onEachFeature: (_, layer) => {
+            interactiveLayerRef = layer;
             layer.on('click', e => {
               if (e.originalEvent && e.originalEvent._clickedSchool) return; // ignore school clicks
               map.fitBounds(layer.getBounds());
@@ -367,9 +446,115 @@
             });
           }
         }).addTo(schoolRegionLayer);
+
+        // Add region to search (zoom and open its popup)
+        addToIndex({
+          type: 'Region',
+          title: regionName,
+          sub: 'Region',
+          terms: regionName.toLowerCase(),
+          select: () => {
+            const b = interactiveLayerRef.getBounds();
+            map.fitBounds(b, { padding: [20, 20] });
+            const center = b.getCenter();
+            interactiveLayerRef.bindPopup(popupContent).openPopup(center);
+          }
+        });
       });
 
       try { map.fitBounds(regionsVisible.getBounds(), { padding: [20,20] }); } catch (e) {}
+
+      // ===== Wire up Search =====
+      const input = document.getElementById('searchInput');
+      const resultsEl = document.getElementById('results');
+      let activeIndex = -1;
+
+      function doSearch(q){
+        const query = q.trim().toLowerCase();
+        resultsEl.innerHTML = '';
+        resultsEl.style.display = 'none';
+        activeIndex = -1;
+        if (!query) return;
+
+        // simple scoring: startsWith > includes
+        const matches = [];
+        for (const item of searchIndex) {
+          const t = item.terms || '';
+          if (!t) continue;
+          if (t.startsWith(query)) matches.push({score: 2, item});
+          else if (t.includes(query)) matches.push({score: 1, item});
+        }
+        matches.sort((a,b)=> b.score - a.score || a.item.title.localeCompare(b.item.title));
+        const top = matches.slice(0, 12);
+
+        if (!top.length) return;
+
+        for (let i=0; i<top.length; i++){
+          const { item } = top[i];
+          const div = document.createElement('div');
+          div.className = 'result-item';
+          div.dataset.idx = String(i);
+
+          div.innerHTML = `
+            <div class="result-left">
+              <span class="result-type">${item.type}</span>
+              <div>
+                <div class="result-title">${item.title}</div>
+                <div class="result-sub">${item.sub || ''}</div>
+              </div>
+            </div>
+          `;
+          div.addEventListener('click', () => {
+            resultsEl.style.display = 'none';
+            input.blur();
+            item.select && item.select();
+          });
+          resultsEl.appendChild(div);
+        }
+        resultsEl.style.display = 'block';
+      }
+
+      input.addEventListener('input', (e)=> doSearch(e.target.value));
+
+      input.addEventListener('keydown', (e)=>{
+        const items = Array.from(resultsEl.querySelectorAll('.result-item'));
+        if (!items.length) return;
+
+        if (e.key === 'ArrowDown'){
+          e.preventDefault();
+          activeIndex = (activeIndex + 1) % items.length;
+        } else if (e.key === 'ArrowUp'){
+          e.preventDefault();
+          activeIndex = (activeIndex - 1 + items.length) % items.length;
+        } else if (e.key === 'Enter'){
+          e.preventDefault();
+          if (activeIndex >=0) items[activeIndex].click();
+          return;
+        } else if (e.key === 'Escape'){
+          resultsEl.style.display = 'none';
+          input.blur();
+          return;
+        } else {
+          return; // let input handler run
+        }
+
+        items.forEach((el, i)=> el.classList.toggle('active', i===activeIndex));
+        const activeEl = items[activeIndex];
+        if (activeEl){
+          const r = activeEl.getBoundingClientRect();
+          const c = resultsEl.getBoundingClientRect();
+          if (r.bottom > c.bottom) activeEl.scrollIntoView(false);
+          if (r.top < c.top) activeEl.scrollIntoView();
+        }
+      });
+
+      // Hide results when clicking map or elsewhere
+      map.on('click', ()=> { resultsEl.style.display = 'none'; });
+      document.addEventListener('click', (e)=>{
+        if (!document.querySelector('.search-wrap').contains(e.target)) {
+          resultsEl.style.display = 'none';
+        }
+      });
     })
     .catch(err => console.error(err));
 
