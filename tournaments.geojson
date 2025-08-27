@@ -403,16 +403,16 @@
     {
       "type": "Feature",
       "properties": {
-        "course_name": "The Refuge GC",
+        "course_name": "La Tour GC",
         "region": "Gulf",
-        "date": "March 1-2, 2026",
-        "website": "https://www.refugegolfms.com"
+        "date": "February 14-15, 2026",
+        "website": "https://www.latourgolfclub.com/"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -90.1016021,
-          32.3161405
+          -90.544403,
+          29.684511
         ]
       }
     },
