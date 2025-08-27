@@ -9,9 +9,12 @@
     body { margin:0; padding:0; }
     #map { height: 100vh; }
 
+    /* PNG qualifier icon styling stays */
     .qualifier-icon {
       filter: drop-shadow(0 0 2px #fff) drop-shadow(0 0 1.5px #000);
     }
+
+    /* Our SVG flag icon container */
     .leaflet-div-icon.flag-div { background: transparent; border: 0; }
   </style>
 </head>
@@ -22,7 +25,7 @@
   <script>
     const map = L.map('map').setView([39.5, -98.35], 4);
 
-    // ===== Panes =====
+    // ===== Panes & stacking order =====
     map.createPane('regionPane');     map.getPane('regionPane').style.zIndex = 450;
     map.createPane('schoolPane');     map.getPane('schoolPane').style.zIndex = 650;
     map.createPane('tournamentPane'); map.getPane('tournamentPane').style.zIndex = 660;
@@ -58,7 +61,7 @@
       "Indiana Region":             "#80b1d3"
     };
 
-    // Build color map keyed by CLEANED key (so "Northwest" vs "Northwest Region" => same)
+    // Map colors to cleaned keys so "Northwest" and "Northwest Region" are identical
     const COLOR_BY_KEY = {};
     Object.entries(REGION_COLORS).forEach(([name, color]) => {
       COLOR_BY_KEY[clean(name)] = color;
@@ -73,20 +76,21 @@
       return COLOR_BY_KEY[key] || hashColor(anyRegionName || "");
     }
 
-    // ---------- Layers ----------
+    // Layers
     const schoolRegionLayer = L.layerGroup().addTo(map);
     const tournamentLayer   = L.layerGroup().addTo(map);
     const qualifierLayer    = L.layerGroup().addTo(map);
 
-    // ---------- Basemap ----------
+    // Basemap
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 18,
       attribution: '&copy; OpenStreetMap contributors'
     }).addTo(map);
 
+    // Helper
     const bottomCenterAnchor = size => [Math.round(size[0] / 2), size[1]];
 
-    // ---------- Schools ----------
+    // === Schools (clicks must win) ===
     fetch('schools.geojson')
       .then(r => r.json())
       .then(data => {
@@ -96,19 +100,28 @@
             const p = feature.properties || {};
             const color = getRegionColor(p.region);
             const url = `https://nccga.org/app/teams/${p.slug}`;
-            return L.circleMarker(latlng, {
+
+            const m = L.circleMarker(latlng, {
+              pane: 'schoolPane',
               radius: 6,
               fillColor: color,
               color: "#333",
               weight: 1,
               opacity: 1,
-              fillOpacity: 0.9
-            }).on('click', e => {
-              e.originalEvent._clickedSchool = true;
-              e.target.bindPopup(
+              fillOpacity: 0.9,
+              bubblingMouseEvents: false // prevent bubbling to regions/map
+            });
+
+            m.on('click', e => {
+              if (e.originalEvent) L.DomEvent.stop(e.originalEvent); // stop DOM event, too
+              e.originalEvent && (e.originalEvent._clickedSchool = true); // legacy guard
+              m.bindPopup(
                 `<strong><a href="${url}" target="_blank">${p.school}</a></strong><br>${p.region}`
               ).openPopup();
+              if (m.bringToFront) m.bringToFront();
             });
+
+            return m;
           }
         }).addTo(schoolRegionLayer);
       })
@@ -117,9 +130,10 @@
     let tournamentsByRegion = {};
     let qualifiersByRegion  = {};
 
-    // ---------- Tournament SVG flag (cloth colorable) ----------
+    // === Tournament SVG flag (exact alignment, cloth colorable) ===
     function makeSvgFlagIcon(color, size = [18, 24]) {
       const [w, h] = size;
+      // viewBox mimics a PNG-like flag: base + pole + triangle cloth
       const html = `
         <svg width="${w}" height="${h}" viewBox="0 0 18 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <ellipse cx="9" cy="22" rx="6" ry="3" fill="#000"/>
@@ -135,12 +149,13 @@
       });
     }
 
-    // ---------- Tournaments ----------
+    // === Tournaments ===
     const TOURN_SIZE = [18, 24];
 
     fetch('tournaments.geojson')
       .then(r => r.json())
       .then(tourneyData => {
+        // Group for region popup lists
         tourneyData.features.forEach(t => {
           (tournamentsByRegion[clean(t.properties.region)] ||= []).push(t.properties);
         });
@@ -160,7 +175,7 @@
           }
         }).addTo(tournamentLayer);
 
-        // ---------- Qualifiers ----------
+        // === Qualifiers (PNG icon stays) ===
         const QUAL_SIZE = [26, 26];
         const qualifierIcon = L.icon({
           iconUrl: 'img/Qualifier_flag_icon.png',
@@ -197,10 +212,11 @@
               }
             }).addTo(qualifierLayer);
 
-            // ---------- Regions ----------
+            // === Regions ===
             fetch('regions.geojson')
               .then(r => r.json())
               .then(data => {
+                // Visible region outlines (non-interactive)
                 L.geoJSON(data, {
                   pane: 'regionPane',
                   style: f => ({
@@ -211,6 +227,7 @@
                   })
                 }).addTo(schoolRegionLayer);
 
+                // Invisible interactive layer for popups/zoom
                 data.features.forEach(feature => {
                   const regionName = feature.properties.region;
                   const schools = feature.properties.schools;
@@ -267,11 +284,10 @@
                     style: { opacity: 0, fillOpacity: 0, weight: 0 },
                     onEachFeature: (_, layer) => {
                       layer.on('click', e => {
-                        if (!e.originalEvent._clickedSchool) {
-                          map.fitBounds(layer.getBounds());
-                          const center = layer.getBounds().getCenter();
-                          layer.bindPopup(popupContent).openPopup(center);
-                        }
+                        if (e.originalEvent && e.originalEvent._clickedSchool) return; // ignore school clicks
+                        map.fitBounds(layer.getBounds());
+                        const center = layer.getBounds().getCenter();
+                        layer.bindPopup(popupContent).openPopup(center);
                       });
                     }
                   }).addTo(schoolRegionLayer);
@@ -283,7 +299,7 @@
       })
       .catch(console.error);
 
-    // ---------- Layer toggle ----------
+    // Layer toggle
     L.control.layers(null, {
       "Regions & Schools": schoolRegionLayer,
       "Tournaments": tournamentLayer,
@@ -292,6 +308,7 @@
   </script>
 </body>
 </html>
+
 
 
 
