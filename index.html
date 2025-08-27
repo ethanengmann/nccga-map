@@ -38,34 +38,47 @@
       .replace(/[\s\-_().]/g, '')
       .trim();
 
-    // ---------- Fixed palette (unchanged) ----------
+    // ---------- Fixed palette (yours, unchanged; added # for Great Lakes) ----------
     const REGION_COLORS = {
-      "Atlantic Region":            "#1f78b4",
-      "Northeast Region":           "#33a02c",
-      "Capitol Region":             "#e31a1c",
-      "Colonial Region":            "#ff7f00",
-      "Carolina Region":            "#6a3d9a",
-      "Desert Region":              "#b15928",
-      "Mountain Region":            "#a6cee3",
-      "Pacific Region":             "#b2df8a",
-      "Northwest Region":           "#fb9a99",
-      "Ohio Valley Region":         "#fdbf6f",
-      "Midwest Region":             "#cab2d6",
-      "Southern New England Region":"#80cdc1",
-      "North Florida Region":       "#01665e",
-      "South Florida Region":       "#8e0152",
-      "Texas Region":               "#5e3c99",
-      "Northern California Region": "#c51b7d",
-      "Southern California Region": "#35978f",
-      "Indiana Region":             "#80b1d3",
-      "Northern New England Region":"#8B4513",
-      "Twin Cities Region":         "#33a02c",
-      "Great Lakes Region":         "800000"
+      "Atlantic Region":             "#1f78b4",
+      "Northeast Region":            "#33a02c",
+      "Capitol Region":              "#e31a1c",
+      "Colonial Region":             "#ff7f00",
+      "Carolina Region":             "#6a3d9a",
+      "Desert Region":               "#b15928",
+      "Mountain Region":             "#a6cee3",
+      "Pacific Region":              "#b2df8a",
+      "Northwest Region":            "#fb9a99",
+      "Ohio Valley Region":          "#fdbf6f",
+      "Midwest Region":              "#cab2d6",
+      "Southern New England Region": "#80cdc1",
+      "North Florida Region":        "#01665e",
+      "South Florida Region":        "#8e0152",
+      "Texas Region":                "#5e3c99",
+      "Northern California Region":  "#c51b7d",
+      "Southern California Region":  "#35978f",
+      "Indiana Region":              "#80b1d3",
+      "Northern New England Region": "#8B4513",
+      "Twin Cities Region":          "#33a02c",
+      "Great Lakes Region":          "#800000"  // ← added missing '#'
     };
+
     const COLOR_BY_KEY = {};
     Object.entries(REGION_COLORS).forEach(([name, color]) => {
       COLOR_BY_KEY[clean(name)] = color;
     });
+
+    // Optional short aliases you might see in data
+    const REGION_ALIASES = {
+      philadelphia: 'colonial', philly: 'colonial',
+      tx: 'texas',
+      norcal: 'northerncalifornia', nocal: 'northerncalifornia',
+      socal: 'southerncalifornia',  scal: 'southerncalifornia'
+    };
+
+    // Prefer the tournament's label; fall back to polygon if unknown
+    const PREFER_TOURNAMENT_LABEL = true;
+
     function hashColor(name = "default") {
       let h = 0; for (let i = 0; i < name.length; i++) h = (h * 31 + name.charCodeAt(i)) | 0;
       const hue = Math.abs(h) % 360; return `hsl(${hue},70%,45%)`;
@@ -73,6 +86,13 @@
     function getRegionColorByName(name) {
       const key = clean(name);
       return COLOR_BY_KEY[key] || hashColor(name || "");
+    }
+    function resolveRegionKey(name) {
+      const k = clean(name);
+      if (COLOR_BY_KEY[k]) return k;
+      const alias = REGION_ALIASES[k];
+      if (alias && COLOR_BY_KEY[alias]) return alias;
+      return k;
     }
 
     // Layers
@@ -107,7 +127,7 @@
       });
     }
 
-    // ===== Load data (regions first so we can color tournaments by location) =====
+    // ===== Load data (regions first so we can color tournaments) =====
     Promise.all([
       loadJSON('regions.geojson'),
       loadJSON('schools.geojson').catch(() => null),
@@ -138,16 +158,23 @@
         };
       });
 
-      function colorAndKeyForLatLng(lat, lng, fallbackName) {
+      // Prefer label; fall back to polygon; final fallback = hashed color
+      function colorAndKeyForPointOrLabel(lat, lng, labelName) {
+        const labelKey = resolveRegionKey(labelName);
+        const labelKnown = !!COLOR_BY_KEY[labelKey];
+
+        if (PREFER_TOURNAMENT_LABEL && labelKnown) {
+          return { color: COLOR_BY_KEY[labelKey], key: labelKey, name: labelName || '', source: 'label' };
+        }
+
         const pt = turf.point([lng, lat]);
         for (const r of regionPolys) {
           if (turf.booleanPointInPolygon(pt, r.feature)) {
-            return { color: r.color, key: r.key, name: r.name, found: true };
+            return { color: r.color, key: r.key, name: r.name, source: 'polygon' };
           }
         }
-        // outside all polygons → fall back to provided name
-        const name = fallbackName || '';
-        return { color: getRegionColorByName(name), key: clean(name), name, found: false };
+
+        return { color: hashColor(labelName || ''), key: labelKey, name: labelName || '', source: 'fallback' };
       }
 
       // --- Visible region outlines (non-interactive) ---
@@ -202,7 +229,7 @@
       const tournamentsByRegionKey = {};
       const qualifiersByRegionKey  = {};
 
-      // --- Tournaments (color by containing polygon) ---
+      // --- Tournaments (label-preferred coloring) ---
       const TOURN_SIZE = [18, 24];
 
       if (tournaments) {
@@ -210,14 +237,16 @@
           pane: 'tournamentPane',
           pointToLayer: (feature, latlng) => {
             const p = feature.properties || {};
-            const { color, key, found } = colorAndKeyForLatLng(latlng.lat, latlng.lng, p.region);
+            const { color, key, source } = colorAndKeyForPointOrLabel(latlng.lat, latlng.lng, p.region);
 
-            // keep for region popups
+            // keep for region popups (group by the same key we colored with)
             (tournamentsByRegionKey[key] ||= []).push({ ...p });
 
-            if (!found && p.region) {
-              // Optional breadcrumb for data QA
-              console.warn('Tournament outside all regions; colored by label:', p.region, feature);
+            if (source === 'fallback' && p.region) {
+              console.warn('Tournament outside all regions and label unknown; using fallback color:', p.region, feature);
+            } else if (source === 'label') {
+              // uncomment if you want to see when label overrides polygon
+              // console.info('Colored by label (overrode geometry):', p.course_name || p, p.region);
             }
 
             return L.marker(latlng, { icon: makeSvgFlagIcon(color, TOURN_SIZE) });
@@ -343,6 +372,7 @@
   </script>
 </body>
 </html>
+
 
 
 
