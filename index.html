@@ -1,4 +1,4 @@
-=<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
   <title>NCCGA Regional Map</title>
@@ -9,12 +9,9 @@
     body { margin:0; padding:0; }
     #map { height: 100vh; }
 
-    /* PNG qualifier icon styling stays */
     .qualifier-icon {
       filter: drop-shadow(0 0 2px #fff) drop-shadow(0 0 1.5px #000);
     }
-
-    /* Our SVG flag icon container */
     .leaflet-div-icon.flag-div { background: transparent; border: 0; }
   </style>
 </head>
@@ -25,13 +22,21 @@
   <script>
     const map = L.map('map').setView([39.5, -98.35], 4);
 
-    // ===== Panes & stacking order =====
+    // ===== Panes =====
     map.createPane('regionPane');     map.getPane('regionPane').style.zIndex = 450;
     map.createPane('schoolPane');     map.getPane('schoolPane').style.zIndex = 650;
     map.createPane('tournamentPane'); map.getPane('tournamentPane').style.zIndex = 660;
     map.createPane('qualifierPane');  map.getPane('qualifierPane').style.zIndex = 670;
 
-    // ===== Fixed region color palette =====
+    // ---------- Normalizer used EVERYWHERE (grouping + colors) ----------
+    const clean = str => String(str || '')
+      .toLowerCase()
+      .replace(/region/g, '')
+      .replace(/capitol/g, 'capital')
+      .replace(/[\s\-_]/g, '')   // remove spaces/dashes/underscores
+      .trim();
+
+    // ---------- Fixed palette (canonical names) ----------
     const REGION_COLORS = {
       "Atlantic Region":            "#1f78b4",
       "Northeast Region":           "#33a02c",
@@ -53,43 +58,35 @@
       "Indiana Region":             "#80b1d3"
     };
 
-    function normRegionName(str) {
-      if (!str) return "";
-      const s = String(str).trim();
-      if (/capitol/i.test(s)) return "Capitol Region";
-      return s;
-    }
+    // Build color map keyed by CLEANED key (so "Northwest" vs "Northwest Region" => same)
+    const COLOR_BY_KEY = {};
+    Object.entries(REGION_COLORS).forEach(([name, color]) => {
+      COLOR_BY_KEY[clean(name)] = color;
+    });
+
     function hashColor(name = "default") {
       let h = 0; for (let i = 0; i < name.length; i++) h = (h * 31 + name.charCodeAt(i)) | 0;
       const hue = Math.abs(h) % 360; return `hsl(${hue},70%,45%)`;
     }
-    function getColor(region) {
-      const key = normRegionName(region);
-      return REGION_COLORS[key] || hashColor(key);
+    function getRegionColor(anyRegionName) {
+      const key = clean(anyRegionName);
+      return COLOR_BY_KEY[key] || hashColor(anyRegionName || "");
     }
 
-    // Key normalizer for grouping
-    const clean = str => str?.toLowerCase()
-      .replace(/region/g, '')
-      .replace(/capitol/g, 'capital')
-      .replace(/\s+/g, '')
-      .trim();
-
-    // Layers
+    // ---------- Layers ----------
     const schoolRegionLayer = L.layerGroup().addTo(map);
     const tournamentLayer   = L.layerGroup().addTo(map);
     const qualifierLayer    = L.layerGroup().addTo(map);
 
-    // Basemap
+    // ---------- Basemap ----------
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 18,
       attribution: '&copy; OpenStreetMap contributors'
     }).addTo(map);
 
-    // Helper
     const bottomCenterAnchor = size => [Math.round(size[0] / 2), size[1]];
 
-    // === Schools ===
+    // ---------- Schools ----------
     fetch('schools.geojson')
       .then(r => r.json())
       .then(data => {
@@ -97,7 +94,7 @@
           pane: 'schoolPane',
           pointToLayer: (feature, latlng) => {
             const p = feature.properties || {};
-            const color = getColor(p.region);
+            const color = getRegionColor(p.region);
             const url = `https://nccga.org/app/teams/${p.slug}`;
             return L.circleMarker(latlng, {
               radius: 6,
@@ -120,17 +117,13 @@
     let tournamentsByRegion = {};
     let qualifiersByRegion  = {};
 
-    // === Tournament SVG flag (exact alignment, colorable cloth) ===
+    // ---------- Tournament SVG flag (cloth colorable) ----------
     function makeSvgFlagIcon(color, size = [18, 24]) {
       const [w, h] = size;
-      // viewBox designed to mimic your PNG proportions
       const html = `
         <svg width="${w}" height="${h}" viewBox="0 0 18 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <!-- base (ellipse) -->
           <ellipse cx="9" cy="22" rx="6" ry="3" fill="#000"/>
-          <!-- pole -->
           <rect x="8" y="3" width="2" height="18" fill="#000"/>
-          <!-- flag cloth (triangle) -->
           <polygon points="10,6 10,12 18,9" fill="${color}"/>
         </svg>`;
       return L.divIcon({
@@ -142,22 +135,20 @@
       });
     }
 
-    // === Tournaments ===
-    const TOURN_SIZE = [18, 24]; // adjust if you want larger flags
+    // ---------- Tournaments ----------
+    const TOURN_SIZE = [18, 24];
 
     fetch('tournaments.geojson')
       .then(r => r.json())
       .then(tourneyData => {
-        // Group for region popups
         tourneyData.features.forEach(t => {
-          const regionKey = clean(t.properties.region);
-          (tournamentsByRegion[regionKey] ||= []).push(t.properties);
+          (tournamentsByRegion[clean(t.properties.region)] ||= []).push(t.properties);
         });
 
         L.geoJSON(tourneyData, {
           pane: 'tournamentPane',
           pointToLayer: (feature, latlng) => {
-            const color = getColor(feature?.properties?.region);
+            const color = getRegionColor(feature?.properties?.region);
             return L.marker(latlng, { icon: makeSvgFlagIcon(color, TOURN_SIZE) });
           },
           onEachFeature: (feature, layer) => {
@@ -169,7 +160,7 @@
           }
         }).addTo(tournamentLayer);
 
-        // === Qualifiers (unchanged PNG) ===
+        // ---------- Qualifiers ----------
         const QUAL_SIZE = [26, 26];
         const qualifierIcon = L.icon({
           iconUrl: 'img/Qualifier_flag_icon.png',
@@ -182,7 +173,6 @@
         fetch('qualifiers.geojson')
           .then(r => r.json())
           .then(qualData => {
-            // Group qualifiers
             qualData.features.forEach(f => {
               const p = f.properties || {};
               let list = Array.isArray(p.regions)
@@ -207,28 +197,26 @@
               }
             }).addTo(qualifierLayer);
 
-            // === Regions ===
+            // ---------- Regions ----------
             fetch('regions.geojson')
               .then(r => r.json())
               .then(data => {
-                // Visible region outlines
                 L.geoJSON(data, {
                   pane: 'regionPane',
                   style: f => ({
-                    color: getColor(f.properties.region),
+                    color: getRegionColor(f.properties.region),
                     weight: 2,
                     fillOpacity: 0.2,
                     interactive: false
                   })
                 }).addTo(schoolRegionLayer);
 
-                // Invisible interactive layer for popups/zoom
                 data.features.forEach(feature => {
                   const regionName = feature.properties.region;
                   const schools = feature.properties.schools;
-                  const regionKey = clean(regionName);
-                  const tournaments = tournamentsByRegion[regionKey] || [];
-                  const qualifiers  = qualifiersByRegion[regionKey]  || [];
+                  const key = clean(regionName);
+                  const tournaments = tournamentsByRegion[key] || [];
+                  const qualifiers  = qualifiersByRegion[key]  || [];
 
                   let popupContent = `
                     <div style="min-width:300px;">
@@ -295,7 +283,7 @@
       })
       .catch(console.error);
 
-    // Layer toggle
+    // ---------- Layer toggle ----------
     L.control.layers(null, {
       "Regions & Schools": schoolRegionLayer,
       "Tournaments": tournamentLayer,
@@ -304,6 +292,7 @@
   </script>
 </body>
 </html>
+
 
 
 
