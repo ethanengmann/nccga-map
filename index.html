@@ -9,12 +9,9 @@
     body { margin:0; padding:0; }
     #map { height: 100vh; }
 
-    /* PNG qualifier icon styling stays */
     .qualifier-icon {
       filter: drop-shadow(0 0 2px #fff) drop-shadow(0 0 1.5px #000);
     }
-
-    /* Our SVG flag icon container */
     .leaflet-div-icon.flag-div { background: transparent; border: 0; }
   </style>
 </head>
@@ -22,6 +19,8 @@
   <div id="map"></div>
 
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <!-- Turf for point-in-polygon + buffering line regions -->
+  <script src="https://unpkg.com/@turf/turf@6/turf.min.js"></script>
   <script>
     const map = L.map('map').setView([39.5, -98.35], 4);
 
@@ -31,15 +30,15 @@
     map.createPane('tournamentPane'); map.getPane('tournamentPane').style.zIndex = 660;
     map.createPane('qualifierPane');  map.getPane('qualifierPane').style.zIndex = 670;
 
-    // ---------- Normalizer used EVERYWHERE (grouping + colors) ----------
+    // ---------- Normalizer (used for grouping keys only) ----------
     const clean = str => String(str || '')
       .toLowerCase()
       .replace(/region/g, '')
-      .replace(/capitol/g, 'capital')     // unify spelling
-      .replace(/[\s\-_().]/g, '')         // drop spaces/dashes/underscores/punct
+      .replace(/capitol/g, 'capital')
+      .replace(/[\s\-_().]/g, '')
       .trim();
 
-    // ---------- Fixed palette (canonical names) ----------
+    // ---------- Fixed palette (unchanged) ----------
     const REGION_COLORS = {
       "Atlantic Region":            "#1f78b4",
       "Northeast Region":           "#33a02c",
@@ -60,51 +59,17 @@
       "Southern California Region": "#35978f",
       "Indiana Region":             "#80b1d3"
     };
-
-    // Map colors to cleaned keys so "Northwest" and "Northwest Region" are identical
     const COLOR_BY_KEY = {};
     Object.entries(REGION_COLORS).forEach(([name, color]) => {
       COLOR_BY_KEY[clean(name)] = color;
     });
-
-    // Common aliases seen in tournament data
-    const REGION_ALIASES = {
-      tx: 'texas', texas: 'texas',
-      norcal: 'northerncalifornia', nocal: 'northerncalifornia',
-      socal: 'southerncalifornia',  scal: 'southerncalifornia',
-      ne: 'northeast', nwe: 'northeast',
-      nw: 'northwest',
-      mw: 'midwest', 'midwest': 'midwest', 'mid-west': 'midwest',
-      ohio: 'ohiovalley', ov: 'ohiovalley',
-      nfl: 'northflorida', sfl: 'southflorida',
-      carolinas: 'carolina', carolina: 'carolina'
-    };
-
-    // Deterministic fallback if we truly can't match (should be rare)
     function hashColor(name = "default") {
       let h = 0; for (let i = 0; i < name.length; i++) h = (h * 31 + name.charCodeAt(i)) | 0;
       const hue = Math.abs(h) % 360; return `hsl(${hue},70%,45%)`;
     }
-
-    // Resolve any region label to our color-key
-    function resolveRegionKey(anyRegionName) {
-      const k = clean(anyRegionName);
-      if (COLOR_BY_KEY[k]) return k;
-      if (REGION_ALIASES[k] && COLOR_BY_KEY[REGION_ALIASES[k]]) return REGION_ALIASES[k];
-
-      // Substring heuristic (handles "Texas – Dallas", "Northern California (NorCal)", etc.)
-      let best = null;
-      for (const known of Object.keys(COLOR_BY_KEY)) {
-        if (k.includes(known) || known.includes(k)) {
-          if (!best || known.length > best.length) best = known;
-        }
-      }
-      return best || k; // may still be unknown
-    }
-
-    function getRegionColor(anyRegionName) {
-      const key = resolveRegionKey(anyRegionName);
-      return COLOR_BY_KEY[key] || hashColor(anyRegionName || "");
+    function getRegionColorByName(name) {
+      const key = clean(name);
+      return COLOR_BY_KEY[key] || hashColor(name || "");
     }
 
     // Layers
@@ -118,56 +83,12 @@
       attribution: '&copy; OpenStreetMap contributors'
     }).addTo(map);
 
-    // Helper
     const bottomCenterAnchor = size => [Math.round(size[0] / 2), size[1]];
+    const loadJSON = (url) => fetch(url).then(r => { if (!r.ok) throw new Error(url+': '+r.status); return r.json(); });
 
-    // === Schools (clicks must win) ===
-    fetch('schools.geojson')
-      .then(r => r.json())
-      .then(data => {
-        L.geoJSON(data, {
-          pane: 'schoolPane',
-          pointToLayer: (feature, latlng) => {
-            const p = feature.properties || {};
-            const color = getRegionColor(p.region);
-            const url = `https://nccga.org/app/teams/${p.slug}`;
-
-            const m = L.circleMarker(latlng, {
-              pane: 'schoolPane',
-              radius: 6,
-              fillColor: color,
-              color: "#333",
-              weight: 1,
-              opacity: 1,
-              fillOpacity: 0.9,
-              bubblingMouseEvents: false,   // prevent bubbling to regions/map
-              interactive: true
-            });
-
-            m.on('click', e => {
-              if (e.originalEvent) {
-                L.DomEvent.stop(e.originalEvent);     // stop DOM event, too
-                e.originalEvent._clickedSchool = true; // guard for region layer
-              }
-              m.bindPopup(
-                `<strong><a href="${url}" target="_blank">${p.school}</a></strong><br>${p.region}`
-              ).openPopup();
-              if (m.bringToFront) m.bringToFront();
-            });
-
-            return m;
-          }
-        }).addTo(schoolRegionLayer);
-      })
-      .catch(console.error);
-
-    let tournamentsByRegion = {};
-    let qualifiersByRegion  = {};
-
-    // === Tournament SVG flag (exact alignment, cloth colorable) ===
+    // === SVG tournament flag (cloth colorable) ===
     function makeSvgFlagIcon(color, size = [18, 24]) {
       const [w, h] = size;
-      // base + pole + triangle cloth
       const html = `
         <svg width="${w}" height="${h}" viewBox="0 0 18 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <ellipse cx="9" cy="22" rx="6" ry="3" fill="#000"/>
@@ -183,163 +104,232 @@
       });
     }
 
-    // === Tournaments ===
-    const TOURN_SIZE = [18, 24];
-    const seenWarn = new Set(); // log unmatched labels once
+    // ===== Load data (regions first so we can color tournaments by location) =====
+    Promise.all([
+      loadJSON('regions.geojson'),
+      loadJSON('schools.geojson').catch(() => null),
+      loadJSON('tournaments.geojson').catch(() => null),
+      loadJSON('qualifiers.geojson').catch(() => null),
+    ]).then(([regions, schools, tournaments, qualifiers]) => {
 
-    fetch('tournaments.geojson')
-      .then(r => r.json())
-      .then(tourneyData => {
-        // Group for region popup lists (use resolved key)
-        tourneyData.features.forEach(t => {
-          const key = resolveRegionKey(t.properties.region);
-          (tournamentsByRegion[key] ||= []).push(t.properties);
-        });
+      // --- Convert non-polygon region geometries into thin polygons for hit-testing ---
+      function toPolygonFeature(feat) {
+        const g = feat && feat.geometry ? feat.geometry : {};
+        if (g.type === 'Polygon' || g.type === 'MultiPolygon') return feat;
+        try {
+          // buffer by ~5 km to create a polygon shell around lines
+          return turf.buffer(feat, 5, { units: 'kilometers' });
+        } catch {
+          return feat; // fallback (won't match, but won't crash)
+        }
+      }
 
-        L.geoJSON(tourneyData, {
+      // --- Build region polygon list for point-in-polygon coloring ---
+      const regionPolys = (regions?.features || []).map(f => {
+        const polyFeat = toPolygonFeature(f);
+        return {
+          feature: polyFeat,
+          key: clean(f.properties?.region),
+          name: f.properties?.region,
+          color: getRegionColorByName(f.properties?.region)
+        };
+      });
+
+      function colorAndKeyForLatLng(lat, lng, fallbackName) {
+        const pt = turf.point([lng, lat]);
+        for (const r of regionPolys) {
+          if (turf.booleanPointInPolygon(pt, r.feature)) {
+            return { color: r.color, key: r.key, name: r.name, found: true };
+          }
+        }
+        // outside all polygons → fall back to provided name
+        const name = fallbackName || '';
+        return { color: getRegionColorByName(name), key: clean(name), name, found: false };
+      }
+
+      // --- Visible region outlines (non-interactive) ---
+      const regionsVisible = L.geoJSON(regions, {
+        pane: 'regionPane',
+        style: f => ({
+          color: getRegionColorByName(f.properties?.region),
+          weight: 2,
+          fillOpacity: 0.2,
+          interactive: false
+        })
+      }).addTo(schoolRegionLayer);
+
+      // --- Schools (clicks must win) ---
+      if (schools) {
+        L.geoJSON(schools, {
+          pane: 'schoolPane',
+          pointToLayer: (feature, latlng) => {
+            const p = feature.properties || {};
+            const color = getRegionColorByName(p.region);
+            const url = `https://nccga.org/app/teams/${p.slug}`;
+
+            const m = L.circleMarker(latlng, {
+              pane: 'schoolPane',
+              radius: 6,
+              fillColor: color,
+              color: "#333",
+              weight: 1,
+              opacity: 1,
+              fillOpacity: 0.9,
+              bubblingMouseEvents: false,
+              interactive: true
+            });
+
+            m.on('click', e => {
+              if (e.originalEvent) {
+                L.DomEvent.stop(e.originalEvent);
+                e.originalEvent._clickedSchool = true;
+              }
+              m.bindPopup(
+                `<strong><a href="${url}" target="_blank">${p.school}</a></strong><br>${p.region}`
+              ).openPopup();
+              if (m.bringToFront) m.bringToFront();
+            });
+
+            return m;
+          }
+        }).addTo(schoolRegionLayer);
+      }
+
+      // --- Storage for popup lists ---
+      const tournamentsByRegionKey = {};
+      const qualifiersByRegionKey  = {};
+
+      // --- Tournaments (color by containing polygon) ---
+      const TOURN_SIZE = [18, 24];
+
+      if (tournaments) {
+        L.geoJSON(tournaments, {
           pane: 'tournamentPane',
           pointToLayer: (feature, latlng) => {
-            const raw = feature?.properties?.region || '';
-            const key = resolveRegionKey(raw);
-            if (!COLOR_BY_KEY[key] && raw && !seenWarn.has(raw)) {
-              console.warn('Unmatched tournament region label → using fallback color:', raw);
-              seenWarn.add(raw);
+            const p = feature.properties || {};
+            const { color, key, found } = colorAndKeyForLatLng(latlng.lat, latlng.lng, p.region);
+
+            // keep for region popups
+            (tournamentsByRegionKey[key] ||= []).push({ ...p });
+
+            if (!found && p.region) {
+              // Optional breadcrumb for data QA
+              console.warn('Tournament outside all regions; colored by label:', p.region, feature);
             }
-            const color = getRegionColor(raw);
+
             return L.marker(latlng, { icon: makeSvgFlagIcon(color, TOURN_SIZE) });
           },
           onEachFeature: (feature, layer) => {
-            const { course_name, region, website, date } = feature.properties;
-            let html = `<strong>${course_name}</strong><br>${region}`;
-            if (date) html += `<br><em>${date}</em>`;
+            const { course_name, region, website, date } = feature.properties || {};
+            let html = `<strong>${course_name || 'Tournament'}</strong>`;
+            if (region) html += `<br>${region}`;
+            if (date)   html += `<br><em>${date}</em>`;
             if (website) html += `<br><a href="${website}" target="_blank">Course Website</a>`;
             layer.bindPopup(html);
           }
         }).addTo(tournamentLayer);
+      }
 
-        // === Qualifiers (PNG icon stays) ===
-        const QUAL_SIZE = [26, 26];
-        const qualifierIcon = L.icon({
-          iconUrl: 'img/Qualifier_flag_icon.png',
-          iconSize: QUAL_SIZE,
-          iconAnchor: bottomCenterAnchor(QUAL_SIZE),
-          popupAnchor: [0, -Math.round(QUAL_SIZE[1] * 0.9)],
-          className: 'qualifier-icon'
-        });
+      // --- Qualifiers (PNG icon) ---
+      const QUAL_SIZE = [26, 26];
+      const qualifierIcon = L.icon({
+        iconUrl: 'img/Qualifier_flag_icon.png',
+        iconSize: QUAL_SIZE,
+        iconAnchor: bottomCenterAnchor(QUAL_SIZE),
+        popupAnchor: [0, -Math.round(QUAL_SIZE[1] * 0.9)],
+        className: 'qualifier-icon'
+      });
 
-        fetch('qualifiers.geojson')
-          .then(r => r.json())
-          .then(qualData => {
-            qualData.features.forEach(f => {
-              const p = f.properties || {};
-              let list = Array.isArray(p.regions)
-                ? p.regions
-                : (typeof p.region === 'string'
-                    ? p.region.split(',').map(s => s.trim()).filter(Boolean)
-                    : []);
-              if (!list.length && p.region) list = [p.region];
-              list.forEach(rn => (qualifiersByRegion[clean(rn)] ||= []).push(p));
+      if (qualifiers) {
+        L.geoJSON(qualifiers, {
+          pane: 'qualifierPane',
+          pointToLayer: (feature, latlng) => L.marker(latlng, { icon: qualifierIcon }),
+          onEachFeature: (feature, layer) => {
+            const { course_name, region, regions, website, date } = feature.properties || {};
+            const labels = Array.isArray(regions)
+              ? regions
+              : (typeof region === 'string' ? region.split(',').map(s => s.trim()).filter(Boolean) : []);
+            const keys = labels.length ? labels.map(l => clean(l)) : [clean(region || '')];
+            keys.forEach(k => (qualifiersByRegionKey[k] ||= []).push(feature.properties || {}));
+
+            const label = Array.isArray(regions) ? regions.join(', ') : (region || 'Qualifier');
+            let html = `<strong>${course_name || 'Qualifier'}</strong><br>${label}`;
+            if (date) html += `<br><em>${date}</em>`;
+            if (website) html += `<br><a href="${website}" target="_blank">Course Website</a>`;
+            layer.bindPopup(html);
+          }
+        }).addTo(qualifierLayer);
+      }
+
+      // --- Invisible interactive region layer for popups/zoom ---
+      regions.features.forEach(regionFeature => {
+        const regionName = regionFeature.properties?.region || 'Region';
+        const key = clean(regionName);
+        const schoolsList = regionFeature.properties?.schools || [];
+        const tList = tournamentsByRegionKey[key] || [];
+        const qList = qualifiersByRegionKey[key] || [];
+
+        const schoolsHtml = (schoolsList.length
+          ? schoolsList.map(s => `<li>${s}</li>`).join('')
+          : '<li>No schools listed.</li>');
+
+        const tournamentsHtml = (tList.length
+          ? tList.map(t => {
+              let html = `<li><strong>${t.course_name || 'Tournament'}</strong>`;
+              if (t.date) html += `<br><em>${t.date}</em>`;
+              if (t.website) html += `<br><a href="${t.website}" target="_blank">Course Website</a>`;
+              html += `</li>`;
+              return html;
+            }).join('')
+          : '<li>No tournaments scheduled.</li>');
+
+        const qualifiersHtml = (qList.length
+          ? qList.map(q => {
+              let html = `<li><strong>${q.course_name || q.course || 'Qualifier'}</strong>`;
+              if (q.date) html += `<br><em>${q.date}</em>`;
+              if (q.website) html += `<br><a href="${q.website}" target="_blank">Course Website</a>`;
+              html += `</li>`;
+              return html;
+            }).join('')
+          : '<li>No qualifiers scheduled.</li>');
+
+        const popupContent = `
+          <div style="min-width:300px;">
+            <h4 style="margin:0 0 10px 0; text-align:center;">${regionName}</h4>
+            <div style="display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap;">
+              <div style="width:32%; min-width:220px;">
+                <strong>Schools:</strong>
+                <ul style="padding-left:18px; margin-top:4px;">${schoolsHtml}</ul>
+              </div>
+              <div style="width:32%; min-width:220px;">
+                <strong>Tournaments:</strong>
+                <ul style="padding-left:18px; margin-top:4px;">${tournamentsHtml}</ul>
+              </div>
+              <div style="width:32%; min-width:220px;">
+                <strong>Qualifiers:</strong>
+                <ul style="padding-left:18px; margin-top:4px;">${qualifiersHtml}</ul>
+              </div>
+            </div>
+          </div>
+        `;
+
+        L.geoJSON(regionFeature, {
+          pane: 'regionPane',
+          style: { opacity: 0, fillOpacity: 0, weight: 0 },
+          onEachFeature: (_, layer) => {
+            layer.on('click', e => {
+              if (e.originalEvent && e.originalEvent._clickedSchool) return; // ignore school clicks
+              map.fitBounds(layer.getBounds());
+              const center = layer.getBounds().getCenter();
+              layer.bindPopup(popupContent).openPopup(center);
             });
+          }
+        }).addTo(schoolRegionLayer);
+      });
 
-            L.geoJSON(qualData, {
-              pane: 'qualifierPane',
-              pointToLayer: (feature, latlng) => L.marker(latlng, { icon: qualifierIcon }),
-              onEachFeature: (feature, layer) => {
-                const { course_name, region, regions, website, date } = feature.properties || {};
-                const label = Array.isArray(regions) ? regions.join(', ') : (region || 'Qualifier');
-                let html = `<strong>${course_name || 'Qualifier'}</strong><br>${label}`;
-                if (date) html += `<br><em>${date}</em>`;
-                if (website) html += `<br><a href="${website}" target="_blank">Course Website</a>`;
-                layer.bindPopup(html);
-              }
-            }).addTo(qualifierLayer);
-
-            // === Regions ===
-            fetch('regions.geojson')
-              .then(r => r.json())
-              .then(data => {
-                // Visible region outlines (non-interactive)
-                L.geoJSON(data, {
-                  pane: 'regionPane',
-                  style: f => ({
-                    color: getRegionColor(f.properties.region),
-                    weight: 2,
-                    fillOpacity: 0.2,
-                    interactive: false
-                  })
-                }).addTo(schoolRegionLayer);
-
-                // Invisible interactive layer for popups/zoom
-                data.features.forEach(feature => {
-                  const regionName = feature.properties.region;
-                  const schools = feature.properties.schools;
-                  const key = resolveRegionKey(regionName); // use resolved key here too
-                  const tournaments = tournamentsByRegion[key] || [];
-                  const qualifiers  = qualifiersByRegion[clean(regionName)]  || [];
-
-                  let popupContent = `
-                    <div style="min-width:300px;">
-                      <h4 style="margin:0 0 10px 0; text-align:center;">${regionName}</h4>
-                      <div style="display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap;">
-                        <div style="width:32%; min-width:220px;">
-                          <strong>Schools:</strong>
-                          <ul style="padding-left:18px; margin-top:4px;">${
-                            schools?.length
-                              ? schools.map(s => `<li>${s}</li>`).join('')
-                              : '<li>No schools listed.</li>'
-                          }</ul>
-                        </div>
-                        <div style="width:32%; min-width:220px;">
-                          <strong>Tournaments:</strong>
-                          <ul style="padding-left:18px; margin-top:4px;">${
-                            tournaments.length
-                              ? tournaments.map(t => {
-                                  let html = `<li><strong>${t.course_name}</strong>`;
-                                  if (t.date) html += `<br><em>${t.date}</em>`;
-                                  if (t.website) html += `<br><a href="${t.website}" target="_blank">Course Website</a>`;
-                                  html += `</li>`;
-                                  return html;
-                                }).join('')
-                              : '<li>No tournaments scheduled.</li>'
-                          }</ul>
-                        </div>
-                        <div style="width:32%; min-width:220px;">
-                          <strong>Qualifiers:</strong>
-                          <ul style="padding-left:18px; margin-top:4px;">${
-                            qualifiers.length
-                              ? qualifiers.map(q => {
-                                  let html = `<li><strong>${q.course_name || q.course || 'Qualifier'}</strong>`;
-                                  if (q.date) html += `<br><em>${q.date}</em>`;
-                                  if (q.website) html += `<br><a href="${q.website}" target="_blank">Course Website</a>`;
-                                  html += `</li>`;
-                                  return html;
-                                }).join('')
-                              : '<li>No qualifiers scheduled.</li>'
-                          }</ul>
-                        </div>
-                      </div>
-                    </div>
-                  `;
-
-                  L.geoJSON(feature, {
-                    pane: 'regionPane',
-                    style: { opacity: 0, fillOpacity: 0, weight: 0 },
-                    onEachFeature: (_, layer) => {
-                      layer.on('click', e => {
-                        if (e.originalEvent && e.originalEvent._clickedSchool) return; // ignore school clicks
-                        map.fitBounds(layer.getBounds());
-                        const center = layer.getBounds().getCenter();
-                        layer.bindPopup(popupContent).openPopup(center);
-                      });
-                    }
-                  }).addTo(schoolRegionLayer);
-                });
-              })
-              .catch(console.error);
-          })
-          .catch(console.error);
-      })
-      .catch(console.error);
+      try { map.fitBounds(regionsVisible.getBounds(), { padding: [20,20] }); } catch (e) {}
+    })
+    .catch(err => console.error(err));
 
     // Layer toggle
     L.control.layers(null, {
