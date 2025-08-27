@@ -38,7 +38,7 @@
       .replace(/[\s\-_().]/g, '')
       .trim();
 
-    // ---------- Fixed palette (yours, unchanged; added # for Great Lakes) ----------
+    // ---------- Fixed palette (yours) ----------
     const REGION_COLORS = {
       "Atlantic Region":             "#1f78b4",
       "Northeast Region":            "#33a02c",
@@ -193,7 +193,7 @@
         })
       }).addTo(schoolRegionLayer);
 
-      // --- Schools (clicks must win) ---
+      // --- Schools (bottom layer; clicks must win) ---
       if (schools) {
         L.geoJSON(schools, {
           pane: 'schoolPane',
@@ -203,7 +203,7 @@
             const url = `https://nccga.org/app/teams/${p.slug}`;
 
             const m = L.circleMarker(latlng, {
-              pane: 'schoolPane',
+              pane: 'schoolPane',          // explicit
               radius: 6,
               fillColor: color,
               color: "#333",
@@ -234,7 +234,7 @@
       const tournamentsByRegionKey = {};
       const qualifiersByRegionKey  = {};
 
-      // --- Tournaments (label-preferred coloring) ---
+      // --- Tournaments (middle layer; label-preferred coloring) ---
       const TOURN_SIZE = [18, 24];
 
       if (tournaments) {
@@ -249,12 +249,13 @@
 
             if (source === 'fallback' && p.region) {
               console.warn('Tournament outside all regions and label unknown; using fallback color:', p.region, feature);
-            } else if (source === 'label') {
-              // uncomment if you want to see when label overrides polygon
-              // console.info('Colored by label (overrode geometry):', p.course_name || p, p.region);
             }
 
-            return L.marker(latlng, { icon: makeSvgFlagIcon(color, TOURN_SIZE) });
+            return L.marker(latlng, {
+              icon: makeSvgFlagIcon(color, TOURN_SIZE),
+              pane: 'tournamentPane',     // explicit pane for marker
+              zIndexOffset: 0
+            });
           },
           onEachFeature: (feature, layer) => {
             const { course_name, region, website, date } = feature.properties || {};
@@ -267,7 +268,7 @@
         }).addTo(tournamentLayer);
       }
 
-      // --- Qualifiers (PNG icon) ---
+      // --- Qualifiers (top layer; PNG icon) ---
       const QUAL_SIZE = [26, 26];
       const qualifierIcon = L.icon({
         iconUrl: 'img/Qualifier_flag_icon.png',
@@ -280,7 +281,11 @@
       if (qualifiers) {
         L.geoJSON(qualifiers, {
           pane: 'qualifierPane',
-          pointToLayer: (feature, latlng) => L.marker(latlng, { icon: qualifierIcon }),
+          pointToLayer: (feature, latlng) => L.marker(latlng, {
+            icon: qualifierIcon,
+            pane: 'qualifierPane',       // explicit pane for marker
+            zIndexOffset: 100            // ensure topmost in its pane
+          }),
           onEachFeature: (feature, layer) => {
             const { course_name, region, regions, website, date } = feature.properties || {};
             const labels = Array.isArray(regions)
@@ -377,6 +382,7 @@
   </script>
 </body>
 </html>
+
 
 
 
