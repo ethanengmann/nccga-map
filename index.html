@@ -22,10 +22,10 @@
     /* Triangle overlay placement tuned for Golf_flag_icon2.png */
     .flag-tint{
       position:absolute;
-      left:47%;   /* nudge horizontally toward the pole */
-      top:14%;    /* slight vertical adjustment */
-      width:50%;  /* length of cloth */
-      height:36%; /* height of cloth */
+      left:47%;
+      top:14%;
+      width:50%;
+      height:36%;
       pointer-events:none;
     }
   </style>
@@ -38,17 +38,10 @@
     const map = L.map('map').setView([39.5, -98.35], 4);
 
     // ===== Panes & stacking order (popupPane is 700—keep below that) =====
-    map.createPane('regionPane');       // polygons etc.
-    map.getPane('regionPane').style.zIndex = 450;
-
-    map.createPane('schoolPane');       // school dots
-    map.getPane('schoolPane').style.zIndex = 650;
-
-    map.createPane('tournamentPane');   // tournaments above schools
-    map.getPane('tournamentPane').style.zIndex = 660;
-
-    map.createPane('qualifierPane');    // qualifiers above everything
-    map.getPane('qualifierPane').style.zIndex = 670;
+    map.createPane('regionPane');       map.getPane('regionPane').style.zIndex = 450; // under
+    map.createPane('schoolPane');       map.getPane('schoolPane').style.zIndex = 650; // mid
+    map.createPane('tournamentPane');   map.getPane('tournamentPane').style.zIndex = 660; // over
+    map.createPane('qualifierPane');    map.getPane('qualifierPane').style.zIndex = 670; // top
 
     // ===== Fixed region color palette (stable across reloads) =====
     const REGION_COLORS = {
@@ -75,17 +68,14 @@
     function normRegionName(str) {
       if (!str) return "";
       const s = String(str).trim();
-      if (/capitol/i.test(s)) return "Capitol Region"; // normalize common variant
+      // normalize common variant
+      if (/capitol/i.test(s)) return "Capitol Region";
       return s;
     }
-
-    // Deterministic fallback if a new region name appears
     function hashColor(name = "default") {
       let h = 0; for (let i = 0; i < name.length; i++) h = (h * 31 + name.charCodeAt(i)) | 0;
-      const hue = Math.abs(h) % 360;
-      return `hsl(${hue},70%,45%)`;
+      const hue = Math.abs(h) % 360; return `hsl(${hue},70%,45%)`;
     }
-
     function getColor(region) {
       const key = normRegionName(region);
       return REGION_COLORS[key] || hashColor(key);
@@ -109,21 +99,20 @@
       attribution: '&copy; OpenStreetMap contributors'
     }).addTo(map);
 
-    // Helper: bottom-center icon anchor for perfect pinning
+    // Helper: bottom-center icon anchor
     const bottomCenterAnchor = size => [Math.round(size[0] / 2), size[1]];
 
     // === SCHOOLS (in schoolPane) ===
     fetch('schools.geojson')
-      .then(response => response.json())
+      .then(r => r.json())
       .then(data => {
         L.geoJSON(data, {
+          pane: 'schoolPane',
           pointToLayer: (feature, latlng) => {
-            const schoolName = feature.properties.school;
-            const region = feature.properties.region;
-            const color = getColor(region);
-            const schoolUrl = `https://nccga.org/app/teams/${feature.properties.slug}`;
+            const p = feature.properties || {};
+            const color = getColor(p.region);
+            const url = `https://nccga.org/app/teams/${p.slug}`;
             return L.circleMarker(latlng, {
-              pane: 'schoolPane',
               radius: 6,
               fillColor: color,
               color: "#333",
@@ -132,8 +121,9 @@
               fillOpacity: 0.9
             }).on('click', e => {
               e.originalEvent._clickedSchool = true;
-              const popupContent = `<strong><a href="${schoolUrl}" target="_blank">${schoolName}</a></strong><br>${region}`;
-              e.target.bindPopup(popupContent).openPopup();
+              e.target.bindPopup(
+                `<strong><a href="${url}" target="_blank">${p.school}</a></strong><br>${p.region}`
+              ).openPopup();
             });
           }
         }).addTo(schoolRegionLayer);
@@ -152,8 +142,7 @@
           <svg class="flag-tint" viewBox="0 0 100 100" preserveAspectRatio="none">
             <polygon points="4,8 100,50 4,92" fill="${color}"></polygon>
           </svg>
-        </div>
-      `;
+        </div>`;
       return L.divIcon({
         html,
         className: 'flag-div',
@@ -164,51 +153,35 @@
     }
 
     // === TOURNAMENTS (in tournamentPane) ===
-    const TOURN_SIZE = [18, 24]; // visual size of flag PNG
+    const TOURN_SIZE = [18, 24]; // flag size
 
     fetch('tournaments.geojson')
-      .then(response => response.json())
+      .then(r => r.json())
       .then(tourneyData => {
-        // Group tournaments by region (for region popup lists)
+        // For region popup lists
         tourneyData.features.forEach(t => {
           const regionKey = clean(t.properties.region);
-          if (!tournamentsByRegion[regionKey]) tournamentsByRegion[regionKey] = [];
-          tournamentsByRegion[regionKey].push(t.properties);
+          (tournamentsByRegion[regionKey] ||= []).push(t.properties);
         });
 
-        // Tournament markers: color-matched DivIcon flag + hollow ring
+        // FLAGS ONLY (no circles), cloth color = region color
         L.geoJSON(tourneyData, {
+          pane: 'tournamentPane',
           pointToLayer: (feature, latlng) => {
-            const regionName = feature?.properties?.region || '';
-            const color = getColor(regionName);
-
-            const flagMarker = L.marker(latlng, {
-              icon: makeFlagIcon(color, TOURN_SIZE),
-              pane: 'tournamentPane'
-            });
-
-            // Hollow circle ring around flag, same region color
-            const ring = L.circleMarker(latlng, {
-              radius: 12,       // adjust 10–14 to taste
-              color: color,
-              weight: 3,
-              fillOpacity: 0,
-              pane: 'tournamentPane'
-            });
-
-            return L.layerGroup([ring, flagMarker]);
+            const color = getColor(feature?.properties?.region);
+            return L.marker(latlng, { icon: makeFlagIcon(color, TOURN_SIZE) });
           },
           onEachFeature: (feature, layer) => {
             const { course_name, region, website, date } = feature.properties;
-            let popupContent = `<strong>${course_name}</strong><br>${region}`;
-            if (date) popupContent += `<br><em>${date}</em>`;
-            if (website) popupContent += `<br><a href="${website}" target="_blank">Course Website</a>`;
-            layer.bindPopup(popupContent);
+            let html = `<strong>${course_name}</strong><br>${region}`;
+            if (date) html += `<br><em>${date}</em>`;
+            if (website) html += `<br><a href="${website}" target="_blank">Course Website</a>`;
+            layer.bindPopup(html);
           }
         }).addTo(tournamentLayer);
 
-        // === QUALIFIERS (in qualifierPane) ===
-        const QUAL_SIZE = [26, 26]; // adjust as needed
+        // === QUALIFIERS (unchanged) ===
+        const QUAL_SIZE = [26, 26];
         const qualifierIcon = L.icon({
           iconUrl: 'img/Qualifier_flag_icon.png',
           iconSize: QUAL_SIZE,
@@ -218,32 +191,27 @@
         });
 
         fetch('qualifiers.geojson')
-          .then(resp => resp.json())
+          .then(r => r.json())
           .then(qualData => {
             // Group qualifiers under each region they cover
             qualData.features.forEach(f => {
               const p = f.properties || {};
-              let regionList = Array.isArray(p.regions)
+              let list = Array.isArray(p.regions)
                 ? p.regions
                 : (typeof p.region === 'string'
                     ? p.region.split(',').map(s => s.trim()).filter(Boolean)
                     : []);
-              if (!regionList.length && p.region) regionList = [p.region];
-
-              regionList.forEach(rName => {
-                const key = clean(rName);
-                if (!qualifiersByRegion[key]) qualifiersByRegion[key] = [];
-                qualifiersByRegion[key].push(p);
-              });
+              if (!list.length && p.region) list = [p.region];
+              list.forEach(rn => (qualifiersByRegion[clean(rn)] ||= []).push(p));
             });
 
-            // Qualifier markers
             L.geoJSON(qualData, {
-              pointToLayer: (feature, latlng) => L.marker(latlng, { icon: qualifierIcon, pane: 'qualifierPane' }),
+              pane: 'qualifierPane',
+              pointToLayer: (feature, latlng) => L.marker(latlng, { icon: qualifierIcon }),
               onEachFeature: (feature, layer) => {
                 const { course_name, region, regions, website, date } = feature.properties || {};
-                const regionLabel = Array.isArray(regions) ? regions.join(', ') : (region || 'Qualifier');
-                let html = `<strong>${course_name || 'Qualifier'}</strong><br>${regionLabel}`;
+                const label = Array.isArray(regions) ? regions.join(', ') : (region || 'Qualifier');
+                let html = `<strong>${course_name || 'Qualifier'}</strong><br>${label}`;
                 if (date) html += `<br><em>${date}</em>`;
                 if (website) html += `<br><a href="${website}" target="_blank">Course Website</a>`;
                 layer.bindPopup(html);
@@ -252,13 +220,13 @@
 
             // === REGIONS (drawn last but in regionPane so they stay under) ===
             fetch('regions.geojson')
-              .then(response => response.json())
+              .then(r => r.json())
               .then(data => {
-                // Visible region outlines
+                // Visible region outlines (use fixed colors)
                 L.geoJSON(data, {
                   pane: 'regionPane',
-                  style: feature => ({
-                    color: getColor(feature.properties.region),
+                  style: f => ({
+                    color: getColor(f.properties.region),
                     weight: 2,
                     fillOpacity: 0.2,
                     interactive: false
@@ -275,12 +243,12 @@
 
                   let popupContent = `
                     <div style="min-width:300px;">
-                      <h4 style="margin:0 0 10px 0; text-align: center;">${regionName}</h4>
+                      <h4 style="margin:0 0 10px 0; text-align:center;">${regionName}</h4>
                       <div style="display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap;">
                         <div style="width:32%; min-width:220px;">
                           <strong>Schools:</strong>
                           <ul style="padding-left:18px; margin-top:4px;">${
-                            schools && schools.length
+                            schools?.length
                               ? schools.map(s => `<li>${s}</li>`).join('')
                               : '<li>No schools listed.</li>'
                           }</ul>
@@ -323,9 +291,9 @@
                     onEachFeature: (_, layer) => {
                       layer.on('click', e => {
                         if (!e.originalEvent._clickedSchool) {
-                          map.fitBounds(layer.getBounds()); // zoom to region
+                          map.fitBounds(layer.getBounds());
                           const center = layer.getBounds().getCenter();
-                          layer.bindPopup(popupContent).openPopup(center); // center popup
+                          layer.bindPopup(popupContent).openPopup(center);
                         }
                       });
                     }
@@ -348,5 +316,6 @@
   </script>
 </body>
 </html>
+
 
 
