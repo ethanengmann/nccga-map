@@ -13,6 +13,21 @@
     .qualifier-icon {
       filter: drop-shadow(0 0 2px #fff) drop-shadow(0 0 1.5px #000);
     }
+
+    /* Colorable tournament flag: PNG base + SVG triangle overlay */
+    .leaflet-div-icon.flag-div { background: transparent; border: 0; }
+    .flag-wrap { position: relative; width: 18px; height: 24px; }
+    .flag-wrap img { width: 100%; height: 100%; display: block; }
+
+    /* Triangle overlay placement tuned for Golf_flag_icon2.png */
+    .flag-tint{
+      position:absolute;
+      left:47%;   /* nudge horizontally toward the pole */
+      top:14%;    /* slight vertical adjustment */
+      width:50%;  /* length of cloth */
+      height:36%; /* height of cloth */
+      pointer-events:none;
+    }
   </style>
 </head>
 <body>
@@ -35,15 +50,48 @@
     map.createPane('qualifierPane');    // qualifiers above everything
     map.getPane('qualifierPane').style.zIndex = 670;
 
-    const regionColors = {};
-    const getColor = region => {
-      if (!regionColors[region]) {
-        regionColors[region] = `hsl(${Math.random() * 360}, 70%, 70%)`;
-      }
-      return regionColors[region];
+    // ===== Fixed region color palette (stable across reloads) =====
+    const REGION_COLORS = {
+      "Atlantic Region":            "#1f78b4",
+      "Northeast Region":           "#33a02c",
+      "Capitol Region":             "#e31a1c",
+      "Colonial Region":            "#ff7f00",
+      "Carolina Region":            "#6a3d9a",
+      "Desert Region":              "#b15928",
+      "Mountain Region":            "#a6cee3",
+      "Pacific Region":             "#b2df8a",
+      "Northwest Region":           "#fb9a99",
+      "Ohio Valley Region":         "#fdbf6f",
+      "Midwest Region":             "#cab2d6",
+      "New England Region":         "#80cdc1",
+      "North Florida Region":       "#01665e",
+      "South Florida Region":       "#8e0152",
+      "Texas Region":               "#5e3c99",
+      "Northern California Region": "#c51b7d",
+      "Southern California Region": "#35978f",
+      "Indiana Region":             "#80b1d3"
     };
 
-    // Normalize region keys
+    function normRegionName(str) {
+      if (!str) return "";
+      const s = String(str).trim();
+      if (/capitol/i.test(s)) return "Capitol Region"; // normalize common variant
+      return s;
+    }
+
+    // Deterministic fallback if a new region name appears
+    function hashColor(name = "default") {
+      let h = 0; for (let i = 0; i < name.length; i++) h = (h * 31 + name.charCodeAt(i)) | 0;
+      const hue = Math.abs(h) % 360;
+      return `hsl(${hue},70%,45%)`;
+    }
+
+    function getColor(region) {
+      const key = normRegionName(region);
+      return REGION_COLORS[key] || hashColor(key);
+    }
+
+    // Normalize keys used for grouping (schools/tourneys/quals)
     const clean = str => str?.toLowerCase()
       .replace(/region/g, '')
       .replace(/capitol/g, 'capital')
@@ -95,48 +143,60 @@
     let tournamentsByRegion = {};
     let qualifiersByRegion  = {};
 
+    // === Tournament flag builder (PNG + colored triangle overlay) ===
+    function makeFlagIcon(color, size = [18, 24]) {
+      const [w, h] = size;
+      const html = `
+        <div class="flag-wrap" style="width:${w}px;height:${h}px">
+          <img src="img/Golf_flag_icon2.png" alt="flag">
+          <svg class="flag-tint" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <polygon points="4,8 100,50 4,92" fill="${color}"></polygon>
+          </svg>
+        </div>
+      `;
+      return L.divIcon({
+        html,
+        className: 'flag-div',
+        iconSize: [w, h],
+        iconAnchor: [Math.round(w/2), h],
+        popupAnchor: [0, -Math.round(h*0.8)]
+      });
+    }
+
     // === TOURNAMENTS (in tournamentPane) ===
-    const TOURN_SIZE = [18, 24]; // PNG size
-    const flagIcon = L.icon({
-      iconUrl: 'img/Golf_flag_icon2.png',
-      iconSize: TOURN_SIZE,
-      iconAnchor: bottomCenterAnchor(TOURN_SIZE), // bottom-center
-      popupAnchor: [0, -Math.round(TOURN_SIZE[1] * 0.8)]
-    });
+    const TOURN_SIZE = [18, 24]; // visual size of flag PNG
 
     fetch('tournaments.geojson')
       .then(response => response.json())
       .then(tourneyData => {
-        // Group tournaments by region
+        // Group tournaments by region (for region popup lists)
         tourneyData.features.forEach(t => {
           const regionKey = clean(t.properties.region);
           if (!tournamentsByRegion[regionKey]) tournamentsByRegion[regionKey] = [];
           tournamentsByRegion[regionKey].push(t.properties);
         });
 
-        // Tournament markers: PNG flag + hollow circle in region color
+        // Tournament markers: color-matched DivIcon flag + hollow ring
         L.geoJSON(tourneyData, {
           pointToLayer: (feature, latlng) => {
             const regionName = feature?.properties?.region || '';
             const color = getColor(regionName);
 
-            // base flag marker
             const flagMarker = L.marker(latlng, {
-              icon: flagIcon,
+              icon: makeFlagIcon(color, TOURN_SIZE),
               pane: 'tournamentPane'
             });
 
-            // hollow circle around the flag
-            const circle = L.circleMarker(latlng, {
-              radius: 12,          // adjust to taste (10–14)
-              color: color,        // region color
+            // Hollow circle ring around flag, same region color
+            const ring = L.circleMarker(latlng, {
+              radius: 12,       // adjust 10–14 to taste
+              color: color,
               weight: 3,
-              fillOpacity: 0,      // hollow
+              fillOpacity: 0,
               pane: 'tournamentPane'
             });
 
-            // return a group so popups/handlers attach once
-            return L.layerGroup([circle, flagMarker]);
+            return L.layerGroup([ring, flagMarker]);
           },
           onEachFeature: (feature, layer) => {
             const { course_name, region, website, date } = feature.properties;
@@ -194,7 +254,7 @@
             fetch('regions.geojson')
               .then(response => response.json())
               .then(data => {
-                // Visible region fill (non-interactive)
+                // Visible region outlines
                 L.geoJSON(data, {
                   pane: 'regionPane',
                   style: feature => ({
@@ -288,4 +348,5 @@
   </script>
 </body>
 </html>
+
 
