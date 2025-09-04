@@ -529,16 +529,15 @@
     {
       "type": "Feature",
       "properties": {
-        "course_name": "Warren Golf Course",
+        "course_name": "Coyote Crossing",
         "region": "Indiana",
-        "date": "TBD",
-        "website": "https://warrengolfcourse.com"
+        "date": "April 11-12, 2026",
+        "website": "https://www.coyotecrossinggolf.com/"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -86.2506523,
-          41.7030448
+          -86.90141223257473, 40.49994555493106
         ]
       }
     },
