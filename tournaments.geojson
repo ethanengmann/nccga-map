@@ -1299,15 +1299,15 @@
      {
       "type": "Feature",
       "properties": {
-        "course_name": "Mercer Oaks",
+        "course_name": "Heron Glen",
         "region": "Philadelphia",
         "date": "October 25-26, 2025",
-        "website": "https://golfmercercounty.com"
+        "website": "https://www.heronglen.com/"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -74.665436, 40.2759418
+          -74.85164735789547, 40.46908185399672
         ]
       }
     },
