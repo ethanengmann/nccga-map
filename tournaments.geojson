@@ -451,6 +451,52 @@
     {
       "type": "Feature",
       "properties": {
+        "course_name": "Oak Wing Golf Club",
+        "region": "Gulf",
+        "date": "October 25-26, 2025",
+        "website": "https://www.oakwinggolf.com/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -92.52712633305737,
+          31.31946592652887
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Santa Maria Golf Course",
+        "region": "Gulf",
+        "date": "February 21-22, 2026",
+        "website": "https://golf.brec.org/courses/santamaria/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+            -91.00866082525465,30.338774340976816
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Beaver Creek",
+        "region": "Gulf",
+        "date": "October 11-12, 2025",
+        "website": "https://golf.brec.org/courses/beaver-creek/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+            -91.23568618567566, 30.682010460947442
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "course_name": "Harrison Hills Golf Club",
         "region": "Indiana",
         "date": "October 25-26, 2025",
