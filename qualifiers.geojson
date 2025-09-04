@@ -57,7 +57,7 @@
       "type": "Feature",
       "properties": {
         "course_name": "Veenker Memorial Golf Course",
-        "regions": ["Great Lakes Region", "Central Region", "Twin Cities Region", "North Region"],
+        "regions": ["Central Region", "Twin Cities Region", "North Region"],
         "website": "https://veenkergolf.com",
         "date": "October 25-26, 2025"
       },
@@ -70,7 +70,7 @@
       "type": "Feature",
       "properties": {
         "course_name": "Brick Boilermaker Golf Complex",
-        "regions": ["Ohio Valley Region", "Midwest Region", "Indiana Region"],
+        "regions": ["Ohio Valley Region", "Midwest Region", "Indiana Region", "Great Lakes Region"],
         "website": "https://purduegolf.com",
         "date": "November 1-2, 2025"
       },
