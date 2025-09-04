@@ -124,6 +124,21 @@
           -97.3899727722734, 32.02929651170619
         ]
       }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "The Refuge",
+        "region": ["Texas Region"],
+        "date": "March 28-29, 2026",
+        "website": "https://www.refugegolfms.com/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.09657607950881, 32.31579697218615
+        ]
+      }
     }
   ]
 }
