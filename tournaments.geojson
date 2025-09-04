@@ -656,17 +656,16 @@
     {
       "type": "Feature",
       "properties": {
-        "course_name": "Gull Lake View Golf Resort",
+        "course_name": "Timber Ridge Golf Course",
         "region": "Midwest",
-        "date": "October 25-26, 2025",
-        "website": "https://gulllakeview.com/?nck=google"
+        "date": "April 11-12, 2026",
+        "website": "https://eagleeyegolfclub.com/golf-courses/timber-ridge-championship-golf-course/"
 
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -83.38750,
-          42.36611
+          -84.4325423060238, 42.778508504361945
         ]
       }
     },
@@ -699,6 +698,36 @@
         "coordinates": [
           -104.859550,
           39.006023
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Antler Creek",
+        "region": "Mountain",
+        "date": "October 18-19, 2025",
+        "website": "https://antlercreekgolf.com/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+        -104.59789622485953,  38.97265905543859
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Highland Meadows",
+        "region": "Mountain",
+        "date": "October 4-5, 2025",
+        "website": "https://highlandmeadowsgolfcourse.com/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+        -104.97525625783962, 40.45678335383121
         ]
       }
     },
