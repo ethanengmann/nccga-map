@@ -846,6 +846,21 @@
     {
       "type": "Feature",
       "properties": {
+        "course_name": "Sanford Country Club",
+        "region": "Northern New England",
+        "date": "October 11-12, 2025",
+        "website": "https://sanfordcountryclub.com/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -70.7358022580365, 43.37649766067527
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "course_name": "Muskego Lakes Golf Club",
         "region": "North",
         "date": "October 11-12, 2025",
