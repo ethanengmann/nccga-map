@@ -371,22 +371,6 @@
     {
       "type": "Feature",
       "properties": {
-        "course_name": "Eagle Harbor",
-        "region": "Florida",
-        "date": "February 21-22, 2026",
-        "website": "https://www.eagleharborgc.com/?utm_source=GMB&utm_medium=organic&utm_campaign=LocalSearch"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -81.7185715,
-          30.1090581
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "course_name": "Atkins Golf Club",
         "region": "Great Lakes",
         "date": "October 18-19, 2025",

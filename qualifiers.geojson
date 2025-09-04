@@ -92,6 +92,22 @@
         "coordinates": [-121.805574,
           37.964478]
       }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Eagle Harbor",
+        "region": "Florida",
+        "date": "February 21-22, 2026",
+        "website": "https://www.eagleharborgc.com/?utm_source=GMB&utm_medium=organic&utm_campaign=LocalSearch"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.7185715,
+          30.1090581
+        ]
+      }
     }
   ]
 }
