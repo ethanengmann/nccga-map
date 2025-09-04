@@ -307,6 +307,22 @@
     {
       "type": "Feature",
       "properties": {
+        "course_name": "Ken Mcdonald",
+        "region": "Desert",
+        "date": "March 28-29, 2026",
+        "website": "https://www.playkenmcdonald.com/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          33.3563657,-111.9314012
+        ]
+      }
+    },
+    
+    {
+      "type": "Feature",
+      "properties": {
         "course_name": "Fairwinds",
         "region": "Florida",
         "date": "October 18-19, 2025",
