@@ -403,6 +403,22 @@
     {
       "type": "Feature",
       "properties": {
+        "course_name": "Weibring",
+        "region": "Great Lakes",
+        "date": "October 25-26, 2025",
+        "website": "https://isugolf.com/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -89.012779,
+          40.525639
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "course_name": "Oakwood Park",
         "region": "Great Lakes",
         "date": "October 4-5, 2025",
