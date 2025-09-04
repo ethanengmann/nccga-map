@@ -84,6 +84,22 @@
     {
       "type": "Feature",
       "properties": {
+        "course_name": "Rattlewood Golf Course",
+        "region": "Capitol",
+        "date": "October 25-26, 2025",
+        "website": "https://www.mcggolf.com/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.1547,
+          39.3747
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "course_name": "Augustine Golf Club",
         "region": "Capitol",
         "date": "October 11-12, 2025",
