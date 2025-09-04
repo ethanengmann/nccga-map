@@ -866,7 +866,8 @@
           "Grand Valley State University",
           "Michigan State University",
           "Michigan",
-          "Oakland University Club Golf (A)"
+          "Oakland University Club Golf (A)",
+          "Bowling Green State University"
         ]
       },
       "geometry": {
@@ -1602,7 +1603,6 @@
           "University of Dayton",
           "Xavier University",
           "University of Kentucky",
-          "Bowling Green State University",
           "Ohio University",
           "University of Cincinnati",
           "Ohio State University"
@@ -1641,20 +1641,16 @@
               39.54470570684552
             ],
             [
-              -83.7807952846776,
-              41.450516736945055
+              -84.35,
+              39.90
             ],
             [
-              -83.7168304118155,
-              41.50971426029244
+              -83.40,
+              40.35
             ],
             [
-              -83.6162744083411,
-              41.520622277024096
-            ],
-            [
-              -83.53165455628401,
-              41.46521491919506
+              -82.75,
+              40.30
             ],
             [
               -81.98189645628402,
