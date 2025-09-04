@@ -109,6 +109,21 @@
           30.1090581
         ]
       }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "White Bluff",
+        "region": ["Texas Region"],
+        "date": "March 28-29, 2026",
+        "website": "https://whitebluffresort.com/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.3899727722734, 32.02929651170619
+        ]
+      }
     }
   ]
 }
