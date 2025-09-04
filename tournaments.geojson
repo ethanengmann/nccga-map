@@ -1206,17 +1206,15 @@
     {
       "type": "Feature",
       "properties": {
-        "course_name": "Lake Chabot",
-        "region": "Pacific",
-        "date": "November 1-2, 2025",
-        "website": "http://www.lakechabotgolf.com"
+        "course_name": "Lone Tree GC",
+        "regions": "Pacific Region",
+        "website": "https://www.lonetreegolfcourse.com",
+        "date": "November 1-2, 2025"
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          -122.1219593,
-          37.7419017
-        ]
+        "coordinates": [-121.805574,
+          37.964478]
       }
     },
     {
@@ -1237,15 +1235,16 @@
     {
       "type": "Feature",
       "properties": {
-        "course_name": "Paradise Valley",
+        "course_name": "Lake Chabot",
         "region": "Pacific",
-        "date": "February 21-22, 2026",
-        "website": "https://fairfieldgolf.com"
+        "date": "April 11-12, 2026",
+        "website": "http://www.lakechabotgolf.com"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -122.0242747, 38.2964703
+          -122.1219593,
+          37.7419017
         ]
       }
     },

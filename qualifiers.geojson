@@ -82,22 +82,23 @@
     {
       "type": "Feature",
       "properties": {
-        "course_name": "Lone Tree GC",
-        "regions": ["Pacific Region", "Northwest Region"],
-        "website": "https://www.lonetreegolfcourse.com",
-        "date": "November 8-9, 2025"
+        "course_name": "Paradise Valley",
+        "region": ["Pacific Region", "Northwest Region"],
+        "date": "February 21-22, 2026",
+        "website": "https://fairfieldgolf.com"
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-121.805574,
-          37.964478]
+        "coordinates": [
+          -122.0242747, 38.2964703
+        ]
       }
     },
     {
       "type": "Feature",
       "properties": {
         "course_name": "Eagle Harbor",
-        "region": "Florida",
+        "region": ["Florida Region"],
         "date": "February 21-22, 2026",
         "website": "https://www.eagleharborgc.com/?utm_source=GMB&utm_medium=organic&utm_campaign=LocalSearch"
       },
