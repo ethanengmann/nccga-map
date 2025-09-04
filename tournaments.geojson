@@ -1033,16 +1033,15 @@
     {
       "type": "Feature",
       "properties": {
-        "course_name": "Ravenwood GC",
+        "course_name": "Victor Hills",
         "region": "Northeast",
-        "date": "TBD",
-        "website": "https://www.ravenwoodgolf.com"
+        "date": "April 11-12, 2026",
+        "website": "https://victorhills.com/"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -77.392545,
-          42.991338
+          -77.39640219594884, 42.96368182181912
         ]
       }
     },
