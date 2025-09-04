@@ -1096,6 +1096,21 @@
     {
       "type": "Feature",
       "properties": {
+        "course_name": "Prairie Falls",
+        "region": "Northwest",
+        "date": "October 11-12, 2025",
+        "website": "https://www.prairiefallsgolfclub.com/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+           -116.94679128472545, 47.738122540219436
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "course_name": "Beckett Ridge",
         "region": "Ohio Valley",
         "date": "October 25-26, 2025",
