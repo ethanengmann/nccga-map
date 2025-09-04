@@ -315,7 +315,7 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          33.3563657,-111.9314012
+          -111.9314012, 33.3563657
         ]
       }
     },
@@ -403,7 +403,7 @@
     {
       "type": "Feature",
       "properties": {
-        "course_name": "Weibring",
+        "course_name": "Weibring Golf Club",
         "region": "Great Lakes",
         "date": "October 25-26, 2025",
         "website": "https://isugolf.com/"
