@@ -920,22 +920,6 @@
         ]
       }
     },
-    {
-      "type": "Feature",
-      "properties": {
-        "course_name": "Grandover Resort",
-        "region": "North Carolina",
-        "date": "March 28-29, 2026",
-        "website": "https://grandoverresort.com/golf/"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -79.882725,
-          35.992013
-        ]
-      }
-    },
      {
       "type": "Feature",
       "properties": {

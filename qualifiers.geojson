@@ -139,6 +139,22 @@
           -90.09657607950881, 32.31579697218615
         ]
       }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Grandover Resort",
+        "region": ["Texas Region", "Southeast Region", "South Region"],
+        "date": "March 28-29, 2026",
+        "website": "https://grandoverresort.com/golf/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.882725,
+          35.992013
+        ]
+      }
     }
   ]
 }
