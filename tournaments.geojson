@@ -672,6 +672,22 @@
     {
       "type": "Feature",
       "properties": {
+        "course_name": "Hawk Hollow Golf Course",
+        "region": "Midwest",
+        "date": "October 25-26, 2025",
+        "website": "https://eagleeyegolfclub.com/golf-courses/hawk-hollow-championship-golf-course/"
+
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.47344718650754, 42.79424908884477 
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "course_name": "The Broadlands Golf Course",
         "region": "Mountain",
         "date": "Nov 8-9, 2025",
