@@ -16,6 +16,21 @@
          39.22801182399317
         ]
       }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Bear's Best",
+        "region": "South",
+        "date": "October 24-25, 2026",
+        "website": "https://www.invitedclubs.com/clubs/bear-s-best-atlanta?utm_referrer=https%3A%2F%2Fwww.google.com%2F"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-84.10626801144917, 34.08539058665711
+         
+        ]
+      }
     }
   ]
 }
