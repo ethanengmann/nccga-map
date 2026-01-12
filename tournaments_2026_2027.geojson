@@ -1,4 +1,21 @@
 {
   "type": "FeatureCollection",
-  "features": []
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Hickory Woods",
+        "region": "Ohio Valley",
+        "date": "October 24-25, 2026",
+        "website": "https://www.hickorywoods.com/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+         -84.22745264745778,
+         39.22801182399317
+        ]
+      }
+    }
+  ]
 }
