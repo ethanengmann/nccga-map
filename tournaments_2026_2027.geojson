@@ -31,6 +31,21 @@
          
         ]
       }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "3 Lakes",
+        "region": "Atlantic",
+        "date": "October 17-18, 2026",
+        "website": "https://3lakesgolf.com/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-79.80499265255136, 40.47780352506303
+         
+        ]
+      }
     }
   ]
 }
