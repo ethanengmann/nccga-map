@@ -123,9 +123,13 @@
     const PREFER_TOURNAMENT_LABEL = true;
 
     function hashColor(name = "default") {
-      let h = 0; for (let i = 0; i < name.length; i++) h = (h * 31 + name.charCodeAt(i)) | 0;
-      const hue = Math.abs(h) % 360; return `hsl(${hue},70%,45%)`;
-    }
+  name = String(name ?? "default"); // ✅ force string so .length and .charCodeAt work
+  let h = 0;
+  for (let i = 0; i < name.length; i++) h = (h * 31 + name.charCodeAt(i)) | 0;
+  const hue = Math.abs(h) % 360;
+  return `hsl(${hue},70%,45%)`;
+}
+
     function getRegionColorByName(name) {
       const key = clean(name);
       return COLOR_BY_KEY[key] || hashColor(name || "");
@@ -151,6 +155,17 @@
 
     const bottomCenterAnchor = size => [Math.round(size[0] / 2), size[1]];
     const loadJSON = (url) => fetch(url).then(r => { if (!r.ok) throw new Error(url+': '+r.status); return r.json(); });
+
+    // ===== Season State =====
+    // Seasons are NCCGA "academic" seasons (e.g., 2025/2026)
+    const ALL_SEASONS = ["2025/2026", "2026/2027"];
+    let ACTIVE_SEASON = "2025/2026"; // single-select default
+
+    function seasonToKey(season){
+      // "2026/2027" -> "2026_2027"
+      return String(season || "").replace("/", "_");
+    }
+
 
     // === SVG tournament flag (cloth colorable) ===
     function makeSvgFlagIcon(color, size = [18, 24]) {
@@ -178,9 +193,7 @@
     Promise.all([
       loadJSON('regions.geojson'),
       loadJSON('schools.geojson').catch(() => null),
-      loadJSON('tournaments.geojson').catch(() => null),
-      loadJSON('qualifiers.geojson').catch(() => null),
-    ]).then(([regions, schools, tournaments, qualifiers]) => {
+    ]).then(([regions, schools]) => {
 
       // --- Convert non-polygon region geometries into thin polygons for hit-testing ---
       function toPolygonFeature(feat) {
@@ -284,55 +297,9 @@
         }).addTo(schoolRegionLayer);
       }
 
-      // --- Storage for popup lists ---
-      const tournamentsByRegionKey = {};
-      const qualifiersByRegionKey  = {};
-
-      // --- Tournaments (middle layer; label-preferred coloring) ---
-      const TOURN_SIZE = [18, 24];
-
-      if (tournaments) {
-        L.geoJSON(tournaments, {
-          pane: 'tournamentPane',
-          pointToLayer: (feature, latlng) => {
-            const p = feature.properties || {};
-            const { color, key } = colorAndKeyForPointOrLabel(latlng.lat, latlng.lng, p.region);
-
-            // keep for region popups
-            (tournamentsByRegionKey[key] ||= []).push({ ...p });
-
-            const marker = L.marker(latlng, {
-              icon: makeSvgFlagIcon(color, TOURN_SIZE),
-              pane: 'tournamentPane',
-              zIndexOffset: 0
-            });
-
-            // bind popup
-            const html = (() => {
-              let s = `<strong>${p.course_name || 'Tournament'}</strong>`;
-              if (p.region) s += `<br>${p.region}`;
-              if (p.date)   s += `<br><em>${p.date}</em>`;
-              if (p.website) s += `<br><a href="${p.website}" target="_blank">Course Website</a>`;
-              return s;
-            })();
-            marker.bindPopup(html);
-
-            // Add to search
-            addToIndex({
-              type: 'Tournament',
-              title: p.course_name || 'Tournament',
-              sub: p.region || '',
-              terms: `${p.course_name || ''} ${p.region || ''}`.toLowerCase(),
-              select: () => {
-                map.setView(marker.getLatLng(), Math.max(map.getZoom(), 9), { animate: true });
-                marker.openPopup();
-              }
-            });
-
-            return marker;
-          }
-        }).addTo(tournamentLayer);
-      }
+      // --- Storage for popup lists (rebuilt when seasons change) ---
+      let tournamentsByRegionKey = {};
+      let qualifiersByRegionKey  = {};
 
       // --- Qualifiers (top layer; PNG icon) ---
       const QUAL_SIZE = [26, 26];
@@ -344,111 +311,346 @@
         className: 'qualifier-icon'
       });
 
-      if (qualifiers) {
-        L.geoJSON(qualifiers, {
-          pane: 'qualifierPane',
-          pointToLayer: (feature, latlng) => {
-            const p = feature.properties || {};
+      // --- Season-aware loader for Tournaments + Qualifiers (schools & regions stay static) ---
+      async function loadSeasonalCompetitions(){
+        // Clear layers
+        tournamentLayer.clearLayers();
+        qualifierLayer.clearLayers();
 
-            const marker = L.marker(latlng, {
-              icon: qualifierIcon,
-              pane: 'qualifierPane',
-              zIndexOffset: 100
-            });
+        // Reset popup lists for regions
+        tournamentsByRegionKey = {};
+        qualifiersByRegionKey  = {};
+        // If no season selected, leave comps blank
+        if (!ACTIVE_SEASON) return;
 
-            const label = Array.isArray(p.regions) ? p.regions.join(', ') : (p.region || 'Qualifier');
-            let html = `<strong>${p.course_name || 'Qualifier'}</strong><br>${label}`;
-            if (p.date) html += `<br><em>${p.date}</em>`;
-            if (p.website) html += `<br><a href="${p.website}" target="_blank">Course Website</a>`;
-            marker.bindPopup(html);
+        const season = ACTIVE_SEASON;
+        const key = seasonToKey(season);
+        const TOURN_SIZE = [18, 24];
 
-            // Index by given region labels (if any)
-            const keys = Array.isArray(p.regions)
-              ? p.regions
-              : (typeof p.region === 'string' ? p.region.split(',').map(s => s.trim()).filter(Boolean) : []);
-            const keyList = keys.length ? keys.map(l => clean(l)) : [clean(p.region || '')];
-            keyList.forEach(k => (qualifiersByRegionKey[k] ||= []).push(p));
+        const [tournaments, qualifiers] = await Promise.all([
+          loadJSON(`tournaments_${key}.geojson`).catch(() => null),
+          loadJSON(`qualifiers_${key}.geojson`).catch(() => null),
+        ]);
 
-            // Add to search
-            addToIndex({
-              type: 'Qualifier',
-              title: p.course_name || 'Qualifier',
-              sub: label,
-              terms: `${p.course_name || ''} ${label}`.toLowerCase(),
-              select: () => {
-                map.setView(marker.getLatLng(), Math.max(map.getZoom(), 9), { animate: true });
-                marker.openPopup();
+          // --- Tournaments ---
+          if (tournaments) {
+            L.geoJSON(tournaments, {
+              pane: 'tournamentPane',
+              pointToLayer: (feature, latlng) => {
+                const p = feature.properties || {};
+                const { color, name: polyName, key: regionKey } =
+  colorAndKeyForPointOrLabel(latlng.lat, latlng.lng, p.region);
+
+// Use the SAME key the popup uses: clean(region polygon name)
+const popupKey = clean(polyName || p.region || regionKey);
+(tournamentsByRegionKey[popupKey] ||= []).push({ ...p, season });
+
+                const marker = L.marker(latlng, {
+                  icon: makeSvgFlagIcon(color, TOURN_SIZE),
+                  pane: 'tournamentPane',
+                  zIndexOffset: 0
+                });
+
+                // bind popup
+                const html = (() => {
+                  let s = `<strong>${p.course_name || 'Tournament'}</strong>`;
+                  if (p.region) s += `<br>${p.region}`;
+                  if (p.date)   s += `<br><em>${p.date}</em>`;
+                  s += `<br><span style="font-size:12px;color:#666;">Season: ${season}</span>`;
+                  if (p.website) s += `<br><a href="${p.website}" target="_blank">Course Website</a>`;
+                  return s;
+                })();
+                marker.bindPopup(html);
+                return marker;
               }
-            });
-
-            return marker;
+            }).addTo(tournamentLayer);
           }
-        }).addTo(qualifierLayer);
+
+          // --- Qualifiers ---
+          if (qualifiers) {
+            L.geoJSON(qualifiers, {
+              pane: 'qualifierPane',
+              pointToLayer: (feature, latlng) => {
+                const p = feature.properties || {};
+
+                const marker = L.marker(latlng, {
+                  icon: qualifierIcon,
+                  pane: 'qualifierPane',
+                  zIndexOffset: 100
+                });
+
+                const label = Array.isArray(p.regions) ? p.regions.join(', ') : (p.region || 'Qualifier');
+                let html = `<strong>${p.course_name || 'Qualifier'}</strong><br>${label}`;
+                if (p.date) html += `<br><em>${p.date}</em>`;
+                if (p.website) html += `<br><a href="${p.website}" target="_blank">Course Website</a>`;
+                marker.bindPopup(html);
+
+                // Index by given region labels (if any)
+                // Bucket for region popups using the SAME key the region polygon popup uses
+// ---- Bucket qualifiers for ALL regions they belong to ----
+let regionLabels = [];
+
+// Prefer explicit regions array
+if (Array.isArray(p.regions) && p.regions.length) {
+  regionLabels = p.regions;
+} 
+// Fall back to comma-separated string
+else if (typeof p.region === "string" && p.region.trim()) {
+  regionLabels = p.region.split(",").map(s => s.trim()).filter(Boolean);
+}
+
+// Final fallback: infer by location
+if (!regionLabels.length) {
+  const match = colorAndKeyForPointOrLabel(
+    latlng.lat,
+    latlng.lng,
+    p.region || ''
+  );
+  const fallbackKey = clean(match.key || match.name || p.region || '');
+  if (fallbackKey) regionLabels = [fallbackKey];
+}
+
+// Add qualifier to EVERY region bucket
+regionLabels
+  .map(lbl => clean(lbl))
+  .filter(Boolean)
+  .forEach(rk => {
+    (qualifiersByRegionKey[rk] ||= []).push({ ...p, season });
+  });
+
+return marker;
+
+
+              }
+            }).addTo(qualifierLayer);
+          }
+      }
+      window.loadSeasonalCompetitions = loadSeasonalCompetitions;
+
+
+      /***********************
+       * GLOBAL SEARCH INDEX (ALL SEASONS)
+       * - Search always includes tournaments + qualifiers from every season
+       * - Clicking a result auto-switches the season + reloads map + opens popup
+       ************************/
+
+      // Dedup so we don't re-add the same search items
+      const compIndexKeys = new Set();
+
+      function compKey(type, season, p, latlng){
+        const name = String((p && (p.course_name || p.course)) || "").toLowerCase().trim();
+        const reg  = String((p && (p.region || (Array.isArray(p.regions) ? p.regions.join(",") : ""))) || "").toLowerCase().trim();
+        return `${type}|${season}|${name}|${reg}|${latlng.lat.toFixed(6)}|${latlng.lng.toFixed(6)}`;
       }
 
+      // Find a marker in a layer group by exact lat/lng match
+      function findMarkerByLatLng(layerGroup, latlng){
+        let found = null;
+        layerGroup.eachLayer(layer => {
+          if (!layer || !layer.getLatLng) return;
+          const ll = layer.getLatLng();
+          if (Math.abs(ll.lat - latlng.lat) < 1e-9 && Math.abs(ll.lng - latlng.lng) < 1e-9) {
+            found = layer;
+          }
+        });
+        return found;
+      }
+
+      async function buildAllSeasonCompetitionIndex(){
+        for (const season of ALL_SEASONS){
+          const key = seasonToKey(season);
+
+          const [tournaments, qualifiers] = await Promise.all([
+            loadJSON(`tournaments_${key}.geojson`).catch(() => null),
+            loadJSON(`qualifiers_${key}.geojson`).catch(() => null),
+          ]);
+
+          // ---- TOURNAMENTS (all seasons) ----
+          if (tournaments && tournaments.features && tournaments.features.length){
+            for (const f of tournaments.features){
+              if (!f || !f.geometry || f.geometry.type !== "Point") continue;
+              const coords = f.geometry.coordinates || [];
+              const lng = coords[0], lat = coords[1];
+              if (typeof lat !== "number" || typeof lng !== "number") continue;
+
+              const latlng = L.latLng(lat, lng);
+              const p = f.properties || {};
+
+              const u = compKey("Tournament", season, p, latlng);
+              if (compIndexKeys.has(u)) continue;
+              compIndexKeys.add(u);
+
+              addToIndex({
+                type: "Tournament",
+                title: p.course_name || "Tournament",
+                sub: `${p.region || ""}${p.region ? " • " : ""}${season}`,
+                terms: `${p.course_name || ""} ${p.region || ""}`.toLowerCase(),
+                select: async () => {
+                  if (ACTIVE_SEASON !== season) {
+                    setActiveSeason(season);
+                    if (typeof window.loadSeasonalCompetitions === "function") {
+                      await window.loadSeasonalCompetitions();
+                    }
+                  }
+                  map.setView(latlng, Math.max(map.getZoom(), 9), { animate: true });
+                  const m = findMarkerByLatLng(tournamentLayer, latlng);
+                  if (m && m.openPopup) m.openPopup();
+                }
+              });
+            }
+          }
+
+          // ---- QUALIFIERS (all seasons) ----
+          if (qualifiers && qualifiers.features && qualifiers.features.length){
+            for (const f of qualifiers.features){
+              if (!f || !f.geometry || f.geometry.type !== "Point") continue;
+              const coords = f.geometry.coordinates || [];
+              const lng = coords[0], lat = coords[1];
+              if (typeof lat !== "number" || typeof lng !== "number") continue;
+
+              const latlng = L.latLng(lat, lng);
+              const p = f.properties || {};
+              const label = Array.isArray(p.regions) ? p.regions.join(", ") : (p.region || "");
+
+              const u = compKey("Qualifier", season, p, latlng);
+              if (compIndexKeys.has(u)) continue;
+              compIndexKeys.add(u);
+
+              addToIndex({
+                type: "Qualifier",
+                title: p.course_name || "Qualifier",
+                sub: `${label || ""}${label ? " • " : ""}${season}`,
+                terms: `${p.course_name || ""} ${label}`.toLowerCase(),
+                select: async () => {
+                  if (ACTIVE_SEASON !== season) {
+                    setActiveSeason(season);
+                    if (typeof window.loadSeasonalCompetitions === "function") {
+                      await window.loadSeasonalCompetitions();
+                    }
+                  }
+                  map.setView(latlng, Math.max(map.getZoom(), 9), { animate: true });
+                  const m = findMarkerByLatLng(qualifierLayer, latlng);
+                  if (m && m.openPopup) m.openPopup();
+                }
+              });
+            }
+          }
+        }
+      }
+
+      // Build global competition search once
+      buildAllSeasonCompetitionIndex();
+
+      // Build region popup content dynamically so it always reflects the ACTIVE_SEASON
+      function buildRegionPopupContent(regionKey, regionName, schoolsList){
+  const key = regionKey; // already cleaned
+  const schools = Array.isArray(schoolsList) ? schoolsList : [];
+
+  const tList = (tournamentsByRegionKey[key] || []).slice();
+  const qList = (qualifiersByRegionKey[key] || []).slice();
+
+  // Sort tournaments by date (earliest first)
+  function parseDateRangeStart(s){
+    if (!s) return Infinity;
+
+    // Get the first "Month Day" and the 4-digit year from strings like:
+    // "October 11-12, 2025" or "March 28-29, 2026"
+    const m = String(s).match(/[A-Za-z]+\s+\d{1,2}/);
+    const y = String(s).match(/\b(20\d{2})\b/);
+    if (!m || !y) return Infinity;
+
+    const base = `${m[0]}, ${y[1]}`;
+    const d = new Date(base);
+    return isNaN(d.getTime()) ? Infinity : d.getTime();
+  }
+
+  tList.sort((a,b) => parseDateRangeStart(a.date) - parseDateRangeStart(b.date));
+
+  const schoolsHtml = (schools.length
+    ? schools.map(s => `<li>${s}</li>`).join('')
+    : '<li>No schools listed.</li>');
+
+  const tournamentsHtml = (tList.length
+    ? tList.map(t => {
+        let html = `<li><strong>${t.course_name || 'Tournament'}</strong>`;
+        if (t.date) html += `<br><em>${t.date}</em>`;
+        if (t.website) html += `<br><a href="${t.website}" target="_blank">Course Website</a>`;
+        html += `</li>`;
+        return html;
+      }).join('')
+    : '<li>No tournaments scheduled.</li>');
+
+  // No need to show "Season:" per item (header already shows active season)
+  const qualifiersHtml = (qList.length
+    ? qList.map(q => {
+        let html = `<li><strong>${q.course_name || q.course || 'Qualifier'}</strong>`;
+        if (q.date) html += `<br><em>${q.date}</em>`;
+        if (q.website) html += `<br><a href="${q.website}" target="_blank">Course Website</a>`;
+        html += `</li>`;
+        return html;
+      }).join('')
+    : '<li>No qualifiers scheduled.</li>');
+
+  const seasonsLine = ACTIVE_SEASON ? ACTIVE_SEASON : 'None';
+
+  return `
+    <div style="
+      width: 260px;
+      max-height: 45vh;
+      overflow-y: auto;
+      font-size: 12px;
+      line-height: 1.25;
+    ">
+      <h4 style="margin:0 0 6px 0; text-align:center; font-size:14px;">
+        ${regionName}
+      </h4>
+
+      <div style="text-align:center; font-size:11px; color:#666; margin-bottom:6px;">
+        Showing season: ${seasonsLine}
+      </div>
+
+      <strong>Schools:</strong>
+      <ul style="padding-left:14px; margin:3px 0 6px 0;">
+        ${schoolsHtml}
+      </ul>
+
+      <strong>Tournaments:</strong>
+      <ul style="padding-left:14px; margin:3px 0 6px 0;">
+        ${tournamentsHtml}
+      </ul>
+
+      <strong>Qualifiers:</strong>
+      <ul style="padding-left:14px; margin:3px 0;">
+        ${qualifiersHtml}
+      </ul>
+    </div>
+  `;
+}
+
+
+
+      
       // --- Invisible interactive region layer for popups/zoom + add regions to search ---
       regions.features.forEach(regionFeature => {
         const regionName = regionFeature.properties?.region || 'Region';
-        const key = clean(regionName);
+        const regionKey  = clean(regionName);
         const schoolsList = regionFeature.properties?.schools || [];
-        const tList = tournamentsByRegionKey[key] || [];
-        const qList = qualifiersByRegionKey[key] || [];
-
-        const schoolsHtml = (schoolsList.length
-          ? schoolsList.map(s => `<li>${s}</li>`).join('')
-          : '<li>No schools listed.</li>');
-
-        const tournamentsHtml = (tList.length
-          ? tList.map(t => {
-              let html = `<li><strong>${t.course_name || 'Tournament'}</strong>`;
-              if (t.date) html += `<br><em>${t.date}</em>`;
-              if (t.website) html += `<br><a href="${t.website}" target="_blank">Course Website</a>`;
-              html += `</li>`;
-              return html;
-            }).join('')
-          : '<li>No tournaments scheduled.</li>');
-
-        const qListHtml = (qList.length
-          ? qList.map(q => {
-              let html = `<li><strong>${q.course_name || q.course || 'Qualifier'}</strong>`;
-              if (q.date) html += `<br><em>${q.date}</em>`;
-              if (q.website) html += `<br><a href="${q.website}" target="_blank">Course Website</a>`;
-              html += `</li>`;
-              return html;
-            }).join('')
-          : '<li>No qualifiers scheduled.</li>');
-
-        const popupContent = `
-          <div style="min-width:300px;">
-            <h4 style="margin:0 0 10px 0; text-align:center;">${regionName}</h4>
-            <div style="display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap;">
-              <div style="width:32%; min-width:220px;">
-                <strong>Schools:</strong>
-                <ul style="padding-left:18px; margin-top:4px;">${schoolsHtml}</ul>
-              </div>
-              <div style="width:32%; min-width:220px;">
-                <strong>Tournaments:</strong>
-                <ul style="padding-left:18px; margin-top:4px;">${tournamentsHtml}</ul>
-              </div>
-              <div style="width:32%; min-width:220px;">
-                <strong>Qualifiers:</strong>
-                <ul style="padding-left:18px; margin-top:4px;">${qListHtml}</ul>
-              </div>
-            </div>
-          </div>
-        `;
 
         let interactiveLayerRef = null;
-        const interactiveLayer = L.geoJSON(regionFeature, {
+
+        L.geoJSON(regionFeature, {
           pane: 'regionPane',
           style: { opacity: 0, fillOpacity: 0, weight: 0 },
           onEachFeature: (_, layer) => {
             interactiveLayerRef = layer;
+
             layer.on('click', e => {
               if (e.originalEvent && e.originalEvent._clickedSchool) return; // ignore school clicks
               map.fitBounds(layer.getBounds());
               const center = layer.getBounds().getCenter();
-              layer.bindPopup(popupContent).openPopup(center);
+
+              // IMPORTANT: popup content generated at open-time (reflects ACTIVE_SEASON + current lists)
+              layer.bindPopup(() => buildRegionPopupContent(regionKey, regionName, schoolsList)).openPopup(center);
             });
           }
         }).addTo(schoolRegionLayer);
@@ -460,13 +662,18 @@
           sub: 'Region',
           terms: regionName.toLowerCase(),
           select: () => {
+            if (!interactiveLayerRef) return;
             const b = interactiveLayerRef.getBounds();
             map.fitBounds(b, { padding: [20, 20] });
             const center = b.getCenter();
-            interactiveLayerRef.bindPopup(popupContent).openPopup(center);
+            interactiveLayerRef.bindPopup(() => buildRegionPopupContent(regionKey, regionName, schoolsList)).openPopup(center);
           }
         });
       });
+
+
+      // Load default season tournaments/qualifiers
+      loadSeasonalCompetitions();
 
       try { map.fitBounds(regionsVisible.getBounds(), { padding: [20,20] }); } catch (e) {}
 
@@ -565,11 +772,77 @@
     .catch(err => console.error(err));
 
     // Layer toggle
-    L.control.layers(null, {
-      "Regions & Schools": schoolRegionLayer,
-      "Tournaments": tournamentLayer,
-      "Qualifiers": qualifierLayer
-    }, { collapsed: false }).addTo(map);
+    const layerControl = L.control.layers(null, {
+  "Regions & Schools": schoolRegionLayer,
+  "Tournaments": tournamentLayer,
+  "Qualifiers": qualifierLayer
+}, { collapsed: false }).addTo(map);
+// ===== Season Filter UI (injected under layer control) =====
+function addSeasonUI({ years, defaultYear }) {
+  const layerEl = document.querySelector(".leaflet-control-layers");
+  if (!layerEl) return null;
+
+  const box = document.createElement("div");
+  box.className = "season-control";
+  box.style.marginTop = "8px";
+  box.style.paddingTop = "8px";
+  box.style.borderTop = "1px solid rgba(0,0,0,0.2)";
+
+  box.innerHTML = `
+    <div style="font-weight:600; margin-bottom:6px;">Season</div>
+    ${years.map(y => `
+      <label style="display:flex; gap:6px; font-size:13px; cursor:pointer;">
+        <input type="radio" name="seasonChoice" value="${y}" class="season-year">
+        ${y}
+      </label>
+    `).join("")}
+  `;
+
+  layerEl.appendChild(box);
+
+  const radios = [...box.querySelectorAll(".season-year")];
+  radios.forEach(r => r.checked = (r.value === defaultYear));
+
+  return { box, radios };
+}
+
+// --- helper used by search results ---
+function setActiveSeason(season){
+  ACTIVE_SEASON = season;
+
+  const radio = document.querySelector(
+    `input[name="seasonChoice"][value="${season}"]`
+  );
+  if (radio) radio.checked = true;
+}
+
+function hookSeasonUI(ui){
+  if (!ui) return;
+  const { radios } = ui;
+
+  function syncFromUI(){
+    const selected = radios.find(r => r.checked);
+    ACTIVE_SEASON = selected ? selected.value : null;
+
+    if (typeof window.loadSeasonalCompetitions === "function") {
+      window.loadSeasonalCompetitions();
+    }
+  }
+
+  radios.forEach(r => r.addEventListener("change", syncFromUI));
+  syncFromUI(); // initial load
+}
+
+// Initialize Season UI
+const seasonUI = addSeasonUI({
+  years: ALL_SEASONS,
+  defaultYear: ACTIVE_SEASON
+});
+hookSeasonUI(seasonUI);
+
+
+
+
   </script>
 </body>
 </html>
