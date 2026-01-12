@@ -1,0 +1,160 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Galloping Hill Golf Course",
+        "regions": ["Philadelphia Region", "Metro Region"],
+        "website": "https://www.gallopinghillgolfcourse.com",
+        "date": "November 8-9, 2025"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-74.276432, 40.684336]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Quicksilver",
+        "regions": ["Atlantic Region", "Northeast Region"],
+        "website": "https://www.quicksilvergolf.com",
+        "date": "November 1-2, 2025"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-80.2872, 40.3919]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Acushnet River",
+        "regions": ["Northern New England Region", "Southern New England Region"],
+        "website": "https://www.golfacushnet.com",
+        "date": "November 8-9, 2025"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-70.9033, 41.66638]
+      }
+    },
+   {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Kingsmill - Plantation Course",
+        "regions": ["Capitol Region", "Colonial Region"],
+        "website": "https://kingsmill.com/golf/golf-courses/the-plantation-course/",
+        "date": "October 18-19, 2025"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-76.669976, 37.2296371]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Veenker Memorial Golf Course",
+        "regions": ["Central Region", "Twin Cities Region", "North Region"],
+        "website": "https://veenkergolf.com",
+        "date": "October 25-26, 2025"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-93.6524413, 42.0397077]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Brick Boilermaker Golf Complex",
+        "regions": ["Ohio Valley Region", "Midwest Region", "Indiana Region", "Great Lakes Region"],
+        "website": "https://purduegolf.com",
+        "date": "November 1-2, 2025"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-86.9472, 40.4643]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Paradise Valley",
+        "region": ["Pacific Region", "Northwest Region"],
+        "date": "February 21-22, 2026",
+        "website": "https://fairfieldgolf.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.0242747, 38.2964703
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Eagle Harbor",
+        "region": ["Florida Region"],
+        "date": "February 21-22, 2026",
+        "website": "https://www.eagleharborgc.com/?utm_source=GMB&utm_medium=organic&utm_campaign=LocalSearch"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.7185715,
+          30.1090581
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "White Bluff",
+        "region": ["Texas Region"],
+        "date": "March 28-29, 2026",
+        "website": "https://whitebluffresort.com/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.3899727722734, 32.02929651170619
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "The Refuge",
+        "region": ["Gulfr Region"],
+        "date": "March 28-29, 2026",
+        "website": "https://www.refugegolfms.com/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.09657607950881, 32.31579697218615
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Grandover Resort",
+        "region": ["Texas Region", "Southeast Region", "South Region"],
+        "date": "March 28-29, 2026",
+        "website": "https://grandoverresort.com/golf/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.882725,
+          35.992013
+        ]
+      }
+    }
+  ]
+}

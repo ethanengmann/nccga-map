@@ -1,0 +1,1658 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "River Forest Country Club",
+        "region": "Atlantic",
+        "date": "October 11-12, 2025",
+        "website": "https://riverforestgolf.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.687583,
+          40.6576836
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "3 Lakes Golf Course",
+        "region": "Atlantic",
+        "date": "October 4-5, 2025",
+        "website": "https://3lakesgolf.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.8044,
+          40.4778
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Lindenwood Golf Club",
+        "region": "Atlantic",
+        "date": "October 25-26, 2025",
+        "website": "https://www.lindenwoodgolf.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.1314446,
+          40.2475703
+        ]
+      }
+    },
+       {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Totteridge",
+        "region": "Atlantic",
+        "date": "March 28-29, 2026",
+        "website": "https://www.totteridge.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+           -79.5389289, 40.3014581
+        ]
+      }
+    },
+
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Langston Golf Course",
+        "region": "Capitol",
+        "date": "November 1-2, 2025",
+        "website": "https://www.playdcgolf.com/langston-golf-course/?utm_source=extnet&utm_medium=yext"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.9637697,
+          38.8978224
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Rattlewood Golf Course",
+        "region": "Capitol",
+        "date": "October 25-26, 2025",
+        "website": "https://www.mcggolf.com/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.1547,
+          39.3747
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Augustine Golf Club",
+        "region": "Capitol",
+        "date": "October 11-12, 2025",
+        "website": "https://www.golfaugustine.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.4777212,
+          38.4435556
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Maryland National Golf Club",
+        "region": "Capitol",
+        "date": "February 28-March 1, 2026",
+        "website": "https://www.marylandnational.com" 
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.522750,
+          39.477943
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Eagle Knoll GC",
+        "region": "Central",
+        "date": "March 28-29, 2026",
+        "website": "https://eagleknoll.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -92.2642813,
+          38.6963171
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Mozingo Lake",
+        "region": "Central",
+        "date": "October 18-19, 2025",
+        "website": "https://mozingolake.com/golf"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+           -94.7698259, 40.3595932 
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Gateway National",
+        "region": "Central",
+        "date": "November 1-2, 2025",
+        "website": "https://gatewaynational.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.138316,
+          38.659987
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "The Rail GC",
+        "region": "Central",
+        "date": "October 4-5, 2025",
+        "website": "https://www.railgolf.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -89.6197309,
+          39.876753
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Kiskiack GC",
+        "region": "Colonial",
+        "date": "February 28-March 1, 2026",
+        "website": "https://kiskiackgc.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.7533052,
+          37.3003479
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "The Manor Golf Club",
+        "region": "Colonial",
+        "date": "Nov 8-9, 2025",
+        "website": "https://golfthemanor.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -78.407372,
+          37.247318
+        ]
+      }
+    },
+     {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Fords Colony - Blue Heron",
+        "region": "Colonial",
+        "date": "September 27-28",
+        "website": "https://fordscolonycc.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.7846669,
+          37.304001
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Pete Dye River Course of Virginia Tech",
+        "region": "Colonial",
+        "date": "September 13-14",
+        "website": "https://petedyerivercourse.com/default.aspx?utm_source=GoogleMyBusiness&utm_medium=organic&utm_campaign=GMB&utm_term=pete"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.530118,
+          37.150656
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "GCU Golf Course",
+        "region": "Desert",
+        "date": "September 20-21",
+        "website": "https://www.gcugolf.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -112.1908044,
+          33.4975907
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Fred Enke Golf Course",
+        "region": "Desert",
+        "date": "February 28-March 1, 2026",
+        "website": "https://www.tucsoncitygolf.com/fred-enke/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.8119298,
+          32.1686901
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Oakcreek Country Club",
+        "region": "Desert",
+        "date": "Nov 8-9, 2025",
+        "website": "https://oakcreekcc.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.8209916,
+          34.9169611
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Ken Mcdonald",
+        "region": "Desert",
+        "date": "March 28-29, 2026",
+        "website": "https://www.playkenmcdonald.com/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.9314012, 33.3563657
+        ]
+      }
+    },
+    
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Fairwinds",
+        "region": "Florida",
+        "date": "October 18-19, 2025",
+        "website": "https://www.fairwindsgolf.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.3617877,
+          27.5022933
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Mission Inn",
+        "region": "Florida",
+        "date": "March 28-29, 2026",
+        "website": "https://www.missionresortandclub.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.7883173,
+          28.7224971
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Hawks Landing GC",
+        "region": "Florida",
+        "date": "October 4-5, 2025",
+        "website": "https://www.marriott.com/en-us/hotels/mcowc-orlando-world-center-marriott/golf/?scid=feed67b0-9a2f-4de1-8df6-114544116108"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.5093152,
+          28.3611447
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Heritage Isle",
+        "region": "Florida",
+        "date": "November 22-23, 2025",
+        "website": "https://www.heritageislesgolf.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+ -82.29544440477399, 28.148220317835108
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Atkins Golf Club",
+        "region": "Great Lakes",
+        "date": "October 18-19, 2025",
+        "website": "https://www.atkinsgolfclub.com/?utm_source=extnet&utm_medium=yext"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -88.1700679,
+          40.0883389
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Pine Meadow Golf Club",
+        "region": "Great Lakes",
+        "date": "Nov 8-9, 2025",
+        "website": "http://pinemeadowgc.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.9889653,
+          42.2905785
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Weibring Golf Club",
+        "region": "Great Lakes",
+        "date": "October 25-26, 2025",
+        "website": "https://isugolf.com/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -89.012779,
+          40.525639
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Oakwood Park",
+        "region": "Great Lakes",
+        "date": "October 4-5, 2025",
+        "website": "https://mke.golf/oakwood/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.97,
+          42.86
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "La Tour GC",
+        "region": "Gulf",
+        "date": "February 14-15, 2026",
+        "website": "https://www.latourgolfclub.com/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.544403,
+          29.684511
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Oak Wing Golf Club",
+        "region": "Gulf",
+        "date": "October 25-26, 2025",
+        "website": "https://www.oakwinggolf.com/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -92.52712633305737,
+          31.31946592652887
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Santa Maria Golf Course",
+        "region": "Gulf",
+        "date": "February 21-22, 2026",
+        "website": "https://golf.brec.org/courses/santamaria/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+            -91.00866082525465,30.338774340976816
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Beaver Creek",
+        "region": "Gulf",
+        "date": "October 11-12, 2025",
+        "website": "https://golf.brec.org/courses/beaver-creek/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+            -91.23568618567566, 30.682010460947442
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Harrison Hills Golf Club",
+        "region": "Indiana",
+        "date": "October 25-26, 2025",
+        "website": "https://harrisonhills.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.2474868,
+          40.2871618
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Sultans Run",
+        "region": "Indiana",
+        "date": "October 18-19, 2025",
+        "website": "https://www.sultansrun.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.8979504,
+          38.4014945
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Coyote Crossing",
+        "region": "Indiana",
+        "date": "April 11-12, 2026",
+        "website": "https://www.coyotecrossinggolf.com/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.90141223257473, 40.49994555493106
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "The Pfau Course",
+        "region": "Indiana",
+        "date": "March 28-29, 2026",
+        "website": "https://thepfaucourse.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+           -86.509405, 39.184229
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Stanley Golf Course",
+        "region": "Metro",
+        "date": "October 4-5, 2025",
+        "website": "https://www.stanleygolfcourse.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.7668564,
+          41.7055237
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Tunxis Country Club",
+        "region": "Metro",
+        "date": "March 28-29, 2026",
+        "website": "https://www.tunxisgolf.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.8297782,
+          41.7381741
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Dyker Beach Golf Course",
+        "region": "Metro",
+        "date": "September 27-28",
+        "website": "https://www.dykerbeachgc.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.0203555,
+          40.6169228
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Pelham/Split Rock",
+        "region": "Metro",
+        "date": "October 11-12, 2025",
+        "website": "https://www.pelhamsplitrock.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.8092596,
+          40.8727331
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Leslie Park",
+        "region": "Midwest",
+        "date": "October 11-12, 2025",
+        "website": "https://leslieparkgolf.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.7251705,
+          42.3074527
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Links of Novi",
+        "region": "Midwest",
+        "date": "October 18-19, 2025",
+        "website": "https://www.linksofnovi.com"
+
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.5430069,
+          42.461926
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Timber Ridge Golf Course",
+        "region": "Midwest",
+        "date": "April 11-12, 2026",
+        "website": "https://eagleeyegolfclub.com/golf-courses/timber-ridge-championship-golf-course/"
+
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.4325423060238, 42.778508504361945
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Hawk Hollow Golf Course",
+        "region": "Midwest",
+        "date": "October 25-26, 2025",
+        "website": "https://eagleeyegolfclub.com/golf-courses/hawk-hollow-championship-golf-course/"
+
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.47344718650754, 42.79424908884477 
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "The Broadlands Golf Course",
+        "region": "Mountain",
+        "date": "Nov 8-9, 2025",
+        "website": "https://www.thebroadlandsgc.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.038175,
+          39.9548113
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Eisenhower Golf Course",
+        "region": "Mountain",
+        "date": "October 11-12, 2025",
+        "website": "https://usafasupport.com/eisenhower-golf-club/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -104.859550,
+          39.006023
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Antler Creek",
+        "region": "Mountain",
+        "date": "October 18-19, 2025",
+        "website": "https://antlercreekgolf.com/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+        -104.59789622485953,  38.97265905543859
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Highland Meadows",
+        "region": "Mountain",
+        "date": "October 4-5, 2025",
+        "website": "https://highlandmeadowsgolfcourse.com/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+        -104.97525625783962, 40.45678335383121
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "The Ranch Golf Club",
+        "region": "Southern New England",
+        "date": "October 25-26, 2025",
+        "website": "https://www.theranchgolfclub.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.7783446,
+          42.0852967
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Hazelton Golf Club",
+        "region": "Southern New England",
+        "date": "October 18-19, 2025",
+        "website": "https://www.hazeltongolfclub.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.2936397,
+          41.8213277
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Whaling City GC",
+        "region": "Southern New England",
+        "date": "November 1-2, 2025",
+        "website": "https://whalingcitygolfcourse.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -70.9617713,
+          41.6580617
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Kingstown Golf Course",
+        "region": "Southern New England",
+        "date": "April 11-12, 2026",
+        "website": "https://www.northkingstownri.gov/893/North-Kingstown-Golf-Course"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.4662,
+          41.5501
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "The Woods of Westminster",
+        "region": "Northern New England",
+        "date": "November 1-2, 2025",
+        "website": "https://thewoodsofwestminster.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.8798546,
+          42.5862032
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Shining Rock GC",
+        "region": "Northern New England",
+        "date": "April 11-12, 2026",
+        "website": "https://www.shiningrock.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.6389814,
+          42.1578896
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "The Links at Outlook",
+        "region": "Northern New England",
+        "date": "October 25-26, 2025",
+        "website": "https://www.outlookgolf.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -70.863548,
+          43.268318
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Sanford Country Club",
+        "region": "Northern New England",
+        "date": "October 11-12, 2025",
+        "website": "https://sanfordcountryclub.com/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -70.7358022580365, 43.37649766067527
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Muskego Lakes Golf Club",
+        "region": "North",
+        "date": "October 11-12, 2025",
+        "website": "https://muskegolakes.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -88.0906173,
+          42.8674493
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Lawsonia - Woods Course",
+        "region": "North",
+        "date": "October 18-19, 2025",
+        "website": "https://www.lawsonia.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -89.012215,
+          43.8296425
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "The Oaks Golf Course",
+        "region": "North",
+        "date": "November 1-2, 2025",
+        "website": "https://golftheoaks.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -89.17098, 43.11574
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Hilly Haven Golf Course",
+        "region": "North",
+        "date": "September 27-28",
+        "website": "https://hillyhaven.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -88.04694809725, 44.346174363637
+        ]
+      }
+    },
+     {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Foxfire Golf Club",
+        "region": "North Carolina",
+        "date": "October 4-5, 2025",
+        "website": "https://foxfireresortandgolf.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.574852,
+          35.173241
+        ]
+      }
+    },
+     {
+      "type": "Feature",
+      "properties": {
+        "course_name": "The Woods Golf Club",
+        "region": "North Carolina",
+        "date": "October 18-19, 2025",
+        "website": "https://www.thewoodsgolfclub.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.373085, 35.237296
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Mooresville Golf Club",
+        "region": "North Carolina",
+        "date": "February 28-March 1, 2026",
+        "website": "https://www.mooresvillegolfclub.com/Home"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.83604095563, 35.575264619354
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Far View CC",
+        "region": "Northeast",
+        "date": "September 27-28",
+        "website": "http://www.farviewgc.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.7634144,
+          42.8840579
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Senaca Falls CC",
+        "region": "Northeast",
+        "date": "October 4-5, 2025",
+        "website": "https://senecafallscountryclub.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.752833,
+          42.8912715
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Towanda GC",
+        "region": "Northeast",
+        "date": "October 11-12, 2025",
+        "website": "https://www.towandagolfclub.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.4236806,
+          41.7714446
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Victor Hills",
+        "region": "Northeast",
+        "date": "April 11-12, 2026",
+        "website": "https://victorhills.com/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.39640219594884, 42.96368182181912
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Emerald Valley",
+        "region": "Northwest",
+        "date": "Nov 8-9, 2025",
+        "website": "https://www.emeraldvalleygolf.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.9941712,
+          43.9231362
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Apple Tree",
+        "region": "Northwest",
+        "date": "October 25-26, 2025",
+        "website": "http://www.appletreeresort.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -120.6244313,
+          46.5638736
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Tri-Mountain Golf Course",
+        "region": "Northwest",
+        "date": "October 18-19, 2025",
+        "website": "https://www.trimountaingolf.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.688332,
+          45.837273
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Prairie Falls",
+        "region": "Northwest",
+        "date": "October 11-12, 2025",
+        "website": "https://www.prairiefallsgolfclub.com/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+           -116.94679128472545, 47.738122540219436
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Beckett Ridge",
+        "region": "Ohio Valley",
+        "date": "October 25-26, 2025",
+        "website": "https://www.beckettridgegolf.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.4396615,
+          39.3470653
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Blacklick Woods - Weather Backup Event",
+        "region": "Ohio Valley",
+        "date":"Nov 8-9, 2025",
+        "website": "http://blacklickwoodsgc.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.802648,
+          39.9409361
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Neumann Golf Course",
+        "region": "Ohio Valley",
+        "date": "September 20-21",
+        "website": "https://www.cincygolf.org/neumann?utm_source=extnet&utm_medium=yext"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.68934,
+          39.258582
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Glenross",
+        "region": "Ohio Valley",
+        "date": "October 18-19, 2025",
+        "website": "https://www.glenrossgc.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.0300,
+          40.2383
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Glenview Golf Club",
+        "region": "Ohio Valley",
+        "date": "March 28-29, 2026",
+        "website": "https://www.cincygolf.org/glenview?utm_source=extnet&utm_medium=yext"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.484192,
+          39.269337
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Rancho Solano Golf Course",
+        "region": "Pacific",
+        "date": "October 11-12, 2025",
+        "website": "https://fairfieldgolf.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.07136, 38.291475
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Lone Tree GC",
+        "region": "Pacific",
+        "date": "November 1-2, 2025",
+        "website": "https://www.lonetreegolfcourse.com"
+        
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-121.805574,
+          37.964478]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Spring Valley Golf Course",
+        "region": "Pacific",
+        "date": "October 18-19, 2025",
+        "website": "https://www.springvalleygolfcourse.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.8532888, 37.4504936
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Lake Chabot",
+        "region": "Pacific",
+        "date": "April 11-12, 2026",
+        "website": "http://www.lakechabotgolf.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1219593,
+          37.7419017
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Turtle Creek GC",
+        "region": "Philadelphia",
+        "date":"March 28-29, 2026",
+        "website": "https://www.turtlecreekgolf.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.5183728,
+          40.2269026
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Frog Hollow",
+        "region": "Philadelphia",
+        "date":"October 11-12, 2025",
+        "website": "https://www.froghollowgolfclub.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.7126476,
+          39.4662642
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Wyncote Golf Club",
+        "region": "Philadelphia",
+        "date": "November 1-2, 2025",
+        "website": "https://wyncote.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.9705358,
+          39.8131357
+        ]
+      }
+    },
+     {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Heron Glen",
+        "region": "Philadelphia",
+        "date": "October 25-26, 2025",
+        "website": "https://www.heronglen.com/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.85164735789547, 40.46908185399672
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Bear's Best",
+        "region": "South",
+        "date": "November 22-23, 2025",
+        "website": "https://www.invitedclubs.com/clubs/bear-s-best-atlanta?utm_referrer=https%3A%2F%2Fwww.google.com%2F"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.097901,
+          34.0893959
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Egwani Farms",
+        "region": "South",
+        "date": "October 11-12, 2025",
+        "website": "https://www.egwanifarmsgolf.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.952284,
+          35.832358
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Point University Golf Club",
+        "region": "South",
+        "date": "October 25-26, 2025",
+        "website": "https://pointgolfclub.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -85.810684,
+          33.578991
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Sunset Landing Golf Course",
+        "region": "South",
+        "date": "February 28-March 1, 2026",
+        "website": "https://portofhuntsville.com/airport/sunset-landing-golf-course/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.7738104, 34.658542
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Hickory Knob GC",
+        "region": "Southeast",
+        "date": "September 27-28",
+        "website": "https://southcarolinaparks.com/hickory-knob"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.4139118,
+          33.8858501
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Country Club of South Carolina",
+        "region": "Southeast",
+        "date": "Nov 8-9, 2025",
+        "website": "https://www.countryclubsc.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.6752432,
+          34.2504169
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Edgewater Golf Course",
+        "region": "Southeast",
+        "date": "October 4-5, 2025",
+        "website": "https://www.edgewatergc.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.594139, 34.535404
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Native Oaks",
+        "region": "Southwest",
+        "date":"Nov 8-9, 2025",
+        "website": "https://www.nativeoaksgolfclub.com/?utm_source=extnet&utm_medium=yext"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -117.0253328,
+          33.2098333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "The Vineyard at Escondido",
+        "region": "Southwest",
+        "date":"Nov 1-2, 2025",
+        "website": "https://www.vineyardatescondido.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -117.0535948, 33.0721715
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Cottonwood Creek Golf Course",
+        "region": "Texas",
+        "date": "September 27-28",
+        "website": "https://www.waco-texas.com/Departments/Parks-Recreation/Cottonwood-Creek-Golf-Course"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.161789,
+          31.506413
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Delaware Springs GC",
+        "region": "Texas",
+        "date": "February 21-22, 2026",
+        "website": "https://www.google.com/url?sa=t&source=web&rct=j&url=http://www.delawaresprings.com/&ved=2ahUKEwjJ07HM7oGPAxW3EFkFHTHbBVUQ_Bd6BAgKEAM&opi=89978449&usg=AOvVaw0ynYywh2O2Mx55_pilpori"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -98.2429492,
+          30.7282646
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Prairie Lakes Golf Course",
+        "region": "Texas",
+        "date": "Nov 8-9, 2025",
+        "website": "https://www.prairielakesgolf.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -96.9840463, 32.6976574
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Cedar Crest",
+        "region": "Texas",
+        "date": "February 28-March 1, 2026",
+        "website": "https://www.golfcedarcrest.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -96.793875, 32.722647
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "The Ridge Golf Club",
+        "region": "Twin Cities",
+        "date": "October 18-19, 2025",
+        "website": "https://www.siouxcenterridge.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -96.1618842,
+          43.0519652
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Les Bolstadt - UNM GC",
+        "region": "Twin Cities",
+        "date": "October 4-5, 2025",
+        "website": "https://golf.umn.edu"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.1961146,
+          44.9921679
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Praire Links",
+        "region": "Twin Cities",
+        "date": "November 1-2, 2025",
+        "website": "https://www.prairielinksgolf.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -92.469452,
+          42.727947
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Bent Tree Golf Club",
+        "region": "Twin Cities",
+        "date": "April 11-12, 2026",
+        "website": "https://www.benttreegolfcb.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -95.8608333, 41.2619444
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Ridgecrest Golf Club",
+        "region": "West",
+        "date": "October 18-19, 2025",
+        "website": "http://ridgecrestgolf.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -116.522799,
+          43.6044314
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Bonneville Golf Course",
+        "region": "West",
+        "date": "April 11-12, 2026",
+        "website": "https://slc-golf.com/bonneville/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.8286835, 40.7478792
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "The Ridge Golf Club",
+        "region": "West",
+        "date": "Nov 1-2, 2025",
+        "website": "https://www.golftheridgegc.com/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -112.03223, 40.6655
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Canyon Springs",
+        "region": "West",
+        "date": "October 25-26, 2025",
+        "website": "https://www.canyonspringsgolf.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -114.4781271749865, 42.605992244007524
+        ]
+      }
+    }
+  ]
+}
