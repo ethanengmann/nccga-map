@@ -52,10 +52,10 @@
        {
       "type": "Feature",
       "properties": {
-        "course_name": "Totteridge",
+        "course_name": "TBD",
         "region": "Atlantic",
         "date": "March 28-29, 2026",
-        "website": "https://www.totteridge.com"
+        "website": "TBD"
       },
       "geometry": {
         "type": "Point",
@@ -195,16 +195,15 @@
     {
       "type": "Feature",
       "properties": {
-        "course_name": "Kiskiack GC",
+        "course_name": "London Downs Golf Club",
         "region": "Colonial",
-        "date": "February 28-March 1, 2026",
-        "website": "https://kiskiackgc.com"
+        "date": "March 28-29, 2026",
+        "website": "https://londondowns.com"
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          -76.7533052,
-          37.3003479
+        "coordinates": [-79.31176476440913, 37.298590218751066
+          
         ]
       }
     },
