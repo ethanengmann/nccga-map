@@ -46,6 +46,36 @@
          
         ]
       }
+    }, 
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Foxfire",
+        "region": "North Carolina",
+        "date": "October 17-18, 2026",
+        "website": "https://foxfireresortandgolf.com/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-79.57477991495199, 35.17321754627586
+         
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Rum Pointe",
+        "region": "Capitol",
+        "date": "November 21-22, 2026",
+        "website": "https://rumpointe.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [ -75.16399186743332, 38.24494074516954
+         
+        ]
+      }
     }
   ]
 }
