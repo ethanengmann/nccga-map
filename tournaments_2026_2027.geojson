@@ -76,6 +76,22 @@
          
         ]
       }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Frog Hollow",
+        "region": "Philadelphia",
+        "date": "OCtober 11-12, 2026",
+        "website": "https://www.froghollowgolfclub.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [ -75.7126476,
+          39.4662642
+         
+        ]
+      }
     }
   ]
 }
