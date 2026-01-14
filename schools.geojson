@@ -618,6 +618,20 @@
     {
       "type": "Feature",
       "properties": {
+        "school": "Flagler College",
+        "region": "Florida Region",
+        "slug": "flagler-college-university-club-golf"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+           -81.31527544341319, 29.892844393690176
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "school": "Illinois State",
         "region": "Great Lakes Region",
         "slug": "illinois-state-club-golf"
