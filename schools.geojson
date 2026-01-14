@@ -424,6 +424,20 @@
     {
       "type": "Feature",
       "properties": {
+        "school": "Virginia Military Institute",
+        "region": "Colonial Region",
+        "slug": "virginia-military-institue-club-golf"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.43518102989296, 37.79086974680802 
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "school": "University of Arizona",
         "region": "Desert Region",
         "slug": "university-of-arizona-club-golf"
