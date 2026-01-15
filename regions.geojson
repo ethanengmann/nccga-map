@@ -902,11 +902,6 @@
             [-83.5296737, 41.30205],
             [-83.6296737, 41.29],
             [-83.7296737, 41.30805]
-            
-            
-            
-
-
           ]
         ]
       }
@@ -1006,7 +1001,8 @@
           "WPI",
           "University of Rhode Island",
           "Stonehill College",
-          "Bryant University"
+          "Bryant University",
+          "Harvard University"
         ]
       },
       "geometry": {
@@ -1053,10 +1049,10 @@
               -72.51161183477805,
               42.52296696670778
             ],
-            [
-              -71.76530667323027,
-              42.4080331571917
-            ],
+          [ -71.1118456886856, 42.45987905179504],
+          [-70.95803710108616, 42.378774938292636],
+          [-70.91958495418629, 42.30162887621024 ],
+
             [
               -71.07866019322609,
               42.16596583668258
@@ -1099,7 +1095,6 @@
           "University of Maine Orono",
           "Babson College",
           "MIT",
-          "Harvard University",
           "University of New Hampshire",
           "University of Massachusetts-Lowell",
           "Northeastern University",
