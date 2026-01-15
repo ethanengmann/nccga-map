@@ -1934,6 +1934,21 @@
     {
       "type": "Feature",
       "properties": {
+        "school": "Miami University of Ohio Women",
+        "region": "Ohio Valley Region",
+        "slug": "miami-university-of-ohio-Women-club-golf"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.7490519,
+          39.5153048
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "school": "University of Dayton",
         "region": "Ohio Valley Region",
         "slug": "university-of-dayton-club-golf"
