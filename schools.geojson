@@ -1127,6 +1127,21 @@
     {
       "type": "Feature",
       "properties": {
+        "school": "Harvard University",
+        "region": "Southern New England Region",
+        "slug": "harvard-university-club-golf"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.1040018,
+          42.3656347
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "school": "College of the Holy Cross",
         "region": "Southern New England Region",
         "slug": "college-of-the-holy-cross-club-golf"
@@ -1625,21 +1640,6 @@
         "school": "MIT",
         "region": "Northern New England Region",
         "slug": "mit-club-golf"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -71.1040018,
-          42.3656347
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "school": "Harvard University",
-        "region": "Northern New England Region",
-        "slug": "harvard-university-club-golf"
       },
       "geometry": {
         "type": "Point",
