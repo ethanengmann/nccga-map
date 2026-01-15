@@ -1321,6 +1321,21 @@
     {
       "type": "Feature",
       "properties": {
+        "school": "East Carolina University",
+        "region": "North Carolina Region",
+        "slug": "east-carolina-university-club-golf"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+           -77.36702859832803, 35.606898956705145
+        ]
+      }
+    },
+    
+    {
+      "type": "Feature",
+      "properties": {
         "school": "University of North Carolina at Wilmington",
         "region": "North Carolina Region",
         "slug": "university-of-north-carolina-at-wilmington-club-golf"
