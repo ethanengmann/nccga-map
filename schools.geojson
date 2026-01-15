@@ -1743,7 +1743,7 @@
       "properties": {
         "school": "University of Wisconsin-Madison",
         "region": "North Region",
-        "slug": "university-of-wisconsin-madison-club-golf"
+        "slug": "university-of-wisconsin,madison-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -1770,9 +1770,23 @@
     {
       "type": "Feature",
       "properties": {
+        "school": "University of Wisconsin-Whitewater",
+        "region": "North Region",
+        "slug": "university-of-wisconsin,whitewater-club-golf"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -88.74303111402702, 42.84131063920484
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "school": "University of Wisconsin-Platteville",
         "region": "North Region",
-        "slug": "university-of-wisconsin-platteville-club-golf"
+        "slug": "university-of-wisconsin,platteville-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -1817,7 +1831,7 @@
       "properties": {
         "school": "University of Wisconsin-Oshkosh",
         "region": "North Region",
-        "slug": "university-of-wisconsin-oshkosh-club-golf"
+        "slug": "university-of-wisconsin,oshkosh-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -1832,7 +1846,7 @@
       "properties": {
         "school": "University of Wisconsin-La Crosse",
         "region": "North Region",
-        "slug": "university-of-wisconsin-la-crosse-club-golf"
+        "slug": "university-of-wisconsin,la-crosse-club-golf"
       },
       "geometry": {
         "type": "Point",
@@ -1847,7 +1861,7 @@
       "properties": {
         "school": "Central Washington University ",
         "region": "Northwest Region",
-        "slug": "central-washington-university--club-golf"
+        "slug": "central-washington-university-club-golf"
       },
       "geometry": {
         "type": "Point",
