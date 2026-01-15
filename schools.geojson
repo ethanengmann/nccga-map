@@ -1756,6 +1756,20 @@
     {
       "type": "Feature",
       "properties": {
+        "school": "University of Wisconsin-Stout",
+        "region": "North Region",
+        "slug": "university-of-wisconsin,stout-club-golf"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -91.92640172110747, 44.872603663124245
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "school": "University of Wisconsin-Platteville",
         "region": "North Region",
         "slug": "university-of-wisconsin-platteville-club-golf"
