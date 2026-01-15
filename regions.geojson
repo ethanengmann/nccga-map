@@ -831,8 +831,9 @@
           "Grand Valley State University",
           "Michigan State University",
           "Michigan",
-          "Oakland University Club Golf (A)",
-          "Bowling Green State University"
+          "Oakland University Club Golf",
+          "Bowling Green State University",
+          "Saginaw Valley State University"
         ]
       },
       "geometry": {
@@ -879,10 +880,9 @@
               -84.72231289207862,
               43.74088178657185
             ],
-            [
-              -83.6125309104753,
-              43.14460321502024
-            ],
+        [ -84.01230936892374, 43.57549096647554],
+        [ -83.945018111849, 43.55957040308429],
+        [ -83.8873398914992, 43.52373375057616],
             [
               -83.0563312104753,
               42.80902191502024
@@ -1476,7 +1476,7 @@
           "Central Washington University ",
           "University of Oregon",
           "Eastern Washington University",
-          "University of Montana (A)"
+          "University of Montana"
         ]
       },
       "geometry": {

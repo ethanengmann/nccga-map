@@ -947,6 +947,21 @@
     {
       "type": "Feature",
       "properties": {
+        "school": "Saginaw Valley State University",
+        "region": "Midwest Region",
+        "slug": "saginaw-valley-state-university-club-golf"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.96227006931498, 43.51421105530763
+        ]
+      }
+    },
+    
+    {
+      "type": "Feature",
+      "properties": {
         "school": "University of Michigan-Flint",
         "region": "Midwest Region",
         "slug": "university-of-michigan-flint-club-golf"
