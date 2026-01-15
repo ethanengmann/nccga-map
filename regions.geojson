@@ -1184,7 +1184,8 @@
           "Elon University",
           "Appalachian State University",
           "Wake Forest University",
-          "Furman University"
+          "Furman University", 
+          "East Carolina University"
         ]
       },
       "geometry": {
@@ -1256,9 +1257,10 @@
               36.13596244989459
             ],
             [
-              -78.52411460193534,
-              35.876723248005604
+              -77.35741556160309, 35.73603260463172
             ],
+            [ -77.2269529203357, 35.65015270440349],
+            [ -77.20498026496435,35.53512990248571],
             [
               -77.81177713070464,
               34.29647639280274
