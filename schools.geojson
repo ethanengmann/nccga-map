@@ -2054,6 +2054,21 @@
     {
       "type": "Feature",
       "properties": {
+        "school": "Ohio State University (Women's)",
+        "region": "Ohio Valley Region",
+        "slug": "ohio-state-university-(women's)-club-golf"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.0132,
+          39.9695
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "school": "Stanford University",
         "region": "Pacific Region",
         "slug": "stanford-university-club-golf"
