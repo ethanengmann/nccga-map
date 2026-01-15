@@ -722,6 +722,21 @@
     {
       "type": "Feature",
       "properties": {
+        "school": "University of Mississippi",
+        "region": "Gulf Region",
+        "slug": "university-of-mississippi-club-golf"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -89.5187664,
+          34.3663773
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "school": "Tulane University of Louisiana",
         "region": "Gulf Region",
         "slug": "tulane-university-of-louisiana-club-golf"
@@ -2201,21 +2216,6 @@
         "coordinates": [
           -82.3984882,
           34.851354
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "school": "University of Mississippi",
-        "region": "South Region",
-        "slug": "university-of-mississippi-club-golf"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -89.5187664,
-          34.3663773
         ]
       }
     },
