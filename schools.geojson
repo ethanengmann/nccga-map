@@ -2458,21 +2458,6 @@
     {
       "type": "Feature",
       "properties": {
-        "school": "Texas Tech University",
-        "region": "Texas Region",
-        "slug": "texas-tech-university-club-golf"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -101.8470215,
-          33.5855677
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "school": "Auburn University",
         "region": "South Region",
         "slug": "auburn-university-club-golf"
@@ -2512,6 +2497,21 @@
         "coordinates": [
           -87.5675258,
           33.2095614
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "school": "Texas Tech University",
+        "region": "Texas Region",
+        "slug": "texas-tech-university-club-golf"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -101.8470215,
+          33.5855677
         ]
       }
     },
