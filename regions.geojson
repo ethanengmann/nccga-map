@@ -1181,6 +1181,7 @@
           "High Point University",
           "North Carolina State University ",
           "University of North Carolina at Chapel Hill",
+          "University of North Carolina at Chapel Hill - Womens",
           "Elon University",
           "Appalachian State University",
           "Wake Forest University",
@@ -1377,7 +1378,9 @@
           "Marquette University",
           "Michigan Technological University",
           "University of Wisconsin-Oshkosh",
-          "University of Wisconsin-La Crosse"
+          "University of Wisconsin-La Crosse",
+          "University of Wisconsin-Stout"
+
         ]
       },
       "geometry": {
@@ -1401,13 +1404,12 @@
               43.72487353759733
             ],
             [
-              -91.40034751056518,
-              43.79424993399904
+              -91.98245988727705, 44.8755688667671
             ],
             [
-              -91.39067632647492,
-              43.86806883319466
+               -91.98245988727705, 44.913996241498296
             ],
+            [-91.95362077710215, 44.93733197901581],
             [
               -88.89392041329239,
               46.95368076552626
