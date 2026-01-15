@@ -1411,9 +1411,9 @@
     {
       "type": "Feature",
       "properties": {
-        "school": "University of North Carolina at Chapel Hill",
+        "school": "University of North Carolina at Chapel Hill - Women's",
         "region": "North Carolina Region",
-        "slug": "university-of-north-carolina-at-chapel-hill-club-golf"
+        "slug": "university-of-north-carolina-at-chapel-hill-,-womens-club-golf"
       },
       "geometry": {
         "type": "Point",
