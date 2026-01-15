@@ -1874,6 +1874,21 @@
     {
       "type": "Feature",
       "properties": {
+        "school": "Gonzaga University ",
+        "region": "Northwest Region",
+        "slug": "gonzaga-university-club-golf"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -117.40196760141428, 47.66583297223335
+        ]
+      }
+    },
+
+    {
+      "type": "Feature",
+      "properties": {
         "school": "University of Oregon",
         "region": "Northwest Region",
         "slug": "university-of-oregon-club-golf"
