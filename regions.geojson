@@ -1002,7 +1002,8 @@
           "University of Rhode Island",
           "Stonehill College",
           "Bryant University",
-          "Harvard University"
+          "Harvard University",
+           "Merrimack College"
         ]
       },
       "geometry": {
@@ -1078,7 +1079,6 @@
         "region": "Northern New England Region",
         "schools": [
           "Plymouth State University",
-          "Merrimack College",
           "University of Maine Orono",
           "Babson College",
           "MIT",
