@@ -1842,7 +1842,6 @@
       "properties": {
         "region": "South Region",
         "schools": [
-          "University of Mississippi",
           "Gordon State College",
           "Samford",
           "Georgia Institute of Technology",
@@ -1867,8 +1866,8 @@
               32.465691914118835
             ],
             [
-              -87.63277759878684,
-              33.074497701120244
+              -87.60277759878684,
+              33.104497701120244
             ],
             [
               -87.69277759878684,
