@@ -304,21 +304,6 @@
     {
       "type": "Feature",
       "properties": {
-        "school": "Pittsburg State University",
-        "region": "Central Region",
-        "slug": "pittsburg-state-university-club-golf"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -94.70496,
-          37.4108841
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "school": "William & Mary",
         "region": "Colonial Region",
         "slug": "william-and-mary-club-golf"
@@ -2066,7 +2051,65 @@
         ]
       }
     },
-    
+    {
+      "type": "Feature",
+      "properties": {
+        "school": "College of the Ozarks",
+        "region": "Ozark Region",
+        "slug": "college-of-the-ozarks-club-golf"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.23624017950273, 36.61459148174582
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "school": "University of Central Oklahoma",
+        "region": "Ozark Region",
+        "slug": "university-of-central-oklahoma-club-golf"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.4649038,
+          35.6571367
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "school": "University of Arkansas",
+        "region": "Ozark Region",
+        "slug": "university-of-arkansas-club-golf"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -94.1579,
+          36.0619
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "school": "Pittsburg State University",
+        "region": "Ozark Region",
+        "slug": "pittsburg-state-university-club-golf"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -94.70496,
+          37.4108841
+        ]
+      }
+    },
     {
       "type": "Feature",
       "properties": {
@@ -2520,21 +2563,6 @@
     {
       "type": "Feature",
       "properties": {
-        "school": "University of Arkansas",
-        "region": "Texas Region",
-        "slug": "university-of-arkansas-club-golf"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -94.1579,
-          36.0619
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "school": "Baylor University",
         "region": "Texas Region",
         "slug": "baylor-university-club-golf"
@@ -2592,21 +2620,7 @@
         ]
       }
     },
-    {
-      "type": "Feature",
-      "properties": {
-        "school": "University of Central Oklahoma",
-        "region": "Texas Region",
-        "slug": "university-of-central-oklahoma-club-golf"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -97.4649038,
-          35.6571367
-        ]
-      }
-    },
+    
     {
       "type": "Feature",
       "properties": {
