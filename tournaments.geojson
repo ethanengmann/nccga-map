@@ -877,6 +877,7 @@
     {
       "type": "Feature",
       "properties": {
+        "id": "7476",
         "course_name": "Sanford Country Club",
         "region": "Northern New England",
         "date": "October 11-12, 2025",

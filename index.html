@@ -355,14 +355,25 @@ const popupKey = clean(polyName || p.region || regionKey);
 
                 // bind popup
                 const html = (() => {
-                  let s = `<strong>${p.course_name || 'Tournament'}</strong>`;
-                  if (p.region) s += `<br>${p.region}`;
-                  if (p.date)   s += `<br><em>${p.date}</em>`;
-                  s += `<br><span style="font-size:12px;color:#666;">Season: ${season}</span>`;
-                  if (p.website) s += `<br><a href="${p.website}" target="_blank">Course Website</a>`;
-                  return s;
-                })();
-                marker.bindPopup(html);
+  let s = `<strong>${p.course_name || 'Tournament'}</strong>`;
+  if (p.region) s += `<br>${p.region}`;
+  if (p.date)   s += `<br><em>${p.date}</em>`;
+  s += `<br><span style="font-size:12px;color:#666;">Season: ${season}</span>`;
+
+  // ✅ Tournament leaderboard link
+  if (p.id) {
+    const leaderboardUrl = getTournamentLeaderboardUrl(p.id);
+    if (leaderboardUrl) {
+      s += `<br><a href="${leaderboardUrl}" target="_blank" rel="noopener noreferrer">Tournament Page</a>`;
+    }
+  }
+
+  if (p.website) s += `<br><a href="${p.website}" target="_blank">Course Website</a>`;
+  return s;
+})();
+
+marker.bindPopup(html);
+
                 return marker;
               }
             }).addTo(tournamentLayer);
@@ -543,6 +554,12 @@ return marker;
       // Build global competition search once
       buildAllSeasonCompetitionIndex();
 
+    function getTournamentLeaderboardUrl(id){
+  if (!id) return null;
+  return `https://nccga.org/app/golf-tournaments/${id}/team-player-leaderboard`;
+}
+  
+
       // Build region popup content dynamically so it always reflects the ACTIVE_SEASON
       function buildRegionPopupContent(regionKey, regionName, schoolsList){
   const key = regionKey; // already cleaned
@@ -573,14 +590,30 @@ return marker;
     : '<li>No schools listed.</li>');
 
   const tournamentsHtml = (tList.length
-    ? tList.map(t => {
-        let html = `<li><strong>${t.course_name || 'Tournament'}</strong>`;
-        if (t.date) html += `<br><em>${t.date}</em>`;
-        if (t.website) html += `<br><a href="${t.website}" target="_blank">Course Website</a>`;
-        html += `</li>`;
-        return html;
-      }).join('')
-    : '<li>No tournaments scheduled.</li>');
+  ? tList.map(t => {
+      let html = `<li><strong>${t.course_name || 'Tournament'}</strong>`;
+
+      if (t.date) {
+        html += `<br><em>${t.date}</em>`;
+      }
+
+      // 🔗 Tournament leaderboard link
+      const leaderboardUrl = getTournamentLeaderboardUrl(t.id);
+      if (leaderboardUrl) {
+        html += `<br><a href="${leaderboardUrl}" target="_blank" rel="noopener noreferrer">
+          Tournament Page
+        </a>`;
+      }
+
+      if (t.website) {
+        html += `<br><a href="${t.website}" target="_blank">Course Website</a>`;
+      }
+
+      html += `</li>`;
+      return html;
+    }).join('')
+  : '<li>No tournaments scheduled.</li>');
+
 
   // No need to show "Season:" per item (header already shows active season)
   const qualifiersHtml = (qList.length
