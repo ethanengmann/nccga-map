@@ -77,12 +77,233 @@
         ]
       }
     },
+     {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Quicksilver",
+        "regions": "Atlantic Region",
+        "date": "October 24-25, 2026",
+        "website": "https://www.quicksilvergolf.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-80.2872, 40.3919]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Augustine Golf Club",
+        "region": "Capitol",
+        "date": "October 3-4, 2026",
+        "website": "https://www.golfaugustine.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.4777212,
+          38.4435556
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Twin Lakes",
+        "region": "Capitol",
+        "date": "October 24-25, 2026",
+        "website": "https://www.fairfaxcounty.gov/parks/golf/twin-lakes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.40547314168671, 38.822274728610914
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Lake Presidential",
+        "region": "Capitol",
+        "date": "October 17-18, 2026",
+        "website": "https://www.lakepresidentialgolf.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.73356723992507, 38.846701795369285
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Heritage Oaks",
+        "region": "Colonial",
+        "date": "October 3-4, 2026",
+        "website": "https://www.heritageoaksgolfva.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -78.90303620798427, 38.44630254593125
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Kingsmill",
+        "regions": "Colonial Region",
+        "date": "November 14-15, 2026",
+        "website": "https://kingsmill.com/golf/golf-courses/the-plantation-course/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-76.669976, 37.2296371]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Mission Inn",
+        "region": "Florida",
+        "date": "October 17-18, 2026",
+        "website": "https://www.missionresortandclub.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.7883173,
+          28.7224971
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "The Rail GC",
+        "region": "Central",
+        "date": "October 24-25, 2026",
+        "website": "https://www.railgolf.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -89.6197309,
+          39.876753
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Dyker Beach",
+        "region": "Metro",
+        "date": "October 17-18, 2026",
+        "website": "https://www.dykerbeachgc.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+           -74.02045655942247, 40.61686590717645
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Centennial Acres",
+        "region": "Midwest",
+        "date": "October 24-25, 2026",
+        "website": "https://www.centennialacres.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+           -84.95669750153448, 42.747432179920764
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Hazelton",
+        "region": "Southern New England",
+        "date": "October 17-18, 2026",
+       "website": "https://www.hazeltongolfclub.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.2936397,
+          41.8213277
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Cold Springs GC",
+        "region": "Northern New England",
+        "date": "October 3-4, 2026",
+       "website": "https://www.coldspringcc.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.41567105084077, 42.2414553823231
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Preserve at Verdae",
+        "region": "South",
+        "date": "November 7-8, 2026",
+       "website": "https://www.thepreserveatverdae.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.32384032292721, 34.8238314504752
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Veenker Memorial Golf Course",
+        "regions": "Twin Cities Region",
+        "website": "https://veenkergolf.com",
+        "date": "October 24-25, 2026"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-93.6524413, 42.0397077]
+      }
+    },
+     {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Preston Golf & Country Club",
+        "region": "West",
+        "website": "https://prestonidahogolf.com",
+        "date": "October 24-25, 2026"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-111.85858357675608, 42.11837843758338]
+      }
+    },
     {
       "type": "Feature",
       "properties": {
         "course_name": "Frog Hollow Golf Club",
         "region": "Philadelphia",
-        "date": "OCtober 11-12, 2026",
+        "date": "October 11-12, 2026",
         "website": "https://www.froghollowgolfclub.com"
       },
       "geometry": {
