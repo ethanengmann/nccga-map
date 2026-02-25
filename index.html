@@ -392,11 +392,32 @@ marker.bindPopup(html);
                   zIndexOffset: 100
                 });
 
-                const label = Array.isArray(p.regions) ? p.regions.join(', ') : (p.region || 'Qualifier');
-                let html = `<strong>${p.course_name || 'Qualifier'}</strong><br>${label}`;
-                if (p.date) html += `<br><em>${p.date}</em>`;
-                if (p.website) html += `<br><a href="${p.website}" target="_blank">Course Website</a>`;
-                marker.bindPopup(html);
+const regionArr =
+  (Array.isArray(p.regions) && p.regions.length) ? p.regions :
+  (Array.isArray(p.region)  && p.region.length)  ? p.region  :
+  null;
+
+const label = regionArr ? regionArr.join(', ') : (p.region || 'Qualifier');
+let html = `<strong>${p.course_name || 'Qualifier'}</strong><br>${label}`;
+if (p.date) html += `<br><em>${p.date}</em>`;
+if (p.registration || p.registration_url) {
+  const regLink = p.registration || p.registration_url;
+  html += `<br><a href="${regLink}" target="_blank" rel="noopener noreferrer"
+            style="color:#2e7d32; font-weight:600;">
+            Register Here
+           </a>`;
+}
+else if (p.tournament_page || p.leaderboard_url) {
+  const lbLink = p.tournament_page || p.leaderboard_url;
+  html += `<br><a href="${lbLink}" target="_blank" rel="noopener noreferrer">
+            Leaderboard
+           </a>`;
+}
+if (p.website) {
+  html += `<br><a href="${p.website}" target="_blank">Course Website</a>`;
+}
+
+marker.bindPopup(html);
 
                 // Index by given region labels (if any)
                 // Bucket for region popups using the SAME key the region polygon popup uses

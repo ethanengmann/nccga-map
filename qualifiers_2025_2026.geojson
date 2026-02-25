@@ -7,6 +7,7 @@
         "course_name": "Galloping Hill Golf Course",
         "regions": ["Philadelphia Region", "Metro Region"],
         "website": "https://www.gallopinghillgolfcourse.com",
+        "tournament_page": "https://hpe.golfgenius.com/pages/12002451787706585740",
         "date": "November 8-9, 2025"
       },
       "geometry": {
@@ -33,6 +34,7 @@
         "course_name": "Acushnet River",
         "regions": ["Northern New England Region", "Southern New England Region"],
         "website": "https://www.golfacushnet.com",
+        "tournament_page": "https://hpe.golfgenius.com/pages/12002446409065353858",
         "date": "November 8-9, 2025"
       },
       "geometry": {
@@ -46,6 +48,7 @@
         "course_name": "Kingsmill - Plantation Course",
         "regions": ["Capitol Region", "Colonial Region"],
         "website": "https://kingsmill.com/golf/golf-courses/the-plantation-course/",
+        "tournament_page": "https://hpe.golfgenius.com/pages/11994135385790796359",
         "date": "October 18-19, 2025"
       },
       "geometry": {
@@ -59,6 +62,7 @@
         "course_name": "Veenker Memorial Golf Course",
         "regions": ["Central Region", "Twin Cities Region", "North Region"],
         "website": "https://veenkergolf.com",
+        "tournament_page": "https://hpe.golfgenius.com/pages/11996720730147443284",
         "date": "October 25-26, 2025"
       },
       "geometry": {
@@ -83,8 +87,9 @@
       "type": "Feature",
       "properties": {
         "course_name": "Paradise Valley",
-        "region": ["Pacific Region", "Northwest Region"],
+        "regions": ["Pacific Region", "Northwest Region"],
         "date": "February 21-22, 2026",
+        "tournament_page": "https://hpe.golfgenius.com/pages/12257914913162318709",
         "website": "https://fairfieldgolf.com"
       },
       "geometry": {
@@ -100,7 +105,8 @@
         "course_name": "Eagle Harbor",
         "region": ["Florida Region"],
         "date": "February 21-22, 2026",
-        "website": "https://www.eagleharborgc.com/?utm_source=GMB&utm_medium=organic&utm_campaign=LocalSearch"
+        "website": "https://www.eagleharborgc.com/?utm_source=GMB&utm_medium=organic&utm_campaign=LocalSearch",
+        "registration": "https://hpe.golfgenius.com/pages/12257900736012145515"
       },
       "geometry": {
         "type": "Point",
@@ -116,7 +122,8 @@
         "course_name": "White Bluff",
         "region": ["Texas Region"],
         "date": "March 28-29, 2026",
-        "website": "https://whitebluffresort.com/"
+        "website": "https://whitebluffresort.com/",
+        "registration": "https://hpe.golfgenius.com/register?league_id=12257972171049063167"
       },
       "geometry": {
         "type": "Point",
@@ -129,9 +136,10 @@
       "type": "Feature",
       "properties": {
         "course_name": "The Refuge",
-        "region": ["Gulfr Region"],
+        "region": ["Gulf Region"],
         "date": "March 28-29, 2026",
-        "website": "https://www.refugegolfms.com/"
+        "website": "https://www.refugegolfms.com/",
+        "registration": "https://hpe.golfgenius.com/register?league_id=12257951668720685822"
       },
       "geometry": {
         "type": "Point",
@@ -146,7 +154,8 @@
         "course_name": "Grandover Resort",
         "region": ["Texas Region", "Southeast Region", "South Region"],
         "date": "March 28-29, 2026",
-        "website": "https://grandoverresort.com/golf/"
+        "website": "https://grandoverresort.com/golf/",
+        "registration": "https://hpe.golfgenius.com/register?league_id=12257938596215968509"
       },
       "geometry": {
         "type": "Point",
