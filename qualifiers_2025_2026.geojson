@@ -106,7 +106,7 @@
         "region": ["Florida Region"],
         "date": "February 21-22, 2026",
         "website": "https://www.eagleharborgc.com/?utm_source=GMB&utm_medium=organic&utm_campaign=LocalSearch",
-        "registration": "https://hpe.golfgenius.com/pages/12257900736012145515"
+        "tournament_page": "https://hpe.golfgenius.com/pages/12257900736012145515"
       },
       "geometry": {
         "type": "Point",
