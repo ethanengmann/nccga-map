@@ -123,7 +123,8 @@
         "region": ["Texas Region"],
         "date": "March 28-29, 2026",
         "website": "https://whitebluffresort.com/",
-        "registration": "https://hpe.golfgenius.com/register?league_id=12257972171049063167"
+        "registration": "https://hpe.golfgenius.com/register?league_id=12257972171049063167",
+        "registration_closes": "Mar 11"
       },
       "geometry": {
         "type": "Point",
@@ -136,10 +137,11 @@
       "type": "Feature",
       "properties": {
         "course_name": "The Refuge",
-        "region": ["Gulf Region"],
+        "regions": ["Gulf Region", "South Region"],
         "date": "March 28-29, 2026",
         "website": "https://www.refugegolfms.com/",
-        "registration": "https://hpe.golfgenius.com/register?league_id=12257951668720685822"
+        "registration": "https://hpe.golfgenius.com/register?league_id=12257951668720685822",
+        "registration_closes": "Mar 11"
       },
       "geometry": {
         "type": "Point",
@@ -155,7 +157,8 @@
         "region": ["Texas Region", "Southeast Region", "South Region"],
         "date": "March 28-29, 2026",
         "website": "https://grandoverresort.com/golf/",
-        "registration": "https://hpe.golfgenius.com/register?league_id=12257938596215968509"
+        "registration": "https://hpe.golfgenius.com/register?league_id=12257938596215968509",
+        "registration_closes": "Mar 11"
       },
       "geometry": {
         "type": "Point",

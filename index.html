@@ -402,10 +402,18 @@ let html = `<strong>${p.course_name || 'Qualifier'}</strong><br>${label}`;
 if (p.date) html += `<br><em>${p.date}</em>`;
 if (p.registration || p.registration_url) {
   const regLink = p.registration || p.registration_url;
+
   html += `<br><a href="${regLink}" target="_blank" rel="noopener noreferrer"
             style="color:#2e7d32; font-weight:600;">
-            Register Here
+            Register Now
            </a>`;
+
+  // ✅ Add closing date text if provided
+  if (p.registration_closes) {
+    html += ` <span style="font-weight:600; color:#1b365d;">
+                (Closes ${p.registration_closes})
+              </span>`;
+  }
 }
 else if (p.tournament_page || p.leaderboard_url) {
   const lbLink = p.tournament_page || p.leaderboard_url;
