@@ -2654,6 +2654,20 @@
     {
       "type": "Feature",
       "properties": {
+        "school": "Creighton",
+        "region": "Twin Cities Region",
+        "slug": "creighton-universityclub-golf"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -95.94772909652168, 41.26472142803724
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "school": "University of Nebraska",
         "region": "Twin Cities Region",
         "slug": "university-of-nebraska-club-golf"
@@ -2770,6 +2784,21 @@
           43.6166163
         ]
       }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "school": "Utah State University",
+        "region": "West Region",
+        "slug": "utah-state-university-club-golf"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.80909876874507, 41.744952132525356
+        ]
+      }
     }
+    
   ]
 }
