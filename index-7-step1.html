@@ -45,7 +45,111 @@
       filter: drop-shadow(0 0 2px #fff) drop-shadow(0 0 1.5px #000);
     }
     .leaflet-div-icon.flag-div { background: transparent; border: 0; }
+    #nccgaChat{
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  width: 340px;
+  max-width: calc(100vw - 32px);
+  height: 420px;
+  max-height: calc(100vh - 32px);
+  background: #0f172a;
+  color: #e2e8f0;
+  border: 2px solid rgba(34,197,94,.75);
+  border-radius: 14px;
+  box-shadow: 0 12px 30px rgba(0,0,0,.35);
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
 
+#nccgaChat.minimized{
+  height: 52px;
+}
+
+#nccgaChat .chatHeader{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding: 10px 12px;
+  background: rgba(34,197,94,.12);
+  border-bottom: 1px solid rgba(148,163,184,.25);
+}
+
+#nccgaChat .chatHeader .title{
+  font-weight: 700;
+  letter-spacing: .2px;
+}
+
+#nccgaChat .chatHeader button{
+  background: transparent;
+  color: #e2e8f0;
+  border: 1px solid rgba(148,163,184,.35);
+  border-radius: 10px;
+  width: 34px;
+  height: 28px;
+  cursor: pointer;
+}
+
+#chatBody{
+  padding: 10px 12px;
+  overflow: auto;
+  flex: 1;
+}
+
+.msg{
+  margin: 8px 0;
+  display: flex;
+}
+.msg.user{ justify-content: flex-end; }
+.msg.bot{ justify-content: flex-start; }
+
+.bubble{
+  max-width: 85%;
+  padding: 8px 10px;
+  border-radius: 12px;
+  line-height: 1.25;
+  font-size: 14px;
+  white-space: pre-wrap;
+}
+.msg.user .bubble{
+  background: rgba(59,130,246,.25);
+  border: 1px solid rgba(59,130,246,.35);
+}
+.msg.bot .bubble{
+  background: rgba(148,163,184,.14);
+  border: 1px solid rgba(148,163,184,.25);
+}
+
+.chatForm{
+  display:flex;
+  gap: 8px;
+  padding: 10px 12px;
+  border-top: 1px solid rgba(148,163,184,.25);
+  background: rgba(2,6,23,.5);
+}
+
+#chatInput{
+  flex: 1;
+  padding: 10px 10px;
+  border-radius: 12px;
+  border: 1px solid rgba(148,163,184,.35);
+  background: rgba(15,23,42,.9);
+  color: #e2e8f0;
+  outline: none;
+}
+
+#chatForm button{
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(34,197,94,.65);
+  background: rgba(34,197,94,.18);
+  color: #e2e8f0;
+  cursor:pointer;
+  font-weight: 600;
+}
   </style>
 </head>
 <body>
@@ -150,7 +254,12 @@
     const schoolRegionLayer = L.layerGroup().addTo(map);
     const tournamentLayer   = L.layerGroup().addTo(map);
     const qualifierLayer    = L.layerGroup().addTo(map);
-const regionsInteractiveLayer = L.featureGroup().addTo(map);
+window.tournamentLayer = tournamentLayer;
+window.qualifierLayer  = qualifierLayer;
+// Expose region container for chatbot
+window.regionsLayer = L.featureGroup().addTo(map);
+window.schoolMarkers = window.schoolMarkers || [];
+window.regionNames = window.regionNames || [];
     // Basemap
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 18,
@@ -273,6 +382,11 @@ const regionsInteractiveLayer = L.featureGroup().addTo(map);
               bubblingMouseEvents: false,
               interactive: true
             });
+            window.schoolMarkers ||= [];
+window.schoolMarkers.push({
+  name: p.school,
+  marker: m
+});
 
             m.on('click', e => {
               if (e.originalEvent) {
@@ -376,6 +490,10 @@ const popupKey = clean(polyName || p.region || regionKey);
 })();
 
 marker.bindPopup(html);
+                // Expose props for Step-1 bot
+                marker._props = p;
+                marker._kind = 'tournament';
+                marker._season = season;
 
                 return marker;
               }
@@ -429,6 +547,10 @@ if (p.website) {
 }
 
 marker.bindPopup(html);
+                // Expose props for Step-1 bot
+                marker._props = p;
+                marker._kind = 'qualifier';
+                marker._season = season;
 
                 // Index by given region labels (if any)
                 // Bucket for region popups using the SAME key the region polygon popup uses
@@ -701,6 +823,8 @@ window.getTournamentLeaderboardUrl = getTournamentLeaderboardUrl;
       // --- Invisible interactive region layer for popups/zoom + add regions to search ---
       regions.features.forEach(regionFeature => {
         const regionName = regionFeature.properties?.region || 'Region';
+        // Store region names for fuzzy matching in Step-1 bot
+        try { window.regionNames && window.regionNames.push(regionName); } catch(e) {}
         const regionKey  = clean(regionName);
         const schoolsList = regionFeature.properties?.schools || [];
 
@@ -721,7 +845,7 @@ window.getTournamentLeaderboardUrl = getTournamentLeaderboardUrl;
               layer.bindPopup(() => buildRegionPopupContent(regionKey, regionName, schoolsList)).openPopup(center);
             });
           }
-        }).addTo(regionsInteractiveLayer);
+        }).addTo(window.regionsLayer);
 
         // Add region to search (zoom and open its popup)
         addToIndex({
@@ -914,9 +1038,407 @@ hookSeasonUI(seasonUI);
 
 
   </script>
+  <!-- NCCGA Chat UI -->
+<div id="nccgaChat">
+  <div class="chatHeader">
+    <div class="title">NCCGA Map Assistant</div>
+    <button id="chatMinBtn" title="Minimize">–</button>
+  </div>
+
+  <div id="chatBody"></div>
+
+  <form id="chatForm" class="chatForm">
+    <input id="chatInput" type="text" placeholder="Try: 'zoom to West Region' or 'find Boise State'" autocomplete="off" />
+    <button type="submit">Send</button>
+  </form>
+</div>
+<script>
+/**
+ * STEP 1 BOT (Option A) — deterministic + fuzzy matching (no API key)
+ * Capabilities:
+ * - Fuzzy region/school/tournament/qualifier matching (handles typos)
+ * - West vs Midwest safe matching (word-boundary + scoring)
+ * - Popup-first behavior (zoom only if target is off-screen)
+ * - "show qualifiers"/"show tournaments" lists with links (from marker props)
+ *
+ * Later (Option B), replace getBotResponse() with a backend LLM call that returns JSON actions.
+ */
+(function initNccgaChatBot(){
+  const elChat  = document.getElementById('nccgaChat');
+  const elBody  = document.getElementById('chatBody');
+  const elForm  = document.getElementById('chatForm');
+  const elInput = document.getElementById('chatInput');
+  const elMinBtn= document.getElementById('chatMinBtn');
+
+  // --- Minimize
+  elMinBtn.addEventListener('click', () => {
+    elChat.classList.toggle('minimized');
+    const mini = elChat.classList.contains('minimized');
+    elBody.style.display = mini ? 'none' : '';
+    elForm.style.display = mini ? 'none' : '';
+    elMinBtn.textContent = mini ? '+' : '–';
+  });
+
+  function addMsg(text, who="bot"){
+    const row = document.createElement('div');
+    row.className = `msg ${who}`;
+    const bubble = document.createElement('div');
+    bubble.className = 'bubble';
+    bubble.textContent = text;
+    row.appendChild(bubble);
+    elBody.appendChild(row);
+    elBody.scrollTop = elBody.scrollHeight;
+  }
+
+  // ---------- Fuzzy helpers ----------
+  function normalizeText(s){
+    return String(s || "")
+      .toLowerCase()
+      .replace(/\bregion\b/g, "")
+      .replace(/[^a-z0-9]+/g, " ")
+      .trim();
+  }
+
+  function levenshtein(a, b){
+    a = normalizeText(a); b = normalizeText(b);
+    const m = a.length, n = b.length;
+    if (!m) return n;
+    if (!n) return m;
+    const dp = Array.from({length:m+1}, () => Array(n+1).fill(0));
+    for (let i=0;i<=m;i++) dp[i][0]=i;
+    for (let j=0;j<=n;j++) dp[0][j]=j;
+    for (let i=1;i<=m;i++){
+      for (let j=1;j<=n;j++){
+        const cost = a[i-1] === b[j-1] ? 0 : 1;
+        dp[i][j] = Math.min(dp[i-1][j] + 1, dp[i][j-1] + 1, dp[i-1][j-1] + cost);
+      }
+    }
+    return dp[m][n];
+  }
+
+  function similarity(a, b){
+    a = normalizeText(a); b = normalizeText(b);
+    const maxLen = Math.max(a.length, b.length) || 1;
+    return 1 - (levenshtein(a,b) / maxLen); // 0..1
+  }
+
+  function bestFuzzyMatch(query, options, minScore=0.75){
+    const q = normalizeText(query);
+    if (!q) return null;
+    let best = null;
+    for (const opt of (options || [])) {
+      const s = similarity(q, opt);
+      if (!best || s > best.score) best = { value: opt, score: s };
+    }
+    return (best && best.score >= minScore) ? best : null;
+  }
+
+  function wordBoundaryMatch(needle, haystack){
+    const n = normalizeText(needle);
+    const h = normalizeText(haystack);
+    if (!n || !h) return false;
+    const re = new RegExp(`\\b${n.replace(/[.*+?^${}()|[\\]\\\\]/g, '\\$&')}\\b`, 'i');
+    return re.test(h);
+  }
+
+  // ---------- Map API ----------
+  const MapAPI = {
+    map(){ return window.map; },
+
+    ensureLayerVisible(layer){
+      const map = window.map;
+      if (!map || !layer) return;
+      if (!map.hasLayer(layer)) layer.addTo(map);
+    },
+
+    // Regions: choose best match without west/midwest collision
+    findRegionLayer(query){
+      const root = window.regionsLayer;
+      if (!root) return { layer:null, resolved:null, fuzzy:false };
+
+      const regionNames = window.regionNames || [];
+      const fuzzy = bestFuzzyMatch(query, regionNames, 0.72); // slightly forgiving
+      const targetName = fuzzy ? fuzzy.value : query;
+
+      const q = normalizeText(targetName);
+      let best = null;
+
+      root.eachLayer(layer => {
+        const props = layer?.feature?.properties || {};
+        const name = String(props.region || props.name || "");
+        const h = normalizeText(name);
+
+        let score = 0;
+        if (h === q) score = 100;
+        else if (h.endsWith(q) && q.length >= 3) score = 90;
+        else if (wordBoundaryMatch(q, h)) score = 80; // "west" won't match "midwest"
+        else if (h.includes(q) && q.length >= 4) score = 40;
+
+        if (score > 0 && (!best || score > best.score)) best = { layer, score, resolvedName: name };
+      });
+
+      return { layer: best?.layer || null, resolved: best?.resolvedName || (fuzzy?.value || null), fuzzy: !!fuzzy };
+    },
+
+    openRegion(query){
+      const map = window.map;
+      if (!map) return { ok:false, msg:"Map not ready yet." };
+
+      const res = this.findRegionLayer(query);
+      const layer = res.layer;
+      if (!layer) return { ok:false, msg:`I couldn't find a region matching "${query}".` };
+
+      const b = layer.getBounds();
+      const center = b.getCenter();
+
+      // Popup-first: open popup; only zoom if off-screen
+      const onScreen = map.getBounds().pad(-0.15).intersects(b);
+      if (!onScreen) map.fitBounds(b, { padding: [30, 30] });
+
+      // Reuse your existing region click handler that builds the popup
+      try { layer.fire && layer.fire('click', { latlng: center }); } catch(e) {}
+      try { layer.openPopup && layer.openPopup(center); } catch(e) {}
+
+      const assumed = (res.fuzzy && res.resolved) ? ` (assuming "${res.resolved}")` : "";
+      return { ok:true, msg:`Opened ${res.resolved || query}.${assumed}` };
+    },
+
+    // Schools
+    findSchool(query){
+      const list = window.schoolMarkers || []; // [{name, marker}]
+      const names = list.map(x => x.name).filter(Boolean);
+      const fuzzy = bestFuzzyMatch(query, names, 0.70);
+      const target = fuzzy ? fuzzy.value : query;
+
+      let best = null;
+      for (const s of list){
+        const n = String(s.name || "");
+        if (!n) continue;
+        const h = normalizeText(n);
+        const q = normalizeText(target);
+
+        let score = 0;
+        if (h === q) score = 100;
+        else if (wordBoundaryMatch(q, h)) score = 85;
+        else if (h.includes(q) && q.length >= 4) score = 40;
+
+        if (score > 0 && (!best || score > best.score)) best = { obj:s, score, resolved:n };
+      }
+      return { school: best?.obj || null, resolved: best?.resolved || (fuzzy?.value || null), fuzzy: !!fuzzy };
+    },
+
+    openSchool(query){
+      const map = window.map;
+      if (!map) return { ok:false, msg:"Map not ready yet." };
+
+      const res = this.findSchool(query);
+      const s = res.school;
+      if (!s || !s.marker) return { ok:false, msg:`I couldn't find a school matching "${query}".` };
+
+      const ll = s.marker.getLatLng();
+      if (!map.getBounds().pad(-0.2).contains(ll)) {
+        map.setView(ll, Math.max(map.getZoom(), 9));
+      }
+      try { s.marker.fire && s.marker.fire('click'); } catch(e) {}
+      try { s.marker.openPopup && s.marker.openPopup(); } catch(e) {}
+
+      const assumed = (res.fuzzy && res.resolved) ? ` (assuming "${res.resolved}")` : "";
+      return { ok:true, msg:`Opened ${res.resolved || query}.${assumed}` };
+    },
+
+    // Tournaments / Qualifiers
+    _collectMarkers(kind){
+      const lg = (kind === 'qualifier') ? window.qualifierLayer : window.tournamentLayer;
+      const out = [];
+      if (!lg || !lg.eachLayer) return out;
+      lg.eachLayer(m => {
+        if (!m || !m.getLatLng) return;
+        if (kind && m._kind && m._kind !== kind) return;
+        out.push(m);
+      });
+      return out;
+    },
+
+    findComp(kind, query){
+      const markers = this._collectMarkers(kind);
+      const qNorm = normalizeText(query);
+      if (!qNorm) return { marker:null, resolved:null, fuzzy:false };
+
+      // build option list from course names
+      const names = markers.map(m => String((m._props && (m._props.course_name || m._props.course)) || "")).filter(Boolean);
+      const fuzzy = bestFuzzyMatch(query, names, 0.70);
+      const target = fuzzy ? fuzzy.value : query;
+      const tNorm = normalizeText(target);
+
+      let best = null;
+      for (const m of markers){
+        const p = m._props || {};
+        const name = String(p.course_name || p.course || "");
+        const reg  = Array.isArray(p.regions) ? p.regions.join(", ") : String(p.region || "");
+        const date = String(p.date || "");
+        const hay = normalizeText(`${name} ${reg} ${date}`);
+
+        let score = 0;
+        if (normalizeText(name) === tNorm) score = 100;
+        else if (wordBoundaryMatch(tNorm, name)) score = 85;
+        else if (hay.includes(tNorm) && tNorm.length >= 4) score = 45;
+
+        if (score > 0 && (!best || score > best.score)) best = { marker:m, score, resolved:name || query };
+      }
+      return { marker: best?.marker || null, resolved: best?.resolved || (fuzzy?.value || null), fuzzy: !!fuzzy };
+    },
+
+    openComp(kind, query){
+      const map = window.map;
+      if (!map) return { ok:false, msg:"Map not ready yet." };
+
+      // ensure overlay is visible
+      if (kind === 'qualifier') this.ensureLayerVisible(window.qualifierLayer);
+      if (kind === 'tournament') this.ensureLayerVisible(window.tournamentLayer);
+
+      const res = this.findComp(kind, query);
+      const m = res.marker;
+      if (!m) return { ok:false, msg:`I couldn't find a ${kind} matching "${query}".` };
+
+      const ll = m.getLatLng();
+      if (!map.getBounds().pad(-0.2).contains(ll)) {
+        map.setView(ll, Math.max(map.getZoom(), 9));
+      }
+      try { m.openPopup && m.openPopup(); } catch(e) {}
+
+      const assumed = (res.fuzzy && res.resolved) ? ` (assuming "${res.resolved}")` : "";
+      return { ok:true, msg:`Opened ${res.resolved || query}.${assumed}` };
+    },
+
+    listComps(kind, limit=10){
+      const map = window.map;
+      if (!map) return { ok:false, msg:"Map not ready yet." };
+
+      if (kind === 'qualifier') this.ensureLayerVisible(window.qualifierLayer);
+      if (kind === 'tournament') this.ensureLayerVisible(window.tournamentLayer);
+
+      const markers = this._collectMarkers(kind);
+      if (!markers.length) return { ok:true, msg:`No ${kind}s loaded for the selected season.` };
+
+      function getLink(p){
+        if (!p) return null;
+        if (p.registration || p.registration_url) return { label: "Register", url: (p.registration || p.registration_url) };
+        if (p.tournament_page || p.leaderboard_url) return { label: "Leaderboard", url: (p.tournament_page || p.leaderboard_url) };
+        if (p.id && typeof window.getTournamentLeaderboardUrl === "function" && kind === 'tournament'){
+          return { label: "Tournament Page", url: window.getTournamentLeaderboardUrl(p.id) };
+        }
+        return null;
+      }
+
+      const items = markers.map(m => {
+        const p = m._props || {};
+        const name = String(p.course_name || p.course || (kind === 'qualifier' ? 'Qualifier' : 'Tournament'));
+        const date = String(p.date || "");
+        const reg  = (Array.isArray(p.regions) && p.regions.length) ? p.regions.join(", ") : String(p.region || "");
+        const link = getLink(p);
+        return { name, date, reg, link };
+      });
+
+      // Sort by date text (best-effort): keep stable if parse fails
+      items.sort((a,b) => String(a.date).localeCompare(String(b.date)));
+
+      const head = `${items.length} ${kind}${items.length === 1 ? '' : 's'} loaded for ${window.ACTIVE_SEASON || 'this season'}.`;
+      const lines = items.slice(0, limit).map((it, i) => {
+        const bits = [];
+        bits.push(`${i+1}) ${it.name}`);
+        if (it.reg) bits.push(`— ${it.reg}`);
+        if (it.date) bits.push(`(${it.date})`);
+        if (it.link && it.link.url) bits.push(`[${it.link.label}] ${it.link.url}`);
+        return bits.join(" ");
+      });
+
+      const more = items.length > limit ? `\n… and ${items.length - limit} more.` : "";
+      return { ok:true, msg: head + "\n" + lines.join("\n") + more };
+    }
+  };
+
+  // ---------- Command runner (allowlist) ----------
+  function runCommand(cmd){
+    if (!cmd || typeof cmd !== 'object') return { ok:false, msg:"Bad command." };
+    switch(cmd.action){
+      case "openRegion":      return MapAPI.openRegion(cmd.regionName);
+      case "openSchool":      return MapAPI.openSchool(cmd.schoolName);
+      case "openTournament":  return MapAPI.openComp('tournament', cmd.query);
+      case "openQualifier":   return MapAPI.openComp('qualifier', cmd.query);
+      case "listTournaments": return MapAPI.listComps('tournament', cmd.limit || 10);
+      case "listQualifiers":  return MapAPI.listComps('qualifier', cmd.limit || 10);
+      default: return { ok:false, msg:`Unknown action: ${cmd.action}` };
+    }
+  }
+
+  // ---------- Deterministic parser (Step 1) ----------
+  async function getBotResponse(userText){
+    const raw = String(userText || "").trim();
+    const lower = raw.toLowerCase();
+
+    // list commands
+    if (/\b(show|list)\b.*\bqualifiers?\b/.test(lower)) {
+      return { text: "Okay — here are the qualifiers I have loaded:", commands: [{ action:"listQualifiers", limit: 12 }] };
+    }
+    if (/\b(show|list)\b.*\btournaments?\b/.test(lower)) {
+      return { text: "Okay — here are the tournaments I have loaded:", commands: [{ action:"listTournaments", limit: 12 }] };
+    }
+
+    // open qualifier/tournament
+    const oq = lower.match(/(?:open|show|find|go to)\s+(?:the\s+)?qualifier\s+(.+)/);
+    if (oq) return { text: `Opening qualifier "${oq[1].trim()}"…`, commands: [{ action:"openQualifier", query: oq[1].trim() }] };
+
+    const ot = lower.match(/(?:open|show|find|go to)\s+(?:the\s+)?tournament\s+(.+)/);
+    if (ot) return { text: `Opening tournament "${ot[1].trim()}"…`, commands: [{ action:"openTournament", query: ot[1].trim() }] };
+
+    // open region
+    const or = lower.match(/(?:open|show|go to|zoom to|find)\s+(?:the\s+)?(.+?)\s*region\s*$/);
+    if (or) return { text: `Opening region "${or[1].trim()}"…`, commands: [{ action:"openRegion", regionName: or[1].trim() }] };
+
+    // open school
+    const fs = lower.match(/(?:find|open|show|go to)\s+(?:the\s+)?(.+)/);
+    if (fs) return { text: `Looking for "${fs[1].trim()}"…`, commands: [{ action:"openSchool", schoolName: fs[1].trim() }] };
+
+    return {
+      text:
+`Try:
+• "open West Region" (typos ok)
+• "find Boise State"
+• "open tournament sanford"
+• "show me qualifiers"`,
+      commands: []
+    };
+  }
+
+  // ---------- Form submit ----------
+  elForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const text = elInput.value.trim();
+    if (!text) return;
+
+    addMsg(text, "user");
+    elInput.value = "";
+
+    const res = await getBotResponse(text);
+    addMsg(res.text || "(no response)", "bot");
+
+    const cmds = Array.isArray(res.commands) ? res.commands : [];
+    for (const cmd of cmds) {
+      const out = runCommand(cmd);
+      if (out && out.msg) addMsg(out.msg, out.ok ? "bot" : "bot");
+    }
+  });
+
+  addMsg("Sup — I can control the map.\nTry: “open West Region”, “find Boise State”, or “show qualifiers”.", "bot");
+})();
+</script></script>
 </body>
 
 </html>
+
+
+
+
 
 
 
