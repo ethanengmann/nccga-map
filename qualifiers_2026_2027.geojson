@@ -43,6 +43,19 @@
     {
       "type": "Feature",
       "properties": {
+        "course_name": "Pine Dunes",
+        "regions": ["Gulf Region", "Texas Region"],
+        "website": "https://www.pinedunes.com",
+        "date": "February 27-28, 2027"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-95.53812013186584, 31.978072908033354]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "course_name": "Spirit Hollow",
         "regions": ["Central Region", "Great Lakes Region", "North Region", "Twin Cities Region"],
         "website": "https://www.spirithollow.com",

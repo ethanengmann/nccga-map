@@ -122,6 +122,7 @@
     {
       "type": "Feature",
       "properties": {
+        "id": "7442",
         "course_name": "Maryland National Golf Club",
         "region": "Capitol",
         "date": "February 28-March 1, 2026",
@@ -287,6 +288,7 @@
     {
       "type": "Feature",
       "properties": {
+        "id": "7447",
         "course_name": "Fred Enke Golf Course",
         "region": "Desert",
         "date": "February 28-March 1, 2026",
@@ -503,6 +505,7 @@
     {
       "type": "Feature",
       "properties": {
+        "id": "7469",
         "course_name": "Santa Maria Golf Course",
         "region": "Gulf",
         "date": "February 21-22, 2026",
@@ -1000,6 +1003,7 @@
     {
       "type": "Feature",
       "properties": {
+        "id": "7403",
         "course_name": "Mooresville Golf Club",
         "region": "North Carolina",
         "date": "February 28-March 1, 2026",
@@ -1015,6 +1019,7 @@
     {
       "type": "Feature",
       "properties": {
+        "id": "7484",
         "course_name": "Red Bridge Golf and Country Club",
         "region": "North Carolina",
         "date": "February 21-22, 2026",
@@ -1414,6 +1419,7 @@
     {
       "type": "Feature",
       "properties": {
+        "id": "7424",
         "course_name": "Sunset Landing Golf Course",
         "region": "South",
         "date": "February 28-March 1, 2026",
@@ -1446,6 +1452,7 @@
     {
       "type": "Feature",
       "properties": {
+        "id": "7651",
         "course_name": "Country Club of South Carolina",
         "region": "Southeast",
         "date": "February 28-March 1, 2026",
@@ -1478,6 +1485,7 @@
     {
       "type": "Feature",
       "properties": {
+        "id": "7647",
         "course_name": "Heritage Golf Club",
         "region": "Southeast",
         "date": "February 14-15, 2026",
@@ -1493,6 +1501,7 @@
     {
       "type": "Feature",
       "properties": {
+        "id": "7432",
         "course_name": "Delaware Springs GC",
         "region": "Texas",
         "date": "February 21-22, 2026",
@@ -1541,6 +1550,7 @@
     {
       "type": "Feature",
       "properties": {
+        "id": "7433",
         "course_name": "Cedar Crest",
         "region": "Texas",
         "date": "February 28-March 1, 2026",

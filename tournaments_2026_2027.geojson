@@ -16,6 +16,21 @@
          39.22801182399317
         ]
       }
+    }, 
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Indian Ridge GC",
+        "region": "Ohio Valley",
+        "date": "September 19-20, 2026",
+        "website": "https://www.indianridgegolfclub.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+         -84.68786994243263, 39.45637819785322
+        ]
+      }
     },
     {
       "type": "Feature",
@@ -28,6 +43,21 @@
       "geometry": {
         "type": "Point",
         "coordinates": [-84.10626801144917, 34.08539058665711
+         
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Bear Trace",
+        "region": "South",
+        "date": "April 3-4, 2027",
+        "website": "https://tnstateparks.com/golf/course/bear-trace-at-harrison-bay/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-85.10679537966836, 35.19635274559072
          
         ]
       }
@@ -67,7 +97,7 @@
       "properties": {
         "course_name": "Rum Pointe",
         "region": "Capitol",
-        "date": "November 21-22, 2026",
+        "date": "November 14-15, 2026",
         "website": "https://rumpointe.com"
       },
       "geometry": {
@@ -229,6 +259,21 @@
     {
       "type": "Feature",
       "properties": {
+        "course_name": "Leslie Park",
+        "region": "Midwest",
+        "date": "October 10-11, 2026",
+        "website": "https://leslieparkgolf.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+           -83.7247758510037, 42.30241247714723
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "course_name": "Hazelton",
         "region": "Southern New England",
         "date": "October 17-18, 2026",
@@ -296,6 +341,19 @@
       "geometry": {
         "type": "Point",
         "coordinates": [-111.85858357675608, 42.11837843758338]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Ridgecrest Golf Club",
+        "region": "West",
+        "website": "http://ridgecrestgolf.com",
+        "date": "October 17-18, 2026"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-116.52362792392547, 43.60379216841181]
       }
     },
     {
