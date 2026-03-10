@@ -210,6 +210,21 @@
         ]
       }
     },
+     {
+      "type": "Feature",
+      "properties": {
+        "course_name": "PGA Golf Club",
+        "region": "Florida",
+        "date": "September 19-20, 2026",
+        "website": "http://www.pgavillage.com/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.42777171991804, 27.310076954200678
+        ]
+      }
+    },
     {
       "type": "Feature",
       "properties": {
@@ -256,6 +271,21 @@
         ]
       }
     },
+     {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Mozingo Lake",
+        "region": "Central",
+        "date": "October 3-4, 2026",
+        "website": "https://mozingolake.com/golf"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+           -94.7698259, 40.3595932 
+        ]
+      }
+    },
     {
       "type": "Feature",
       "properties": {
@@ -268,6 +298,36 @@
         "type": "Point",
         "coordinates": [
            -83.7247758510037, 42.30241247714723
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Stoneridge GC",
+        "region": "Desert",
+        "date": "November 7-8, 2026",
+        "website": "https://stoneridgegolf.com/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+            -112.34140539676984, 34.5663911673737
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Oakcreek GC",
+        "region": "Desert",
+        "date": "November 7-8, 2026",
+        "website": "https://www.oakcreekcc.com/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+            -111.77494712001797, 34.78134959466313
         ]
       }
     },
