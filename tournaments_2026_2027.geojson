@@ -93,22 +93,6 @@
     {
       "type": "Feature",
       "properties": {
-        "course_name": "The Rail GC",
-        "region": "Central",
-        "date": "October 24-25, 2026",
-        "website": "https://www.railgolf.com"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -89.6197309,
-          39.876753
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "course_name": "Mozingo Lake",
         "region": "Central",
         "date": "October 3-4, 2026",
@@ -213,6 +197,22 @@
     {
       "type": "Feature",
       "properties": {
+        "course_name": "The Rail GC",
+        "region": "Great Lakes",
+        "date": "October 24-25, 2026",
+        "website": "https://www.railgolf.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -89.6197309,
+          39.876753
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "course_name": "Dyker Beach",
         "region": "Metro",
         "date": "October 17-18, 2026",
@@ -245,13 +245,43 @@
       "properties": {
         "course_name": "Leslie Park",
         "region": "Midwest",
-        "date": "October 10-11, 2026",
+        "date": "October 3-4, 2026",
         "website": "https://leslieparkgolf.com"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
            -83.7247758510037, 42.30241247714723
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Katke GC",
+        "region": "Midwest",
+        "date": "September 26-27, 2026",
+        "website": "https://www.ferris.edu/katke/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+           -85.49984459945279, 43.68580207199626
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Gull Lake View",
+        "region": "Midwest",
+        "date": "October 10-11, 2026",
+        "website": "http://www.gulllakeview.com/?nck=google"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+           -85.38608484583604, 42.3676864491247
         ]
       }
     },
