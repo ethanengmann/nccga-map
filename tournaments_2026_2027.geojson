@@ -228,6 +228,21 @@
     {
       "type": "Feature",
       "properties": {
+        "course_name": "Sandridge Golf Club",
+        "region": "Florida",
+        "date": "November 21-22, 2026",
+        "website": "http://www.pgavillage.com/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.42777171991804, 27.310076954200678
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "course_name": "The Rail GC",
         "region": "Central",
         "date": "October 24-25, 2026",
