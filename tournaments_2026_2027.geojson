@@ -285,6 +285,22 @@
         ]
       }
     },
+   {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Eisenhower Golf Course",
+        "region": "Mountain",
+        "date": "October 17-18, 2026",
+        "website": "https://usafasupport.com/eisenhower-golf-club/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -104.859550,
+          39.006023
+        ]
+      }
+    },
     {
       "type": "Feature",
       "properties": {
@@ -303,6 +319,34 @@
     {
       "type": "Feature",
       "properties": {
+        "course_name": "The Neuse CC",
+        "region": "North Carolina",
+        "date": "October 10-11, 2026",
+        "website": "https://www.neusegolf.com/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [ -78.39761008425958, 35.63612763483157
+        ]
+      }
+    },
+     {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Warrior GC",
+        "region": "North Carolina",
+        "date": "November 14-15, 2026",
+        "website": "http://warriorgolf.com/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-80.63744056891952, 35.58386794877124
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "course_name": "Cold Springs GC",
         "region": "Northern New England",
         "date": "October 3-4, 2026",
@@ -312,6 +356,66 @@
         "type": "Point",
         "coordinates": [
           -72.41567105084077, 42.2414553823231
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Bretwood GC",
+        "region": "Northern New England",
+        "date": "November 7-8, 2026",
+       "website": "https://bretwoodgc.com/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+           -72.30637905320039, 42.97953092849657
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Reservoir Creek GC",
+        "region": "Northeast",
+        "date": "October 17-18, 2026",
+       "website": "http://www.rcgolf.com/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+            -77.4140295360289, 42.604365930034774
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "The Links at Greystone",
+        "region": "Northeast",
+        "date": "October 17-18, 2026",
+       "website": "http://www.greystonelinks.com/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+            -77.31434901325811, 43.16360028754402
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Indian Creek",
+        "region": "Northwest",
+        "date": "October 10-11, 2026",
+       "website": "http://indiancreekgolf.com/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+             -121.53726263030767, 45.68926547645758
         ]
       }
     },
@@ -349,9 +453,24 @@
     {
       "type": "Feature",
       "properties": {
+        "course_name": "Beavercreek GC",
+        "region": "Ohio Valley",
+        "date": "October 17-18, 2026",
+        "website": "http://www.beavercreekgolfclub.com/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.02843077480898, 39.77123396220124
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "course_name": "Frog Hollow Golf Club",
         "region": "Philadelphia",
-        "date": "October 11-12, 2026",
+        "date": "October 10-11, 2026",
         "website": "https://www.froghollowgolfclub.com"
       },
       "geometry": {
@@ -395,6 +514,36 @@
     {
       "type": "Feature",
       "properties": {
+        "course_name": "Egwani Farms",
+        "region": "South",
+        "date": "October 17-18, 2026",
+        "website": "http://egwanifarmsgolf.com/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [ -83.95139602733359, 35.8322198406831
+         
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Bent Brook",
+        "region": "South",
+        "date": "February 27-28, 2027",
+        "website": "http://www.bentbrook.com/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [  -86.9733187383373, 33.32615590529184
+         
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "course_name": "Hazelton",
         "region": "Southern New England",
         "date": "October 17-18, 2026",
@@ -408,11 +557,24 @@
         ]
       }
     },
+     {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Acushnet River",
+        "region": "Southern New England",
+        "date": "October 24-25, 2026",
+        "website": "https://www.golfacushnet.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-70.9033, 41.66638]
+      }
+    },
     {
       "type": "Feature",
       "properties": {
         "course_name": "Preserve at Verdae",
-        "region": "South",
+        "region": "Southeast",
         "date": "November 7-8, 2026",
        "website": "https://www.thepreserveatverdae.com"
       },
@@ -420,6 +582,51 @@
         "type": "Point",
         "coordinates": [
           -82.32384032292721, 34.8238314504752
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "The Bandit",
+        "region": "Texas",
+        "date": "September 26-27, 2026",
+       "website": "https://www.banditgolfclub.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+           -98.05328469088924, 29.631965227009264
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Squaw Valley GC",
+        "region": "Texas",
+        "date": "November 7-8, 2026",
+       "website": "http://www.squawvalleygc.com/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+            -97.72273659235633, 32.2576362261073
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Waterchase Golf Club",
+        "region": "Texas",
+        "date": "February 13-14, 2027",
+       "website": "http://www.waterchasegc.com/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+            -97.15550375341223, 32.76497832525409
         ]
       }
     },
@@ -436,13 +643,29 @@
         "coordinates": [-93.6524413, 42.0397077]
       }
     },
+   {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Praire Links",
+        "region": "Twin Cities",
+        "date": "November 7-8, 2026",
+        "website": "https://www.prairielinksgolf.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -92.469452,
+          42.727947
+        ]
+      }
+    },
      {
       "type": "Feature",
       "properties": {
         "course_name": "Preston Golf & Country Club",
         "region": "West",
         "website": "https://prestonidahogolf.com",
-        "date": "October 24-25, 2026"
+        "date": "October 3-4, 2026"
       },
       "geometry": {
         "type": "Point",
@@ -460,6 +683,19 @@
       "geometry": {
         "type": "Point",
         "coordinates": [-116.52362792392547, 43.60379216841181]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "River Oaks",
+        "region": "West",
+        "website": "http://sandy.utah.gov/departments/parks-and-recreation/river-oaks-golf-course",
+        "date": "November 7-8, 2026"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [ -111.91722455572557, 40.5820770507814]
       }
     }
   ]
