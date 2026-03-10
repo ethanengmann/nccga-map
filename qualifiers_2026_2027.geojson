@@ -65,6 +65,21 @@
         "type": "Point",
         "coordinates": [-91.14467381708626, 40.76012518746924]
       }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Oakcreek GC",
+        "regions": ["Desert Region", "Northwest Region", "Southwest Region", "Pacific Region"],
+        "date": "February 27-28, 2027",
+        "website": "https://www.oakcreekcc.com/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+            -111.77494712001797, 34.78134959466313
+        ]
+      }
     }
   ]
 }

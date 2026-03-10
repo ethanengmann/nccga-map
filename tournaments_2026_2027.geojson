@@ -4,67 +4,6 @@
     {
       "type": "Feature",
       "properties": {
-        "course_name": "Hickory Woods",
-        "region": "Ohio Valley",
-        "date": "October 24-25, 2026",
-        "website": "https://www.hickorywoods.com/"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-         -84.22745264745778,
-         39.22801182399317
-        ]
-      }
-    }, 
-    {
-      "type": "Feature",
-      "properties": {
-        "course_name": "Indian Ridge GC",
-        "region": "Ohio Valley",
-        "date": "September 19-20, 2026",
-        "website": "https://www.indianridgegolfclub.com"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-         -84.68786994243263, 39.45637819785322
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "course_name": "Bear's Best",
-        "region": "South",
-        "date": "October 24-25, 2026",
-        "website": "https://www.invitedclubs.com/clubs/bear-s-best-atlanta?utm_referrer=https%3A%2F%2Fwww.google.com%2F"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [-84.10626801144917, 34.08539058665711
-         
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "course_name": "Bear Trace",
-        "region": "South",
-        "date": "April 3-4, 2027",
-        "website": "https://tnstateparks.com/golf/course/bear-trace-at-harrison-bay/"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [-85.10679537966836, 35.19635274559072
-         
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "course_name": "3 Lakes",
         "region": "Atlantic",
         "date": "October 17-18, 2026",
@@ -80,38 +19,8 @@
     {
       "type": "Feature",
       "properties": {
-        "course_name": "Foxfire",
-        "region": "North Carolina",
-        "date": "October 17-18, 2026",
-        "website": "https://foxfireresortandgolf.com/"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [-79.57477991495199, 35.17321754627586
-         
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "course_name": "Rum Pointe",
-        "region": "Capitol",
-        "date": "November 14-15, 2026",
-        "website": "https://rumpointe.com"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [ -75.16399186743332, 38.24494074516954
-         
-        ]
-      }
-    },
-     {
-      "type": "Feature",
-      "properties": {
         "course_name": "Quicksilver",
-        "regions": "Atlantic Region",
+        "regions": "Atlantic",
         "date": "October 24-25, 2026",
         "website": "https://www.quicksilvergolf.com"
       },
@@ -133,6 +42,21 @@
         "coordinates": [
           -77.4777212,
           38.4435556
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Rum Pointe",
+        "region": "Capitol",
+        "date": "November 14-15, 2026",
+        "website": "https://rumpointe.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [ -75.16399186743332, 38.24494074516954
+         
         ]
       }
     },
@@ -169,6 +93,37 @@
     {
       "type": "Feature",
       "properties": {
+        "course_name": "The Rail GC",
+        "region": "Central",
+        "date": "October 24-25, 2026",
+        "website": "https://www.railgolf.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -89.6197309,
+          39.876753
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Mozingo Lake",
+        "region": "Central",
+        "date": "October 3-4, 2026",
+        "website": "https://mozingolake.com/golf"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+           -94.7698259, 40.3595932 
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "course_name": "Heritage Oaks",
         "region": "Colonial",
         "date": "October 3-4, 2026",
@@ -185,13 +140,28 @@
       "type": "Feature",
       "properties": {
         "course_name": "Kingsmill",
-        "regions": "Colonial Region",
+        "regions": "Colonial",
         "date": "November 14-15, 2026",
         "website": "https://kingsmill.com/golf/golf-courses/the-plantation-course/"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [-76.669976, 37.2296371]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Stoneridge GC",
+        "region": "Desert",
+        "date": "November 7-8, 2026",
+        "website": "https://stoneridgegolf.com/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+            -112.34140539676984, 34.5663911673737
+        ]
       }
     },
     {
@@ -243,22 +213,6 @@
     {
       "type": "Feature",
       "properties": {
-        "course_name": "The Rail GC",
-        "region": "Central",
-        "date": "October 24-25, 2026",
-        "website": "https://www.railgolf.com"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -89.6197309,
-          39.876753
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "course_name": "Dyker Beach",
         "region": "Metro",
         "date": "October 17-18, 2026",
@@ -286,21 +240,6 @@
         ]
       }
     },
-     {
-      "type": "Feature",
-      "properties": {
-        "course_name": "Mozingo Lake",
-        "region": "Central",
-        "date": "October 3-4, 2026",
-        "website": "https://mozingolake.com/golf"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-           -94.7698259, 40.3595932 
-        ]
-      }
-    },
     {
       "type": "Feature",
       "properties": {
@@ -319,30 +258,107 @@
     {
       "type": "Feature",
       "properties": {
-        "course_name": "Stoneridge GC",
-        "region": "Desert",
-        "date": "November 7-8, 2026",
-        "website": "https://stoneridgegolf.com/"
+        "course_name": "Foxfire",
+        "region": "North Carolina",
+        "date": "October 17-18, 2026",
+        "website": "https://foxfireresortandgolf.com/"
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [
-            -112.34140539676984, 34.5663911673737
+        "coordinates": [-79.57477991495199, 35.17321754627586
+         
         ]
       }
     },
     {
       "type": "Feature",
       "properties": {
-        "course_name": "Oakcreek GC",
-        "region": "Desert",
-        "date": "November 7-8, 2026",
-        "website": "https://www.oakcreekcc.com/"
+        "course_name": "Cold Springs GC",
+        "region": "Northern New England",
+        "date": "October 3-4, 2026",
+       "website": "https://www.coldspringcc.com"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-            -111.77494712001797, 34.78134959466313
+          -72.41567105084077, 42.2414553823231
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Hickory Woods",
+        "region": "Ohio Valley",
+        "date": "October 24-25, 2026",
+        "website": "https://www.hickorywoods.com/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+         -84.22745264745778,
+         39.22801182399317
+        ]
+      }
+    }, 
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Indian Ridge GC",
+        "region": "Ohio Valley",
+        "date": "September 19-20, 2026",
+        "website": "https://www.indianridgegolfclub.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+         -84.68786994243263, 39.45637819785322
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Frog Hollow Golf Club",
+        "region": "Philadelphia",
+        "date": "October 11-12, 2026",
+        "website": "https://www.froghollowgolfclub.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [ -75.7126476,
+          39.4662642
+         
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Bear's Best",
+        "region": "South",
+        "date": "October 24-25, 2026",
+        "website": "https://www.invitedclubs.com/clubs/bear-s-best-atlanta?utm_referrer=https%3A%2F%2Fwww.google.com%2F"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-84.10626801144917, 34.08539058665711
+         
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Bear Trace",
+        "region": "South",
+        "date": "April 3-4, 2027",
+        "website": "https://tnstateparks.com/golf/course/bear-trace-at-harrison-bay/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-85.10679537966836, 35.19635274559072
+         
         ]
       }
     },
@@ -365,21 +381,6 @@
     {
       "type": "Feature",
       "properties": {
-        "course_name": "Cold Springs GC",
-        "region": "Northern New England",
-        "date": "October 3-4, 2026",
-       "website": "https://www.coldspringcc.com"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -72.41567105084077, 42.2414553823231
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "course_name": "Preserve at Verdae",
         "region": "South",
         "date": "November 7-8, 2026",
@@ -396,7 +397,7 @@
       "type": "Feature",
       "properties": {
         "course_name": "Veenker Memorial Golf Course",
-        "regions": "Twin Cities Region",
+        "regions": "Twin Cities",
         "website": "https://veenkergolf.com",
         "date": "October 24-25, 2026"
       },
@@ -429,22 +430,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [-116.52362792392547, 43.60379216841181]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "course_name": "Frog Hollow Golf Club",
-        "region": "Philadelphia",
-        "date": "October 11-12, 2026",
-        "website": "https://www.froghollowgolfclub.com"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [ -75.7126476,
-          39.4662642
-         
-        ]
       }
     }
   ]
