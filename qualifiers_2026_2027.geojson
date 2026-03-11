@@ -80,6 +80,21 @@
             -111.77494712001797, 34.78134959466313
         ]
       }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Juliet Falls",
+        "regions": ["Florida Region", "South Region"],
+        "date": "November 7-8, 2026",
+        "website": "http://www.juliettefalls.com/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+             -82.41631352376189, 29.11735388887416
+        ]
+      }
     }
   ]
 }
