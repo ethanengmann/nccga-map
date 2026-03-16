@@ -2278,6 +2278,35 @@
     {
       "type": "Feature",
       "properties": {
+        "school": "Furman University",
+        "region": "Southeast Region",
+        "slug": "furman-university-club-golf"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.3984882,
+          34.851354
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "school": "Costal Carolina University",
+        "region": "Southeast Region",
+        "slug": "costal-carolina-university-club-golf"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+           -79.00856205567004, 33.79611491520722
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "school": "University of South Carolina",
         "region": "Southeast Region",
         "slug": "university-of-south-carolina-club-golf"
@@ -2347,21 +2376,6 @@
         "coordinates": [
           -80.2440518,
           36.0998131
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "school": "Furman University",
-        "region": "North Carolina Region",
-        "slug": "furman-university-club-golf"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -82.3984882,
-          34.851354
         ]
       }
     },
