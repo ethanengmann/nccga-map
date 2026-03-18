@@ -62,14 +62,14 @@
     {
       "type": "Feature",
       "properties": {
-        "course_name": "Speidel GC",
-        "regions": "Atlantic",
+        "course_name": "Speidel Golf Club",
+        "region": "Atlantic",
         "date": "November 14-15, 2026",
         "website": "https://www.oglebaygolf.com/speidel-golf-club?utm_source=google&utm_medium=organic&utm_campaign=gmb"
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-80.64626348647687, 40.11585402684148]
+        "coordinates": [-80.6462634864768, 40.1158540268414]
       }
     },
     {
