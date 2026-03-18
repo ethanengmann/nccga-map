@@ -62,6 +62,19 @@
     {
       "type": "Feature",
       "properties": {
+        "course_name": "Speidel GC",
+        "regions": "Atlantic",
+        "date": "November 14-15, 2026",
+        "website": "https://www.oglebaygolf.com/speidel-golf-club?utm_source=google&utm_medium=organic&utm_campaign=gmb"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-80.64626348647687, 40.11585402684148]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "course_name": "Augustine Golf Club",
         "region": "Capitol",
         "date": "October 3-4, 2026",
@@ -138,6 +151,21 @@
     {
       "type": "Feature",
       "properties": {
+        "course_name": "Gateway",
+        "region": "Central",
+        "date": "November 14-15, 2026",
+        "website": "https://booking.gatewaynational.com/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+            -90.13937656528559, 38.659439431871476 
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "course_name": "The Oaks Golf Course at Margaritaville Lake",
         "region": "Central",
         "date": "April 3-4, 2027",
@@ -181,6 +209,19 @@
     {
       "type": "Feature",
       "properties": {
+        "course_name": "Wigwam GC",
+        "regions": "Desert",
+        "date": "September 19-20, 2026",
+        "website": "https://www.wigwamgolf.com/?utm_source=GMBlisting&utm_medium=organic"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-112.35705035696812, 33.49816997871641]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "course_name": "Stoneridge GC",
         "region": "Desert",
         "date": "November 7-8, 2026",
@@ -205,6 +246,21 @@
         "type": "Point",
         "coordinates": [
           -80.42777171991804, 27.310076954200678
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Eagle Creek",
+        "region": "Florida",
+        "date": "October 3-4, 2026",
+        "website": "http://www.eaglecreekorlando.com/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+           -81.23775999713524, 28.369886581891254
         ]
       }
     },
@@ -251,6 +307,21 @@
         "type": "Point",
         "coordinates": [
            -88.3065909649334, 42.01860150515694
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Atkins GC",
+        "region": "Great Lakes",
+        "date": "October 10-11, 2026",
+        "website": "https://www.atkinsgolfclub.com/?utm_source=extnet&utm_medium=yext"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+            -88.1708217320236, 40.088635137568
         ]
       }
     },
@@ -322,13 +393,43 @@
       "properties": {
         "course_name": "Dyker Beach",
         "region": "Metro",
-        "date": "October 17-18, 2026",
+        "date": "October 3-4, 2026",
         "website": "https://www.dykerbeachgc.com"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
            -74.02045655942247, 40.61686590717645
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Mansion Ridge",
+        "region": "Metro",
+        "date": "October 17-18, 2026",
+        "website": "https://mansionridgegc.com/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+            -74.18302824840376, 41.29979373177331
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Stanley GC",
+        "region": "Metro",
+        "date": "October 24-25, 2026",
+        "website": "http://www.stanleygolfcourse.com/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+             -72.76540718011692, 41.705720749265375
         ]
       }
     },
@@ -405,6 +506,36 @@
         "coordinates": [
           -104.859550,
           39.006023
+        ]
+      }
+    },
+     {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Glacier Wood GC",
+        "region": "North",
+        "date": "September 26-27, 2026",
+        "website": "http://www.glacierwoodiola.com/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [ -89.12011722922541, 44.515260211727586
+         
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Geneva National GC",
+        "region": "North",
+        "date": "October 24-25, 2026",
+        "website": "https://www.destinationgn.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [  -88.51600652496937, 42.59971482896734
+         
         ]
       }
     },
@@ -516,7 +647,7 @@
       "properties": {
         "course_name": "The Links at Greystone",
         "region": "Northeast",
-        "date": "October 17-18, 2026",
+        "date": "October 24-25, 2026",
        "website": "http://www.greystonelinks.com/"
       },
       "geometry": {
@@ -553,6 +684,21 @@
         "type": "Point",
         "coordinates": [
              -121.53726263030767, 45.68926547645758
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Tri-Mountain GC",
+        "region": "Northwest",
+        "date": "October 17-18, 2026",
+       "website": "https://www.trimountaingolf.com/?utm_source=extnet&utm_medium=yext"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+              -122.6878208512974, 45.83634665056868
         ]
       }
     },
@@ -599,6 +745,36 @@
         "coordinates": [
          -84.22745264745778,
          39.22801182399317
+        ]
+      }
+    }, 
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Los Lagos",
+        "region": "Pacific",
+        "date": "October 10-11, 2026",
+        "website": "http://www.playloslagos.com/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.8279077856774, 37.30074573556201
+        ]
+      }
+    }, 
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Laguna Seca",
+        "region": "Pacific",
+        "date": "October 24-25, 2026",
+        "website": "http://lagunasecagolf.com/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+         -121.78930693482, 36.57396308839307
         ]
       }
     }, 
@@ -855,14 +1031,14 @@
     {
       "type": "Feature",
       "properties": {
-        "course_name": "River Oaks",
+        "course_name": "Sun Hills",
         "region": "West",
-        "website": "http://sandy.utah.gov/departments/parks-and-recreation/river-oaks-golf-course",
+        "website": "https://www.sunhillsgolf.com/",
         "date": "November 7-8, 2026"
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [ -111.91722455572557, 40.5820770507814]
+        "coordinates": [  -111.94169630892007, 41.11048742905281]
       }
     }
   ]
