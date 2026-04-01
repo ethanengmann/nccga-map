@@ -4,19 +4,6 @@
     {
       "type": "Feature",
       "properties": {
-        "course_name": "Worthington Manor",
-        "regions": ["Philadelphia Region", "Colonial Region", "Capitol Region", "Atlantic Region"],
-        "website": "https://www.worthingtonmanor.com/?utm_source=GMBListing&utm_medium=Organic",
-        "date": "November 7-8, 2026"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [-77.37655979811916, 39.32752548817164]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "course_name": "The Ranch GC",
         "regions": ["Southern New England Region", "Northern New England Region", "Northeast Region", "Metro Region"],
         "website": "https://www.theranchgolfclub.com",
@@ -25,32 +12,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [-72.77543918818004, 42.0848507468841]
-      }
-    },
-     {
-      "type": "Feature",
-      "properties": {
-        "course_name": "Stoneridge",
-        "regions": ["Atlantic Region", "Indiana Region", "Midwest Region", "Ohio Valley Region"],
-        "website": "http://www.stoneridgegolfclub.org",
-        "date": "November 7-8, 2026"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [-83.68621277290197, 41.36901466139397]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "course_name": "Pine Dunes",
-        "regions": ["Gulf Region", "Texas Region"],
-        "website": "https://www.pinedunes.com",
-        "date": "February 27-28, 2027"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [-95.53812013186584, 31.978072908033354]
       }
     },
     {
@@ -64,6 +25,47 @@
       "geometry": {
         "type": "Point",
         "coordinates": [-91.14467381708626, 40.76012518746924]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Worthington Manor",
+        "regions": ["Philadelphia Region", "Colonial Region", "Capitol Region", "Atlantic Region"],
+        "website": "https://www.worthingtonmanor.com/?utm_source=GMBListing&utm_medium=Organic",
+        "date": "November 7-8, 2026"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-77.37655979811916, 39.32752548817164]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Juliet Falls",
+        "regions": ["Florida Region", "South Region"],
+        "date": "November 7-8, 2026",
+        "website": "http://www.juliettefalls.com/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+             -82.41631352376189, 29.11735388887416
+        ]
+      }
+    },
+     {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Stoneridge",
+        "regions": ["Atlantic Region", "Indiana Region", "Midwest Region", "Ohio Valley Region"],
+        "website": "http://www.stoneridgegolfclub.org",
+        "date": "November 7-8, 2026"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-83.68621277290197, 41.36901466139397]
       }
     },
     {
@@ -84,15 +86,27 @@
     {
       "type": "Feature",
       "properties": {
-        "course_name": "Juliet Falls",
-        "regions": ["Florida Region", "South Region"],
-        "date": "November 7-8, 2026",
-        "website": "http://www.juliettefalls.com/"
+        "course_name": "Pine Dunes",
+        "regions": ["Gulf Region", "Texas Region"],
+        "website": "https://www.pinedunes.com",
+        "date": "February 27-28, 2027"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-95.53812013186584, 31.978072908033354]
+      }
+    },{
+      "type": "Feature",
+      "properties": {
+        "course_name": "Cateeche",
+        "regions": ["South Region", "Southeast Region"],
+        "date": "February 27-28, 2027",
+        "website": "http://www.cateechee.com/"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-             -82.41631352376189, 29.11735388887416
+             -82.9154913718037, 34.3232644919578
         ]
       }
     }
