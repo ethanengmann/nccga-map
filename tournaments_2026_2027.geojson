@@ -223,6 +223,21 @@
     {
       "type": "Feature",
       "properties": {
+        "course_name": "London Downs Golf Club",
+        "region": "Colonial",
+        "date": "April 3-4, 2027",
+        "website": "https://londondowns.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-79.31176476440913, 37.298590218751066
+          
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "course_name": "Wigwam GC",
         "regions": "Desert",
         "date": "September 19-20, 2026",
