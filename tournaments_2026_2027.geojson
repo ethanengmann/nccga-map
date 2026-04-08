@@ -762,6 +762,22 @@
     {
       "type": "Feature",
       "properties": {
+        "course_name": "Shining Rock GC",
+        "region": "Northern New England",
+        "date": "April 3-4, 2027",
+        "website": "https://www.shiningrock.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.6389814,
+          42.1578896
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "course_name": "Oswego Country Club",
         "region": "Northeast",
         "date": "September 19-20, 2026",
