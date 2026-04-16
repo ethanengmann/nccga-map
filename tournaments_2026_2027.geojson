@@ -1049,6 +1049,21 @@
     {
       "type": "Feature",
       "properties": {
+        "course_name": "Kearney Hill GC",
+        "region": "Ohio Valley",
+        "date": "April 10-11, 2027",
+        "website": "https://www.lexingtonky.gov/playing/athletics-sports/golf/kearney-hill-golf-links"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+           -84.53677190159844, 38.1238043909107
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "course_name": "Los Lagos",
         "region": "Pacific",
         "date": "October 10-11, 2026",
