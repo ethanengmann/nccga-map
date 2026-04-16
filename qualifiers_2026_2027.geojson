@@ -4,6 +4,21 @@
     {
       "type": "Feature",
       "properties": {
+        "course_name": "Eagle Creek",
+         "regions": ["Florida Region", "South Region"],
+        "date": "October 3-4, 2026",
+        "website": "http://www.eaglecreekorlando.com/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+           -81.23775999713524, 28.369886581891254
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "course_name": "The Ranch GC",
         "regions": ["Southern New England Region", "Northern New England Region", "Northeast Region", "Metro Region"],
         "website": "https://www.theranchgolfclub.com",
@@ -38,21 +53,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [-77.37655979811916, 39.32752548817164]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "course_name": "Juliet Falls",
-        "regions": ["Florida Region", "South Region"],
-        "date": "November 7-8, 2026",
-        "website": "http://www.juliettefalls.com/"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-             -82.41631352376189, 29.11735388887416
-        ]
       }
     },
      {

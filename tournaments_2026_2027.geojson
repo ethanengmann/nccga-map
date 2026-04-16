@@ -251,30 +251,30 @@
     {
       "type": "Feature",
       "properties": {
-        "course_name": "Stoneridge GC",
-        "region": "Desert",
-        "date": "November 7-8, 2026",
-        "website": "https://stoneridgegolf.com/"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-            -112.34140539676984, 34.5663911673737
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "course_name": "GCU Golf Course",
         "region": "Desert",
-        "date": "November 21-22, 2026",
+        "date": "September 26-27, 2026",
         "website": "http://gcugolf.com/"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
              -112.1878867635498, 33.49576906744416
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Stoneridge GC",
+        "region": "Desert",
+        "date": "October 17-18, 2026",
+        "website": "https://stoneridgegolf.com/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+            -112.34140539676984, 34.5663911673737
         ]
       }
     },
@@ -296,21 +296,6 @@
     {
       "type": "Feature",
       "properties": {
-        "course_name": "Eagle Creek",
-        "region": "Florida",
-        "date": "October 3-4, 2026",
-        "website": "http://www.eaglecreekorlando.com/"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-           -81.23775999713524, 28.369886581891254
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "course_name": "Mission Inn",
         "region": "Florida",
         "date": "October 17-18, 2026",
@@ -321,6 +306,36 @@
         "coordinates": [
           -81.7883173,
           28.7224971
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Royal St. Cloud",
+        "region": "Florida Region", 
+        "date": "October 24-25, 2026",
+        "website": "https://www.royalstcloudgolflinks.com/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+              -81.27654927571916, 28.2083272788934
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Juliet Falls",
+        "region": "Florida Region", 
+        "date": "November 7-8, 2026",
+        "website": "http://www.juliettefalls.com/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+             -82.41631352376189, 29.11735388887416
         ]
       }
     },
@@ -415,6 +430,51 @@
         ]
       }
     },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Grand Ridge GC",
+        "region": "Gulf",
+        "date": "September 19-20, 2026",
+        "website": "http://www.grandridgegolf.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+            -90.33910594997288, 29.892474554047165
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Santa Maria",
+        "region": "Gulf",
+        "date": "October 17-18, 2026",
+        "website": "https://golf.brec.org/courses/santamaria/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+            -91.00857501286356, 30.338727987580956
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "The Refuge",
+        "region": "Gulf",
+        "date": "April 3-4, 2027",
+        "website": "https://www.refugegolfms.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+            -90.09528545408784, 32.315778967408605
+        ]
+      }
+    },
      {
       "type": "Feature",
       "properties": {
@@ -504,6 +564,36 @@
         "type": "Point",
         "coordinates": [
              -72.76540718011692, 41.705720749265375
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Fairchild WHeeler",
+        "region": "Metro",
+        "date": "November 7-8, 2026",
+        "website": "https://www.fairchildwheelergolf.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+              -73.24233045652495, 41.21338647085844
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "The Club at Oxford Greens",
+        "region": "Metro",
+        "date": "April 3-4, 2027",
+        "website": "https://www.oxfordgreens.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+               -73.10664877360318, 41.461059476056526
         ]
       }
     },
@@ -1097,7 +1187,7 @@
       "properties": {
         "course_name": "Bear's Best",
         "region": "South",
-        "date": "October 14-15, 2026",
+        "date": "November 14-15, 2026",
         "website": "https://www.invitedclubs.com/clubs/bear-s-best-atlanta?utm_referrer=https%3A%2F%2Fwww.google.com%2F"
       },
       "geometry": {
@@ -1182,6 +1272,19 @@
     {
       "type": "Feature",
       "properties": {
+        "course_name": "Highfields Golf and CC",
+        "region": "Southern New England",
+        "date": "November 7-8, 2026",
+        "website": "https://www.highfieldsgolfcc.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [ -71.67983648429532, 42.194466471098]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "course_name": "Oyster Bay Golf Links",
         "region": "Southeast",
         "date": "September 19-20, 2026",
@@ -1251,6 +1354,21 @@
         "type": "Point",
         "coordinates": [
            -98.05328469088924, 29.631965227009264
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Praire Laks",
+        "region": "Texas",
+        "date": "October 10-11, 2026",
+       "website": "https://www.prairielakesgolf.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+           -96.98523883079946, 32.697614586909445
         ]
       }
     },
@@ -1380,6 +1498,19 @@
       "geometry": {
         "type": "Point",
         "coordinates": [  -111.94169630892007, 41.11048742905281]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "course_name": "Bonneville",
+        "region": "West",
+        "website": "https://www.slc-golf.com/bonneville",
+        "date": "April 3-4, 2027"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [   -111.82610134204569, 40.746414304380664]
       }
     }
   ]
